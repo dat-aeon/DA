@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="LoginInfo">
+	<select id="refer"
+		parameterType="mm.aeon.com.ass.base.dto.loginInfoRefer.LoginInfoReferReqDto"
+		resultMap="loginInfoReferResDto">
+		SELECT 
+			U.USER_ID, U.LOGIN_ID, U.USER_TYPE_ID, U.NAME, UT.USR_TYPE, P.UPDATED_BY, P.UPDATED_TIME, UG.GROUP_ID, DDF.NAME AS DEPARTMENT_NAME
+		FROM 
+			user_info U
+		INNER JOIN 
+			PASSWORD_INFO P 
+		ON 
+			U.USER_ID = P.USER_ID
+		LEFT JOIN 
+			USER_TYPE UT 
+		ON 
+			U.USER_TYPE_ID = UT.USER_TYPE_ID
+		LEFT JOIN 
+			USER_GROUP UG 
+		ON 
+			U.USER_ID = UG.USER_ID
+		LEFT JOIN 
+			DA_USER_DEPARTMENT DUD 
+		ON 
+			U.USER_ID = DUD.USER_ID
+		LEFT JOIN 
+			DA_DEPARTMENT_INFO DDF 
+		ON 
+			DUD.DA_DEPARTMENT_INFO_ID = DDF.DA_DEPARTMENT_INFO_ID
+		<where>
+			(P.USER_TYPE_ID = 4 OR P.USER_TYPE_ID = 5)
+			AND
+			U.DEL_FLAG = 0
+			<if test="loginId != null and loginId != ''">
+				AND U.LOGIN_ID = #{loginId}
+			</if>
+			<if test="password != null and password != ''">
+				AND P.PASSWORD = #{password}
+			</if>
+		</where>
+	</select>
+
+	<resultMap id="loginInfoReferResDto"
+		type="mm.aeon.com.ass.base.dto.loginInfoRefer.LoginInfoReferResDto">
+		<result column="USER_ID" property="userId" />
+		<result column="LOGIN_ID" property="loginId" />
+		<result column="NAME" property="name" />
+		<result column="USR_TYPE" property="userType" />
+		<result column="USER_TYPE_ID" property="userTypeId" />
+		<result column="UPDATED_BY" property="updatedBy" />
+		<result column="UPDATED_TIME" property="updatedTime" />
+		<result column="GROUP_ID" property="groupId" />
+		<result column="DEPARTMENT_NAME" property="departmentName" />
+	</resultMap>
+</mapper>

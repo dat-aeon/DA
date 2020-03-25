@@ -1,0 +1,118 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Su Su Sandi $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('APL0027')}" /></title>
+	</ui:define>
+	<ui:define name="body">
+		<h:form id="APL0027Form">
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('APL0027')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-2"></div>
+					<div class="ui-g-8" style="">
+					<div style="margin-left: 5%;">
+					<pt:messages />
+					</div>
+					<p:panelGrid styleClass="status-panel-grid tblAppDetail">
+		
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 50%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('currentFinanceAmount')}" />
+									</p:column>
+									<p:column style="width: 50%;" styleClass="status-panel-grid-column tblAppBorderRight">
+										<h:outputText value="#{agreementModificationRequestFormBean.lineBean.approvedFinanceAmount}" >
+										<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+									<p:column style="width: 50%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('modifyFinanceAmount')}" />
+									</p:column>
+									<p:column style="width: 50%;" styleClass="status-panel-grid-column tblAppBorderRight">
+										<h:outputText value="#{agreementModificationRequestFormBean.lineBean.modifyFinanceAmount}" >
+										<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 50%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('currentFinanceTerm')}" />
+									</p:column>
+									<p:column style="width: 50%;" styleClass="status-panel-grid-column tblAppBorderRight">
+										<h:outputText value="#{''.concat(agreementModificationRequestFormBean.lineBean.approvedFinanceTerm).concat(' Months')}" />
+									</p:column>
+									<p:column style="width: 50%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('modifyFinanceTerm')}" />
+									</p:column>
+									<p:column style="width: 50%;" styleClass="status-panel-grid-column tblAppBorderRight">
+										<h:outputText value="#{''.concat(agreementModificationRequestFormBean.lineBean.modifyFinanceTerm).concat(' Months')}" />
+									</p:column>
+								</p:row>
+								
+							</p:panelGrid>
+							
+							<p:panelGrid styleClass="status-panel-grid tblAppDetail" style="margin-top: 30px">
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 25%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('name')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="3">
+										<h:outputText value="#{agreementModificationRequestFormBean.lineBean.applicantName}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 25%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('nrcNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="3">
+										<h:outputText value="#{agreementModificationRequestFormBean.lineBean.nrcNo}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 25%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('agreementNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="3">
+										<h:outputText value="#{agreementModificationRequestFormBean.lineBean.agreementNo}" />
+									</p:column>
+								</p:row>
+								
+							</p:panelGrid>
+							
+						<div style="margin-left: 5%;">
+						<p:inputTextarea id="modifyComment" onkeyup="this.value = this.value.toUpperCase();" maxlength="256"
+							value="#{agreementModificationRequestFormBean.headerBean.modifyComment}" placeholder="#{displayItemBean.getDisplayItemName('comment')}" style="width: 50%; margin-top: 10px;"
+							rendered="#{agreementModificationRequestFormBean.notyetFlag}" />
+						</div>
+							
+						<p:commandButton style="margin-left: 5%; margin-top: 10px;" value="#{displayItemBean.getDisplayItemName('modify')}" rendered="#{agreementModificationRequestFormBean.notyetFlag}"
+							action="#{agreementModificationRequestFormBean.uploaded(agreementModificationRequestFormBean.lineBean)}" id="uploadButton" ajax="false" styleClass="button">
+							<f:setPropertyActionListener value="#{agreementModificationRequestFormBean.lineBean}" target="#{agreementModificationRequestFormBean.lineBean}" />
+						</p:commandButton>
+						
+						<p:commandButton style="margin-top: 10px; margin-left: 1%;" value="#{displayItemBean.getDisplayItemName('notAccept')}" rendered="#{agreementModificationRequestFormBean.notyetFlag}"
+							action="#{agreementModificationRequestFormBean.cancel(agreementModificationRequestFormBean.lineBean)}" id="cancelButton" ajax="false" styleClass="button">
+							<f:setPropertyActionListener value="#{agreementModificationRequestFormBean.lineBean}" target="#{agreementModificationRequestFormBean.lineBean}" />
+						</p:commandButton>
+						
+						<p:commandButton style="margin-left: 1%; margin-top: 10px;" value="#{displayItemBean.getDisplayItemName('back')}" action="#{agreementModificationRequestFormBean.back()}" id="bckButton" ajax="false" styleClass="button" />
+					</div>
+					
+					<div class="ui-g-2"></div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

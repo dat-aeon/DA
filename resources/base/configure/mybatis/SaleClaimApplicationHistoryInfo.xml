@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="SaleClaimApplicationHistoryInfo">
+
+	<select id="selectForUpdate"
+		parameterType="mm.aeon.com.ass.base.dto.saleClaimApplicationSelectForUpdate.SaleClaimApplicationSelectForUpdateReqDto"
+		resultMap="SaleClaimApplicationSelectForUpdateResDtoResultMap">
+		SELECT 
+			DA_APPLICATION_INFO_HISTORY_ID
+		FROM 
+			DA_APPLICATION_INFO_HISTORY
+		<where>
+			<if test="applicationNo != null">
+				application_no = #{applicationNo}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+		</where>
+	</select>
+	
+	<resultMap id="SaleClaimApplicationSelectForUpdateResDtoResultMap"
+		type="mm.aeon.com.ass.base.dto.saleClaimApplicationSelectForUpdate.SaleClaimApplicationSelectForUpdateResDto">
+		<result property="applicationHistoryId" column="DA_APPLICATION_INFO_HISTORY_ID" />
+	</resultMap>
+	
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.saleClaimApplicationUpdate.SaleClaimApplicationHistoryStatusUpdateReqDto">
+		UPDATE da_application_info_history
+		<set>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="pendingComment != null and pendingComment !=''">
+				settlement_pending_comment = #{pendingComment,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedBy != null and updatedBy !=''">
+				UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedTime != null">
+        		UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      		</if>
+		</set>
+		<where>
+			da_application_info_history_id = #{applicationHistoryId,jdbcType=INTEGER}
+		</where>
+	</update>
+</mapper>

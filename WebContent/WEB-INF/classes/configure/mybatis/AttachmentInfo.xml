@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="AttachmentInfo">
+	 
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.uploadedApplicationUpdate.UploadedApplicationAttachmentFlagUpdateReqDto">
+		UPDATE da_application_info_attachment
+		<set>			 
+			edit_flag = #{editFlag},						 
+		</set>
+		<where>
+			<if test="attachmentId != null ">
+			da_application_info_attachment_id=#{attachmentId}
+			</if>
+			<if test="applicationId != null ">
+			da_application_info_id=#{applicationId}
+			</if>
+		</where>
+	</update>
+</mapper>

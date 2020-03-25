@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+
+	<mappers>
+		<mapper resource="configure/mybatis/AgentAndProductApplicationFollowUp.xml" />
+		<mapper resource="configure/mybatis/AgentAndProductApplicationHistoryInfo.xml" />
+		<mapper resource="configure/mybatis/AgentAndProductApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/AgentAndProductApplicationInsert.xml" />
+		<mapper resource="configure/mybatis/AgentAndProductInfoUploadedReport.xml" />
+		<mapper resource="configure/mybatis/AgentDocumentErrorApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/AgentDocumentErrorApplicationHistoryInfo.xml" />
+		<mapper resource="configure/mybatis/AgentDocumentErrorApplicationInsert.xml" />
+		<mapper resource="configure/mybatis/AgentSaleClaimFinishedDetailReport.xml" />
+		<mapper resource="configure/mybatis/AgentSaleClaimFinishedReport.xml" />
+		<mapper resource="configure/mybatis/AgentSaleReport.xml" />
+		<mapper resource="configure/mybatis/AgreementModificationCancelReport.xml" />
+		<mapper resource="configure/mybatis/AgreementModificationRequestInfo.xml" />
+		<mapper resource="configure/mybatis/AgreementModificationUploadInfo.xml" />
+		<mapper resource="configure/mybatis/AppConfig.xml" />
+		<mapper resource="configure/mybatis/ApplicationAttachmentEditStatusUpdate.xml" />
+		<mapper resource="configure/mybatis/ApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/ApplicationInfoStatus.xml" />
+		<mapper resource="configure/mybatis/ApplicationType.xml" />
+		<mapper resource="configure/mybatis/AttachmentInfo.xml" />
+		<mapper resource="configure/mybatis/CancelledApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/CityInfo.xml" />
+		<mapper resource="configure/mybatis/CompulsoryInfo.xml" />
+		<mapper resource="configure/mybatis/CustEditRequest.xml" />
+		<mapper resource="configure/mybatis/Customer.xml" />
+		<mapper resource="configure/mybatis/CustomerSecurityQuestion.xml" />
+		<mapper resource="configure/mybatis/CustomerType.xml" />
+		<mapper resource="configure/mybatis/CustSecQuestion.xml" />
+		<mapper resource="configure/mybatis/DepartmentInfo.xml" />
+		<mapper resource="configure/mybatis/DepartmentUserInfo.xml" />
+		<mapper resource="configure/mybatis/DocumentFollowUpApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/EditRequestLockInfo.xml" />
+		<mapper resource="configure/mybatis/EditRequestStatus.xml" />
+		<mapper resource="configure/mybatis/GroupInfo.xml" />
+		<mapper resource="configure/mybatis/GroupLockInfo.xml" />
+		<mapper resource="configure/mybatis/IndexApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/IndexApplicationInsert.xml" />
+		<mapper resource="configure/mybatis/InterestRateInfo.xml" />
+		<mapper resource="configure/mybatis/ItemCategoryInfo.xml" />
+		<mapper resource="configure/mybatis/ItemLabelInfo.xml" />
+		<mapper resource="configure/mybatis/JudgementStatus.xml" />
+		<mapper resource="configure/mybatis/LeadTimeReport.xml" />
+		<mapper resource="configure/mybatis/LeadTimeReportDetail.xml" />
+		<mapper resource="configure/mybatis/LoanType.xml" />
+		<mapper resource="configure/mybatis/LoginInfo.xml" />
+		<mapper resource="configure/mybatis/MainMenuData.xml" />
+		<mapper resource="configure/mybatis/MenuAssignGroup.xml" />
+		<mapper resource="configure/mybatis/MenuData.xml" />
+		<mapper resource="configure/mybatis/MenuGroupSelectedInfo.xml" />
+		<mapper resource="configure/mybatis/NewApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/CommonApplicationInsert.xml" />
+		<mapper resource="configure/mybatis/PasswordInfo.xml" />
+		<mapper resource="configure/mybatis/ProductPurchaseListReport.xml" />
+		<mapper resource="configure/mybatis/ProductTypeInfo.xml" />
+		<mapper resource="configure/mybatis/PurchaseAttachmentPhotoCheck.xml" />
+		<mapper resource="configure/mybatis/RequestedStaffInfo.xml" />
+		<mapper resource="configure/mybatis/RequestedStaffInfoList.xml" />
+		<mapper resource="configure/mybatis/SaleClaimApplicationHistoryInfo.xml" />
+		<mapper resource="configure/mybatis/SaleClaimApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/SaleClaimApplicationInsert.xml" />
+		<mapper resource="configure/mybatis/SaleClaimAttachmentInfo.xml" />
+		<mapper resource="configure/mybatis/SaleEntryApplicationHistoryInfo.xml" />
+		<mapper resource="configure/mybatis/SaleEntryApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/SaleEntryInfoApplicationInsert.xml" />
+		<mapper resource="configure/mybatis/SettlementIndexApplicationHistoryInfo.xml" />
+		<mapper resource="configure/mybatis/SettlementIndexApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/SettlementIndexApplicationInsert.xml" />
+		<mapper resource="configure/mybatis/SettlementUploadedApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/SubMenuData.xml" />
+		<mapper resource="configure/mybatis/TermsAndConditionsInfo.xml" />
+		<mapper resource="configure/mybatis/TownshipInfo.xml" />
+		<mapper resource="configure/mybatis/UploadedApplicationInfo.xml" />
+		<mapper resource="configure/mybatis/UserAssignGroup.xml" />
+		<mapper resource="configure/mybatis/UserGroupInfo.xml" />
+		<mapper resource="configure/mybatis/UserGroupSelectedInfo.xml" />
+		<mapper resource="configure/mybatis/UserInfo.xml" />
+		<mapper resource="configure/mybatis/Welcome.xml" />
+	</mappers>
+</configuration>
+

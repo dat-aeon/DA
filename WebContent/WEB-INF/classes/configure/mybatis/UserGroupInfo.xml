@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="UserGroupInfo">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.userGroupInfoSearch.UserGroupSearchReqDto"
+		resultMap="UserGroupSearchResDto">
+		SELECT 
+			GROUP_ID, 
+			GROUP_NAME, 
+			CREATED_TIME, 
+			CREATED_BY, 
+			UPDATED_TIME, 
+			UPDATED_BY, 
+			DEL_FLAG,
+			LOCK_FLAG,
+			LOCKED_BY,
+			LOCKED_TIME
+		FROM 
+			GROUPS
+		ORDER BY GROUP_ID DESC
+	</select>
+
+	<resultMap id="UserGroupSearchResDto"
+		type="mm.aeon.com.ass.base.dto.userGroupInfoSearch.UserGroupSearchResDto">
+		<result property="groupId" column="GROUP_ID" />
+		<result property="groupName" column="GROUP_NAME" />
+		<result property="delFlag" column="DEL_FLAG" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="createdTime" column="CREATED_TIME" />
+		<result property="updatedBy" column="UPDATED_BY" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+		<result property="lockFlag" column="LOCK_FLAG" />
+		<result property="lockedBy" column="LOCKED_BY" />
+		<result property="lockedTime" column="LOCKED_TIME" />
+	</resultMap>
+
+	<select id="selectForUpdate"
+		parameterType="mm.aeon.com.ass.base.dto.userGroupInfoSelectForUpdate.UserGroupSelectForUpdateReqDto"
+		resultMap="UserGroupSelectForUpdateResDto">
+		SELECT GROUP_ID, UPDATED_TIME
+		FROM GROUPS
+		<where>
+			GROUP_ID = #{groupId}
+		</where>
+	</select>
+
+	<resultMap id="UserGroupSelectForUpdateResDto"
+		type="mm.aeon.com.ass.base.dto.userGroupInfoSelectForUpdate.UserGroupSelectForUpdateResDto">
+		<result property="groupId" column="GROUP_ID" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+	</resultMap>
+
+	<insert id="insert"
+		parameterType="mm.aeon.com.ass.base.dto.userGroupRegister.UserGroupRegisterReqDto">
+		insert into groups
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=SMALLINT},
+      </if>
+    </trim>
+	</insert>
+
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.userGroupUpdate.UserGroupUpdateReqDto">
+		UPDATE GROUPS
+		<set>
+			<if test="groupName != null and groupName != ''">
+				GROUP_NAME = #{groupName},
+			</if>
+			<if test="updatedBy != null and updatedBy != ''">
+				UPDATED_BY = #{updatedBy},
+			</if>
+			<if test="updatedTime != null">
+				UPDATED_TIME = #{updatedTime},
+			</if>
+			DEL_FLAG = #{delFlag}
+		</set>
+		<where>
+			<if test="groupId != null and groupId !=''">
+				GROUP_ID = #{groupId}
+			</if>
+		</where>
+	</update>
+   
+   <delete id = "delete" parameterType="mm.aeon.com.ass.base.dto.userGroupDelete.UserGroupDeleteReqDto">
+      DELETE from groups
+		<where>
+			GROUP_ID = #{groupId}
+		</where>
+   </delete>
+   
+   <select id="count"
+		parameterType="mm.aeon.com.ass.base.dto.userGroupSelectedList.UserGroupSelectCountReqDto"
+		resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM groups
+		<where>
+		<if test="groupId != null ">
+			AND group_id = #{groupId}
+		</if>
+		</where>
+	</select>
+
+</mapper>

@@ -1,0 +1,113 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Khin Yadanar Thein$
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="Photo Check" /></title>
+	</ui:define>
+	<ui:define name="body">
+		<div class="ui-g-12" style="padding-left: 30%;">
+			<span class="message-style" style="text-align: center;">
+				<pt:messages />
+			</span>
+		</div>
+		<h:form id="photoCheckForm">
+			<div class="ui-g-12" style="text-align: center;">
+			<p:outputLabel value="#{displayItemBean.getDisplayItemName('noOfPhotoCheckCount').concat(purchaseAttachmentPhotoCheckFormBean.totalCount)} "
+								style="margin-bottom:20px; font-weight:bold;" />
+			</div>
+			<div class="ui-g-12">
+				<div class="ui-g-6">
+					<div class="ui-g-12"
+						style="text-align: center; border: 1px solid #a8a8a8; background: #fff; color: #4f4f4f;">
+						<div class="ui-g-12">
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('applicationPhoto')} "
+								style="margin-bottom:20px; font-weight:bold;" />
+						</div>
+						<div class="ui-g-12">
+							<p:graphicImage url="#{purchaseAttachmentPhotoCheckFormBean.tempUploadOldFilePath}" rendered="#{purchaseAttachmentPhotoCheckFormBean.tempUploadOldFilePath != null}"
+								styleClass="img" />
+						</div>
+					</div>
+				</div>
+				<div class="ui-g-6">
+					<div class="ui-g-12"
+						style="text-align: center; border: 1px solid #a8a8a8; background: #fff; color: #4f4f4f;">
+						<div class="ui-g-12">
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('purchaseAttachedPhoto')} "
+								style="margin-bottom:20px; font-weight:bold;" />
+						</div>
+						<div class="ui-g-12">
+							<p:graphicImage url="#{purchaseAttachmentPhotoCheckFormBean.tempUploadNewFilePath}" rendered="#{purchaseAttachmentPhotoCheckFormBean.tempUploadNewFilePath != null}"
+								styleClass="img" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui-g-12">
+				<div class="ui-g-6">
+					<p:commandButton styleClass="button" style="float: right;"
+						rendered="#{purchaseAttachmentPhotoCheckFormBean.tempUploadNewFilePath != null}"
+						action="#{purchaseAttachmentPhotoCheckFormBean.rejectApprove()}" update="photoCheckForm"
+						value="#{displayItemBean.getDisplayItemName('approve')}">
+						<f:setPropertyActionListener value="false"
+							target="#{purchaseAttachmentPhotoCheckFormBean.rejectFlag}" />
+					</p:commandButton>
+				</div>
+				<div class="ui-g-6">
+					<p:commandButton styleClass="button"
+						rendered="#{purchaseAttachmentPhotoCheckFormBean.tempUploadOldFilePath != null}"
+						action="#{purchaseAttachmentPhotoCheckFormBean.rejectApprove()}" update="photoCheckForm"
+						value="#{displayItemBean.getDisplayItemName('reject')}">
+						<f:setPropertyActionListener value="true"
+							target="#{purchaseAttachmentPhotoCheckFormBean.rejectFlag}" />
+					</p:commandButton>
+				</div>
+			</div>
+			<div class="ui-g-4">
+				<p:inputTextarea id="rejectComment" onkeyup="this.value = this.value.toUpperCase();" rendered="#{purchaseAttachmentPhotoCheckFormBean.tempUploadOldFilePath != null}"
+					maxlength="256" value="#{purchaseAttachmentPhotoCheckFormBean.headerBean.rejectComment}"
+					placeholder="#{displayItemBean.getDisplayItemName('rejectComment')}" style="width:100%;" />
+			</div>
+			<div style="margin-left: 40%; margin-top: 50px;"></div>
+				<p:poll interval="5" listener="#{purchaseAttachmentPhotoCheckFormBean.search()}"  update="photoCheckForm" />
+			<style type="text/css">
+.p-grid {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	height: 420px;
+	width: 12000px;
+}
+
+.p-grid>.p-col, .p-grid>[class*="p-col"] {
+	width: 400px;
+	height: 420px;
+	margin-left: 150px;
+	margin-top: 50px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.img {
+	margin-top: 10px;
+	width: 350px;
+	height: 350px;
+}
+</style>
+		</h:form>
+	</ui:define>
+</ui:composition>

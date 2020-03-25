@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="SaleClaimApplicationInsert">
+<insert id="insert" useGeneratedKeys="true" keyColumn="da_application_info_history_id"
+		keyProperty="daApplicationInfoHistoryId"
+		parameterType="mm.aeon.com.ass.base.dto.saleClaimApplicationUpdate.SaleClaimApplicationHistoryInsertReqDto">
+ 	insert into da_application_info_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="da_application_info_id != null">
+        da_application_info_id,
+      </if>
+      <if test="application_no != null">
+        application_no,
+      </if>
+      <if test="da_application_type_id != null">
+        da_application_type_id,
+      </if>
+      <if test="applied_date != null">
+        applied_date,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="dob != null">
+        dob,
+      </if>
+      <if test="nrc_no != null">
+        nrc_no,
+      </if>
+      <if test="father_name != null">
+        father_name,
+      </if>
+      <if test="nationality != null">
+        nationality,
+      </if>
+      <if test="nationality_other != null">
+        nationality_other,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="marital_status != null">
+        marital_status,
+      </if>
+      <if test="current_address != null">
+        current_address,
+      </if>
+      <if test="permanent_address != null">
+        permanent_address,
+      </if>
+      <if test="type_of_residence != null">
+        type_of_residence,
+      </if>
+      <if test="type_of_residence_other != null">
+        type_of_residence_other,
+      </if>
+      <if test="living_with != null">
+        living_with,
+      </if>
+      <if test="living_with_other != null">
+        living_with_other,
+      </if>
+      <if test="year_of_stay_year != null">
+        year_of_stay_year,
+      </if>
+      <if test="year_of_stay_month != null">
+        year_of_stay_month,
+      </if>
+      <if test="mobile_no != null">
+        mobile_no,
+      </if>
+      <if test="resident_tel_no != null">
+        resident_tel_no,
+      </if>
+      <if test="other_phone_no != null">
+        other_phone_no,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="customer_id != null">
+        customer_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="da_interest_info_id != null">
+        da_interest_info_id,
+      </if>
+      <if test="da_compulsory_info_id != null">
+        da_compulsory_info_id,
+      </if>
+      <if test="da_loan_type_id != null">
+        da_loan_type_id,
+      </if>
+      <if test="finance_amount != null">
+        finance_amount,
+      </if>
+      <if test="finance_term != null">
+        finance_term,
+      </if>
+      <if test="da_product_type_id != null">
+        da_product_type_id,
+      </if>
+      <if test="product_description != null">
+        product_description,
+      </if>
+      <if test="channel_type != null">
+        channel_type,
+      </if>
+      <if test="created_time != null">
+        created_time,
+      </if>
+      <if test="created_by != null">
+        created_by,
+      </if>
+      <if test="updated_time != null">
+        updated_time,
+      </if>
+      <if test="updated_by != null">
+        updated_by,
+      </if>
+      <if test="del_flag != null">
+        del_flag,
+      </if>
+      <if test="settlement_pending_comment != null">
+        settlement_pending_comment,
+      </if>
+      <if test="highestEducationTypeId != null">
+        highest_education_type_id,
+      </if>
+    </trim>
+     
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="da_application_info_id != null">
+        #{da_application_info_id,jdbcType=INTEGER},
+      </if>
+      <if test="application_no != null">
+        #{application_no,jdbcType=VARCHAR},
+      </if>
+      <if test="da_application_type_id != null">
+        #{da_application_type_id,jdbcType=INTEGER},
+      </if>
+      <if test="applied_date != null">
+        #{applied_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dob != null">
+        #{dob,jdbcType=DATE},
+      </if>
+      <if test="nrc_no != null">
+        #{nrc_no,jdbcType=VARCHAR},
+      </if>
+      <if test="father_name != null">
+        #{father_name,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        #{nationality,jdbcType=INTEGER},
+      </if>
+      <if test="nationality_other != null">
+        #{nationality_other,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="marital_status != null">
+        #{marital_status,jdbcType=INTEGER},
+      </if>
+      <if test="current_address != null">
+        #{current_address,jdbcType=VARCHAR},
+      </if>
+      <if test="permanent_address != null">
+        #{permanent_address,jdbcType=VARCHAR},
+      </if>
+      <if test="type_of_residence != null">
+        #{type_of_residence,jdbcType=INTEGER},
+      </if>
+      <if test="type_of_residence_other != null">
+        #{type_of_residence_other,jdbcType=VARCHAR},
+      </if>
+      <if test="living_with != null">
+        #{living_with,jdbcType=INTEGER},
+      </if>
+      <if test="living_with_other != null">
+        #{living_with_other,jdbcType=VARCHAR},
+      </if>
+      <if test="year_of_stay_year != null">
+        #{year_of_stay_year,jdbcType=INTEGER},
+      </if>
+      <if test="year_of_stay_month != null">
+        #{year_of_stay_month,jdbcType=INTEGER},
+      </if>
+      <if test="mobile_no != null">
+        #{mobile_no,jdbcType=VARCHAR},
+      </if>
+      <if test="resident_tel_no != null">
+        #{resident_tel_no,jdbcType=VARCHAR},
+      </if>
+      <if test="other_phone_no != null">
+        #{other_phone_no,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="customer_id != null">
+        #{customer_id,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="da_interest_info_id != null">
+        #{da_interest_info_id,jdbcType=INTEGER},
+      </if>
+      <if test="da_compulsory_info_id != null">
+        #{da_compulsory_info_id,jdbcType=INTEGER},
+      </if>
+      <if test="da_loan_type_id != null">
+        #{da_loan_type_id,jdbcType=INTEGER},
+      </if>
+      <if test="finance_amount != null">
+        #{finance_amount,jdbcType=NUMERIC},
+      </if>
+      <if test="finance_term != null">
+        #{finance_term,jdbcType=INTEGER},
+      </if>
+      <if test="da_product_type_id != null">
+        #{da_product_type_id,jdbcType=INTEGER},
+      </if>
+      <if test="product_description != null">
+        #{product_description,jdbcType=VARCHAR},
+      </if>
+      <if test="channel_type != null">
+        #{channel_type,jdbcType=INTEGER},
+      </if>
+      <if test="created_time != null">
+        #{created_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created_by != null">
+        #{created_by,jdbcType=VARCHAR},
+      </if>
+      <if test="updated_time != null">
+        #{updated_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_by != null">
+        #{updated_by,jdbcType=VARCHAR},
+      </if>
+      <if test="del_flag != null">
+        #{del_flag,jdbcType=BIT},
+      </if>
+      <if test="settlement_pending_comment != null">
+        #{settlement_pending_comment,jdbcType=VARCHAR},
+      </if>
+      <if test="highestEducationTypeId != null">
+        #{highestEducationTypeId,jdbcType=INTEGER}
+      </if>
+    </trim>
+    </insert>
+
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.saleClaimApplicationUpdate.SaleClaimApplicationStatusUpdateReqDto">
+		UPDATE da_application_info
+		<set>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="pendingComment != null and pendingComment !=''">
+				settlement_pending_comment = #{pendingComment,jdbcType=VARCHAR},
+			</if>
+			<if test="updated_by != null and updated_by !=''">
+				UPDATED_BY = #{updated_by,jdbcType=VARCHAR},
+			</if>
+			<if test="updated_time != null">
+        		UPDATED_TIME = #{updated_time,jdbcType=TIMESTAMP},
+      		</if>
+		</set>
+		<where>
+			da_application_info_id = #{da_application_info_id,jdbcType=INTEGER}
+		
+		</where>
+	</update>
+	</mapper>
+	

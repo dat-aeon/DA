@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="MenuGroupSelectedInfo">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.menuGroupSelectedList.MenuGroupSelectedListReqDto"
+		resultMap="MenuGroupSelectedListReqDto">
+		SELECT 
+			 SM.SUB_MENU_ID, 
+			 SM.MENU_NAME
+		FROM 
+			sub_menu SM 
+		full outer join 
+			menu_group UG
+		on 
+			SM.sub_menu_id = UG.sub_menu_id
+		<where>
+			UG.sub_menu_id is not null
+			<if test="groupId != null">
+				AND UG.group_id = #{groupId}
+			</if>
+		</where>
+		ORDER BY  SM.SUB_MENU_ID DESC
+	</select>
+
+	<resultMap id="MenuGroupSelectedListReqDto"
+		type="mm.aeon.com.ass.base.dto.menuGroupSelectedList.MenuGroupSelectedListResDto">
+		<result column="SUB_MENU_ID" property="menuId"  />
+		<result column="MENU_NAME" property="menuName"  />
+	</resultMap>
+	
+</mapper>

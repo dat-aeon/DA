@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employeeResignPrint" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c5de21cd-8f4f-4658-905d-cab5b7c88588">
+	<property name="ireport.zoom" value="1.1000000000000025"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="144"/>
+	<parameter name="employeeNo" class="java.lang.String"/>
+	<parameter name="employeeName" class="java.lang.String"/>
+	<parameter name="employeeNrc" class="java.lang.String"/>
+	<parameter name="jobTitle" class="java.lang.String"/>
+	<parameter name="lastMonthSalary" class="java.lang.String"/>
+	<parameter name="dateOfEmployment" class="java.lang.String"/>
+	<parameter name="dateOfResignation" class="java.lang.String"/>
+	<parameter name="resignationReason" class="java.lang.String"/>
+	<parameter name="additionalInformation" class="java.lang.String"/>
+	<parameter name="employeeAddress" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="0cc6f6a3-6cc7-4aa6-8d02-2cf46df89955"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resignation Certificate]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="142ea8d4-73ee-4f70-b915-05ea29629845"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[The Managing Director of Tech Fun and the employee having agreed to terminate his/her duties, this is to certify that the following named person was resigned our company.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="455" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="19" height="25" uuid="8727361d-99c1-4744-921c-230843c92df4"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="19" y="25" width="354" height="20" uuid="3d5790b6-697c-4c19-8ba5-d5ff28a30375"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{employeeNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="45" width="19" height="25" uuid="69307089-c1e3-40dd-9b59-9578aa25ba51"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="19" y="70" width="354" height="20" uuid="b3875542-5215-4db4-9885-c24ef8db2431"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{employeeName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="90" width="19" height="25" uuid="f019e0b2-aac2-4027-ae8c-9c9abf07ff4e"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="19" y="115" width="354" height="20" uuid="cfd070f4-d14e-41d7-bd17-99927db38770"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{employeeNrc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="135" width="19" height="25" uuid="ef7cf146-9d11-4c6b-9f88-02de063b4925"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="19" y="160" width="354" height="20" uuid="7b978c2f-e92a-4228-86b3-1e1ae97542dc"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{jobTitle}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="181" width="19" height="25" uuid="f93ec79d-9d09-4dad-9c9f-ed2ca377c46e"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[5.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="19" y="206" width="354" height="20" uuid="baa109b1-c5cb-4027-a796-6af99f181fab"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lastMonthSalary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="227" width="19" height="25" uuid="2077b9f4-e432-4b71-b8c4-88df491c4e6f"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[6.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="19" y="252" width="354" height="20" uuid="49f73738-e092-4513-b60e-5643b2005af0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateOfEmployment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="272" width="19" height="25" uuid="4a73461f-49a3-4e34-9c4c-a9e51917ab90"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[7.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="19" y="297" width="354" height="20" uuid="c2b638eb-5a29-4344-b27f-e3d0a2e65298"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateOfResignation}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="0" width="354" height="25" uuid="c1c08e67-cc92-4d04-854a-c0ea8e86f8a0"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Employee No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="45" width="354" height="25" uuid="5ca1aada-df85-4db0-81a9-8b22c26d4fce"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="90" width="354" height="25" uuid="d8ea7bc7-878d-4eab-ad5d-d627727f6216"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NRC No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="135" width="354" height="25" uuid="97e7d883-e882-4c21-ac5e-d1a818f62daa"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Job Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="181" width="354" height="25" uuid="2afc7e56-3b26-4af5-9769-de429f964dee"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Last Month Salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="227" width="354" height="25" uuid="78a1085b-f403-45c4-b024-f90db0fa835a"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date of Employment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="272" width="354" height="25" uuid="7fe38116-5cc8-4149-b109-ccd2fe3980ff"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date of Resignation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="318" width="19" height="25" uuid="beff201e-2478-4d4f-9857-3ec252a71b3c"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[8.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="318" width="354" height="25" uuid="48eb2a50-0a68-4474-85a5-28d16f760797"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resignation Reason]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="19" y="343" width="354" height="20" uuid="d5d3aebe-78c4-45bf-b55f-5979a8cb849c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{resignationReason}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="363" width="19" height="25" uuid="40d6c432-5c17-4cea-abe6-1bc7c3eaf3be"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[9.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="363" width="354" height="25" uuid="8227975b-aae4-4edb-b156-00543e624bc9"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Additional Information]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="19" y="388" width="354" height="20" uuid="48a91844-4e02-4478-a6c6-e25ffd23f6d7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{additionalInformation}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="255" splitType="Stretch">
+			<staticText>
+				<reportElement x="27" y="4" width="100" height="20" uuid="60a042cd-01e6-4f7e-865b-459b73e879cd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[The Employee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="5" width="100" height="20" uuid="0d25ebe5-9e7b-4208-bf94-533296b91341"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[The Managing Director]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="63" width="77" height="20" uuid="3a6a1212-5f84-4a9a-99d7-fca396d583f0"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="94" width="77" height="20" uuid="f16ce235-3fbe-4f28-9be4-837e53d4401f"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="117" width="77" height="20" uuid="12fe5253-5bd1-42d1-9e98-7795fe07f1f3"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NRC No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="140" width="77" height="20" uuid="9ade9b6f-a034-4c6f-ad33-e0bd5f42b3da"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="111" y="117" width="185" height="20" uuid="45ed0f3f-c330-45db-9e0b-a0b34f0f950e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{employeeNrc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="140" width="185" height="105" isPrintWhenDetailOverflows="true" uuid="6e6a9e4a-0ef7-4fa3-8237-57a2d2476f64"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{employeeAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="94" width="185" height="20" uuid="c2419184-5c16-4a16-88e1-46e4e6721daa"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{employeeName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="104" y="63" width="7" height="20" uuid="5817bf27-f0a2-4728-b256-76003fa32cc7"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="94" width="7" height="20" uuid="6eeeda75-ae42-428e-aa0c-91c38f0a8a57"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="117" width="7" height="20" uuid="f89e3bbb-0b20-40a0-bf98-b90445a0525a"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="140" width="7" height="20" uuid="23a33f74-3509-4340-bf23-28b77aecac2a"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="63" width="77" height="20" uuid="cf7938d1-5b42-463c-b81d-f661e9989bc0"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="94" width="77" height="20" uuid="8aff51cf-47a3-48a8-9000-7bd0e581adf7"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="63" width="7" height="20" uuid="6eafe677-abd2-4421-97d6-1c3f198de786"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="94" width="7" height="20" uuid="628edd25-2f31-4406-aecd-f923442eac75"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

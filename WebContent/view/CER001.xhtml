@@ -1,0 +1,119 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Swe Hsu Mon $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText
+				value="#{displayItemBean.getDisplayItemName('CER001')}" /></title>
+	</ui:define>
+	<style>
+div.sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color: yellow;
+	padding: 50px;
+	font-size: 20px;
+}
+</style>
+	<ui:define name="body">
+		<h:form id="custEditReqListForm">
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12 sticky"
+						style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel
+								value="#{displayItemBean.getDisplayItemName('CER001')}" />
+						</H1>
+					</div>
+				</div>
+				
+				<div class="ui-g">
+					<div class="space-block"></div>
+				</div>
+				<div class="ui-g">
+					<div style="padding-left: 10px;" class="message-block">
+						<pt:messages />
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean"
+								first="#{custEditReqListFormBean.pageFirst}"
+								value="#{custEditReqListFormBean.lazyModel}" rows="50"
+								paginator="true" rowIndexVar="rowIndex" paginatorPosition="both"
+								lazy="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="50,100" styleClass="resultTable"
+								id="customerResultTable">
+								<p:column style="width:20px;" styleClass="unsort-column"
+									exportable="false"
+									headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+
+								<p:column visible="false" exportable="true"
+									headerText="#{displayItemBean.getDisplayItemName('customerId')}">
+									<h:outputText value="#{lineBean.custEditReqId}" />
+								</p:column>
+
+								<p:column sortBy="#{lineBean.name}"
+									headerText="#{displayItemBean.getDisplayItemName('customerName')}">
+									<h:outputText value="#{lineBean.name}" />
+								</p:column>
+
+								<p:column sortBy="#{lineBean.dob}"
+									headerText="#{displayItemBean.getDisplayItemName('dob')}">
+									<h:outputText value="#{lineBean.dob}">
+										<f:convertDateTime pattern="yyyy-MM-dd" />
+									</h:outputText>
+								</p:column>
+
+								<p:column sortBy="#{lineBean.nrc_no}" style="width:150px"
+									headerText="#{displayItemBean.getDisplayItemName('nrcNo')}">
+									<h:outputText value="#{lineBean.nrc_no}" />
+								</p:column>
+
+								<p:column sortBy="#{lineBean.phone_no}"
+									headerText="#{displayItemBean.getDisplayItemName('phoneNo')}">
+									<h:outputText value="#{lineBean.phone_no}" />
+								</p:column>
+
+								<p:column sortBy="#{lineBean.status}" style="width:150px"
+									headerText="#{displayItemBean.getDisplayItemName('status')}">
+									<h:outputText
+										value="#{custEditReqListFormBean.getApplicationStatusValue(lineBean.status)}" />
+								</p:column>
+
+								<p:column id="approvalAction" styleClass="unsort-column"
+									headerText="#{displayItemBean.getDisplayItemName('operation')}"
+									exportable="false">
+									<p:commandLink id="update" rendered="#{lineBean.lockFlag == false or lineBean.lockBy == custEditReqListFormBean.loginUserName}" immediate="true"
+										styleClass="management-link" style="width:auto !important"
+										action="#{custEditReqListFormBean.detail(lineBean)}"
+										value="#{displayItemBean.getDisplayItemName('editRequestStatus')}" >
+										<f:setPropertyActionListener value="#{lineBean}" target="#{custEditReqListFormBean.lineBean}" />
+									</p:commandLink>
+								</p:column>
+
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

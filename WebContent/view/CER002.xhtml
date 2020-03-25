@@ -1,0 +1,144 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Swe Hsu Mon $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('CER002')}" /></title>
+	</ui:define>
+	<ui:define name="body">
+		<h:form id="CER002Form">
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('CER002')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g" style="display: flax;">
+					<div class="ui-g-6">
+						<div class="ui-g-12" style="color: #302873; font-size: 10pt; text-align: left;">
+							<H2>
+								<p:outputLabel value="#{displayItemBean.getDisplayItemName('custCurrentInfo')}" />
+							</H2>
+						</div>
+						<p:panelGrid styleClass="status-panel-grid" style="margin-top: 0%;">
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 200px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('name')}" />
+								</p:column>
+								<p:column style="width: 300px;" styleClass="status-panel-grid-column">
+									<h:outputText value="#{custEditReqListFormBean.lineBean.current_name}" />
+								</p:column>
+							</p:row>
+
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 200px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('dob')}" />
+								</p:column>
+								<p:column style="width: 300px;" styleClass="status-panel-grid-column">
+									<h:outputText value="#{custEditReqListFormBean.lineBean.current_dob}">
+										<f:convertDateTime pattern="yyyy-MM-dd" />
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 200px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('nrcNo')}" />
+								</p:column>
+								<p:column style="width: 300px;" styleClass="status-panel-grid-column">
+									<h:outputText value="#{custEditReqListFormBean.lineBean.current_nrcNo}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 200px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('phoneNo')}" />
+								</p:column>
+								<p:column style="width: 300px;" styleClass="status-panel-grid-column">
+									<h:outputText value="#{custEditReqListFormBean.lineBean.current_phoneNo}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</div>
+
+					<div class="ui-g-6" style="padding-left: 2%;">
+						<div class="ui-g-12" style="color: #302873; font-size: 10pt; text-align: left;">
+							<H2>
+								<p:outputLabel value="#{displayItemBean.getDisplayItemName('custEditReqInfo')}" />
+							</H2>
+						</div>
+						<p:panelGrid styleClass="status-panel-grid" style="margin-top: 0%;">
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 200px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('name')}" />
+								</p:column>
+								<p:column style="width: 300px;" styleClass="status-panel-grid-column">
+									<h:outputText value="#{custEditReqListFormBean.lineBean.name}" />
+								</p:column>
+							</p:row>
+
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 200px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('dob')}" />
+								</p:column>
+								<p:column style="width: 300px;" styleClass="status-panel-grid-column">
+									<h:outputText value="#{custEditReqListFormBean.lineBean.dob}">
+										<f:convertDateTime pattern="yyyy-MM-dd" />
+									</h:outputText>
+								</p:column>
+							</p:row>
+
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 200px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('nrcNo')}" />
+								</p:column>
+								<p:column style="width: 300px;" styleClass="status-panel-grid-column">
+									<h:outputText value="#{custEditReqListFormBean.lineBean.nrc_no}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 200px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('phoneNo')}" />
+								</p:column>
+								<p:column style="width: 300px;" styleClass="status-panel-grid-column">
+									<h:outputText value="#{custEditReqListFormBean.lineBean.phone_no}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</div>
+				</div>
+				<div class="ui-g-12">
+					<span style="clear: both;">
+						<pt:messages />
+					</span>
+					<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="3">
+						<p:inputTextarea onkeyup="this.value = this.value.toUpperCase();" id="rejectComment" maxlength="256" value="#{custEditReqListFormBean.custEditHeaderBean.rejectComment}"
+							placeholder="#{displayItemBean.getDisplayItemName('rejectComment')}" style="width: 44% !important; margin-top: 10px;" styleClass="rejectCommentBox" />
+					</p:column>
+				</div>
+				<div class="ui-g-12">
+					<div style="color: #302873; font-size: 10pt; text-align: center; margin-top: 2%; float: left">
+						<p:row style="border: none;">
+							<p:column style="background:#f4f7fc;border: none;padding-left:0%;" colspan="3">
+								<p:commandButton id="approve" styleClass="button" action="#{custEditReqListFormBean.approve(custEditReqListFormBean.lineBean)}"
+									value="#{displayItemBean.getDisplayItemName('approve')}" ajax="false">
+									<f:setPropertyActionListener value="#{custEditReqListFormBean.lineBean}" target="#{custEditReqListFormBean.lineBean}" />
+								</p:commandButton>
+								<p:commandButton value="#{displayItemBean.getDisplayItemName('reject')}" action="#{custEditReqListFormBean.reject(custEditReqListFormBean.lineBean)}" id="backButton"
+									ajax="false" styleClass="button">
+									<f:setPropertyActionListener value="#{custEditReqListFormBean.lineBean}" target="#{custEditReqListFormBean.lineBean}" />
+								</p:commandButton>
+								<p:commandButton value="Back" action="#{custEditReqListFormBean.back()}" ajax="false" styleClass="button" />
+							</p:column>
+						</p:row>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

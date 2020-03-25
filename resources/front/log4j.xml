@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p] %d{dd MMM hh:mm:ss aa} %t [%l] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="APPLICATION_BASE_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${jboss.server.log.dir}/vcs-application-base.log" />
+		<param name="MaxBackupIndex" value="10" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[TimeStamp]%d{yyyy-MM-dd HH:mm:ss,SSS} [LogLevel]%-5p [%c] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="APPLICATION_FRONT_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${jboss.server.log.dir}/vcs-application-front.log" />
+		<param name="MaxBackupIndex" value="10" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[TimeStamp]%d{yyyy-MM-dd HH:mm:ss,SSS} [LogLevel]%-5p [%c] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="SERVER_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${jboss.server.log.dir}/jboss_vcs_server.log" />
+		<param name="MaxBackupIndex" value="10" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH\:mm\:ss,SSS} %-5p [%c] (%t) %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="AgentSaleReport" additivity="false">
+		<level value="DEBUG" />
+		
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="ApplicationInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="ApplicationType" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="AttachmentInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="CancelledApplicationInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="CompulsoryInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="CustEditRequest" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="Customer" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+
+	<logger name="CustomerSecurityQuestion" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="CustomerType" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+
+	<logger name="CustSecQues" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+
+	<logger name="DocumentFollowUpApplicationInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+
+	<logger name="DocumentFollowUpApplicationInsert" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+
+	<logger name="EditRequestStatus" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+
+	<logger name="Groups" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="IndexApplicationInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+		
+	<logger name="IndexApplicationInsert" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="InterestRateInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="ItemCategoryInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="ItemLabelInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="LoanType" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="LoginInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="MenuAssignGroup" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="NewApplicationInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="NewApplicationInsert" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="OperatorRoleInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="PasswordInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="ProductPurchaseListReport" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="ProductTypeInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="PurchaseAttachmentPhotoCheck" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="SettlementIndexApplicationInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="SettlementIndexApplicationInsert" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="SettlementUploadedApplicationInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="TermsAndConditionsInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="UploadedApplicationInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="UploadedApplicationInsert" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="UserAssignGroup" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="UserGroupInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="UserInfo" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<logger name="Welcome" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</logger>
+	
+	<category name="APPLICATION_FRONT">
+		<priority value="DEBUG" />
+		<appender-ref ref="APPLICATION_FRONT_LOG" />
+	</category>
+
+	<category name="java.sql.Connection">
+		<priority value="DEBUG" />
+		<appender-ref ref="APPLICATION_BASE_LOG" />
+	</category>
+
+	<category name="SERVER">
+		<priority value="DEBUG" />
+		<appender-ref ref="SERVER_LOG" />
+	</category>
+
+	<appender name="async" class="org.apache.log4j.AsyncAppender">
+		<param name="BufferSize" value="2048" />
+		<appender-ref ref="SERVER_LOG" />
+		<appender-ref ref="CONSOLE" />
+	</appender>
+</log4j:configuration>

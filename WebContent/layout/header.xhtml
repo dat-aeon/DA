@@ -1,0 +1,53 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Khin Yadanar Thein$
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:c="http://java.sun.com/jsp/jstl/core"
+	contentType="text/html">
+	<script type="text/javascript">
+		function deleteAllCookies() {
+			document.cookie.split(";").forEach(
+					function(c) {
+						document.cookie = c.replace(/^ +/, "").replace(
+								/=.*/,
+								"=;expires=" + new Date().toUTCString()
+										+ ";path=/");
+					});
+		}
+	</script>
+	<div class="ui-g-9" style="display: table; height: 100%; text-align: center; padding-left: 5%;">
+		<c:if test="#{identity.loggedIn}">
+				<div id="title_lable" style="display: table-cell; vertical-align: middle;">
+					<p:commandLink action="#{mnu001FormBean.propagate('Welcome')}">
+						<img src="../presto/images/AEON_Logo.png" style="float: left; width: 50px; height: 50px;" />
+					</p:commandLink>
+					<p class="main_title">Digital Application System</p>
+				</div>
+		</c:if>
+	</div>
+	<div class="ui-g-3" style="display: table; height: 100%; text-align: center;">
+		<c:if test="#{identity.loggedIn}">
+			<c:if test="#{userInfo.userTypeName == 'DA ADMIN'}">
+			<div style="display: table-cell; vertical-align: middle;">
+			<h:form>
+			    <p:menuButton value="#{userInfo.userName}" icon="fa fa-user" iconPos="right" overlay="true" styleClass="signOutButton">
+			        <p:menuitem value="Logout" action="#{loginFormBean.logout()}" styleClass="signOutMenuAdmin" icon="fa fa-fw fa-sign-out"/>
+			    </p:menuButton>
+			</h:form>
+			</div>
+			</c:if>
+			<c:if test="#{userInfo.userTypeName == 'DA OPERATOR'}">
+			<div style="display: table-cell; vertical-align: middle;">
+			<h:form>
+			    <p:menuButton value="#{userInfo.userName}&#10; #{userInfo.departmentName}" overlay="true" icon="fa fa-user" iconPos="right" styleClass="signOutButton" escape="false" style="white-space: pre;">
+			        <p:menuitem value="Logout" action="#{loginFormBean.logout()}" styleClass="signOutMenuOperator" icon="fa fa-fw fa-sign-out"/>
+			    </p:menuButton>
+			</h:form>
+			</div>
+			</c:if>
+		</c:if>
+	</div>
+</f:view>

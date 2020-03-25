@@ -1,0 +1,213 @@
+<!--***********************************************************************
+ * $Date: 2020-02-11$
+ * $Author: Thiha Htet Zaw $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('APL0025')}" /></title>
+	</ui:define>
+	<ui:define name="body">
+		<h:form id="APL0010Form">
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('APL0025')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-2"></div>
+					<div class="ui-g-8">
+						<span class="message-style">
+							<pt:messages />
+						</span>
+						<p:scrollPanel style="height:500px" mode="native" >
+						<p:panelGrid styleClass="status-panel-grid tblAppDetail">
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicationNo')}" />
+								</p:column>
+								<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+									<h:outputText value="#{agentAndProductApplicationListFormBean.lineBean.applicationNo}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicationDate')}" />
+								</p:column>
+								<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+									<h:outputText value="#{agentAndProductApplicationListFormBean.lineBean.appliedDate}">
+										<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicationData')}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('name')}" />
+								</p:column>
+								<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+									<h:outputText value="#{agentAndProductApplicationListFormBean.lineBean.applicantName}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('purchaseDetail')}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+									<h:outputLabel value="#{displayItemBean.getDisplayItemName('agentName')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+									<h:outputText value="#{agentAndProductApplicationListFormBean.lineBean.purchaseDto.agentName}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+									<h:outputLabel value="#{displayItemBean.getDisplayItemName('outletName')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+									<h:outputText value="#{agentAndProductApplicationListFormBean.lineBean.purchaseDto.outletName}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+									<h:outputLabel value="#{displayItemBean.getDisplayItemName('purchaseDate')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+									<h:outputText value="#{agentAndProductApplicationListFormBean.lineBean.purchaseDto.purchaseDate}">
+										<f:convertDateTime pattern="yyyy-MM-dd" />
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+									<h:outputLabel value="#{displayItemBean.getDisplayItemName('invoiceNo')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+									<h:outputText value="#{agentAndProductApplicationListFormBean.lineBean.purchaseDto.invoiceNo}" />
+								</p:column>
+							</p:row>
+							
+							<p:row styleClass="status-panel-grid-row">
+								<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('purchaseProductDetail')}" />
+								</p:column>
+							</p:row>
+							
+							<p:row styleClass="status-panel-grid-row">
+								<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+									<p:dataTable var="lineBean" value="#{agentAndProductApplicationListFormBean.lineBean.purchaseProductDtoList}" paginator="false" rowIndexVar="rowIndex" styleClass="resultTable"
+										id="purchaseProductTable">
+										<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+											<h:outputText value="#{rowIndex+1}" />
+										</p:column>
+										<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('productType')}">
+											<h:outputText value="#{lineBean.productType}" />
+										</p:column>
+										<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('productDescription')}">
+											<h:outputText value="#{lineBean.productDescription}" />
+										</p:column>
+										<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('loanType')}">
+											<h:outputText value="#{lineBean.loanType}" />
+										</p:column>
+										<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('model')}">
+											<h:outputText value="#{lineBean.model}" />
+										</p:column>
+										<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('brand')}">
+											<h:outputText value="#{lineBean.brand}" />
+										</p:column>
+										<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('price')}">
+											<h:outputText value="#{lineBean.price}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+											</h:outputText>
+										</p:column>
+										<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('cashdownAmount')}">
+											<h:outputText value="#{lineBean.cashDownAmount}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+											</h:outputText>
+										</p:column>
+									</p:dataTable>
+								</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+									<h:outputLabel value="#{displayItemBean.getDisplayItemName('memberCard')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+									<p:graphicImage url="#{agentAndProductApplicationListFormBean.lineBean.memberCardImageFilePath}" style="width:300px;height:auto;" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+									<h:outputLabel value="#{displayItemBean.getDisplayItemName('uloan')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+									<p:graphicImage url="#{agentAndProductApplicationListFormBean.lineBean.uloanImageFilePath}" style="width:300px;height:auto;" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+									<h:outputLabel value="#{displayItemBean.getDisplayItemName('invoice')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+									<p:graphicImage url="#{agentAndProductApplicationListFormBean.lineBean.invoiceImageFilePath}" style="width:300px;height:auto;" />
+								</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+									<h:outputLabel value="#{displayItemBean.getDisplayItemName('letterOfAgreement')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+									<p:graphicImage url="#{agentAndProductApplicationListFormBean.lineBean.letterOfAgreementImageFilePath}" style="width:300px;height:auto;" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+									<h:outputLabel value="#{displayItemBean.getDisplayItemName('cashReceipt')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+									<p:graphicImage url="#{agentAndProductApplicationListFormBean.lineBean.cashReceiptImageFilePath}" style="width:300px;height:auto;" />
+								</p:column>
+							</p:row>
+							<c:forEach var="item" items="#{agentAndProductApplicationListFormBean.lineBean.othersImageFilePath}">
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('others')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<p:graphicImage url="#{item}" style="width:300px;height:auto;" />
+									</p:column>
+								</p:row>
+							</c:forEach>
+						</p:panelGrid>
+						</p:scrollPanel>
+						
+						<p:commandButton value="#{displayItemBean.getDisplayItemName('upload')}" rendered="#{agentAndProductApplicationListFormBean.notyetFlag}"
+										action="#{agentAndProductApplicationListFormBean.followUpUpload(agentAndProductApplicationListFormBean.lineBean)}" id="uploadButton" style="margin-top: 2%;" ajax="false"
+										styleClass="button">
+										<f:setPropertyActionListener value="#{agentAndProductApplicationListFormBean.lineBean}" target="#{agentAndProductApplicationListFormBean.lineBean}" />
+									</p:commandButton>
+									<p:commandButton value="#{displayItemBean.getDisplayItemName('download')}" rendered="#{agentAndProductApplicationListFormBean.notyetFlag}" action="#{agentAndProductApplicationListFormBean.downloadPhotoZip()}" id="downloadPhotoBtn" style="margin-top: 2%; width: auto" ajax="false"
+										styleClass="button" />
+									<p:commandButton value="#{displayItemBean.getDisplayItemName('back')}" action="#{agentAndProductApplicationListFormBean.followUpBack()}" id="bckButton" style="margin-top: 2%;"
+										ajax="false" styleClass="button" />
+										
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

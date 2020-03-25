@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="SaleEntryApplicationHistoryInfo">
+
+	<select id="selectForUpdate"
+		parameterType="mm.aeon.com.ass.base.dto.saleEntryInfoApplicationSelectForUpdate.SaleEntryInfoApplicationSelectForUpdateReqDto"
+		resultMap="SaleEntryInfoApplicationSelectForUpdateResDtoResultMap">
+		SELECT 
+			DA_APPLICATION_INFO_HISTORY_ID
+		FROM 
+			DA_APPLICATION_INFO_HISTORY
+		<where>
+			<if test="applicationNo != null">
+				application_no = #{applicationNo}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+		</where>
+	</select>
+	
+	<resultMap id="SaleEntryInfoApplicationSelectForUpdateResDtoResultMap"
+		type="mm.aeon.com.ass.base.dto.saleEntryInfoApplicationSelectForUpdate.SaleEntryInfoApplicationSelectForUpdateResDto">
+		<result property="applicationHistoryId" column="DA_APPLICATION_INFO_HISTORY_ID" />
+	</resultMap>
+	
+</mapper>

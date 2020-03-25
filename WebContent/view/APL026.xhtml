@@ -1,0 +1,155 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Thiha Htet Zaw $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('APL0026')}" /></title>
+	</ui:define>
+	<style>
+div.sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color: yellow;
+	padding: 50px;
+	font-size: 20px;
+}
+</style>
+	<ui:define name="body">
+		<h:form id="newApplicationInfoListForm">
+			<p:focus context="newApplicationInfoListForm"/>
+			<p:defaultCommand target="searchButton" />
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12 sticky" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('APL0026')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-6">
+						<p:panelGrid styleClass="status-panel-grid" style="margin-top: 0%;">
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicationNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText autocomplete="off" id="appNo" style="width:100%;" value="#{agreementModificationRequestFormBean.searchHeaderBean.applicationNo}"/>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicantName')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText  autocomplete="off" id="appName" style="width:100%;" value="#{agreementModificationRequestFormBean.searchHeaderBean.applicantName}"/>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicantPhoneNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText autocomplete="off" id="phoneNo" style="width:100%;" value="#{agreementModificationRequestFormBean.searchHeaderBean.applicantPhoneNo}"/>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('sendDate')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar autocomplete="off" id="startDateFrom" style="width:350px;" pattern="yyyy-MM-dd" mask="true" value="#{agreementModificationRequestFormBean.searchHeaderBean.newApplicationDateFrom}" placeholder="#{displayItemBean.getDisplayItemName('from')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar autocomplete="off" id="startDateTo" style="width:350px;" pattern="yyyy-MM-dd" mask="true" value="#{agreementModificationRequestFormBean.searchHeaderBean.newApplicationDateTo}" placeholder="#{displayItemBean.getDisplayItemName('to')}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicantNrc')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText autocomplete="off" id="nrcNo" style="width:100%;" value="#{agreementModificationRequestFormBean.searchHeaderBean.applicantNrcNo}"/>
+								</p:column>
+							</p:row>
+							<p:row style="border: none;">
+								<p:column colspan="3" style="border: none;background:#f4f7fc;">
+									<p:commandButton id="searchButton" styleClass="button" value="#{displayItemBean.getDisplayItemName('search')}" style="margin: 3px 0px 0px -10px;" ajax="false"
+										action="#{agreementModificationRequestFormBean.search()}" />
+									<p:commandButton id="clearButton" styleClass="button" value="#{displayItemBean.getDisplayItemName('clear')}" style="margin: 3px 0px 0px 5px;" ajax="false"
+										action="#{agreementModificationRequestFormBean.reset()}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<div class="message-block ui-g-6">
+							<pt:messages />
+						</div>
+						<div class="ui-g-6" style="text-align: right;">
+							<p:commandButton styleClass="button" ajax="false" rendered="#{agreementModificationRequestFormBean.lazyModel != null}" style="margin: 3px 0px 0px 10px;"
+								value="#{displayItemBean.getDisplayItemName('export')}">
+								<p:dataExporter type="xlsxstream" target="applicationResultTable" fileName="AgreementModificationInfoList">
+								</p:dataExporter>
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean" first="#{agreementModificationRequestFormBean.pageFirst}" value="#{agreementModificationRequestFormBean.lazyModel}" rows="50" paginator="true" rowIndexVar="rowIndex"
+								paginatorPosition="both" lazy="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="50,100"
+								styleClass="resultTable" id="applicationResultTable">
+								<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column style="width:200px;" id="actions" styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('operation')}" exportable="false">
+									<p:commandLink id="notYet" rendered="#{lineBean.lockFlag == false or lineBean.lockBy == agreementModificationRequestFormBean.loginUserName}" styleClass="management-link" style="width:auto !important" action="#{agreementModificationRequestFormBean.notYet(lineBean)}" value="#{displayItemBean.getDisplayItemName('notYet')}" >
+										<f:setPropertyActionListener value="#{lineBean}" target="#{agreementModificationRequestFormBean.lineBean}" />
+									</p:commandLink>
+									<p:commandLink id="detail" styleClass="management-link" style="width:auto !important" action="#{agreementModificationRequestFormBean.detail(lineBean)}"
+										value="#{displayItemBean.getDisplayItemName('detail')}">
+										<f:setPropertyActionListener value="#{lineBean.applicationId}" target="#{agreementModificationRequestFormBean.applicationId}" />
+									</p:commandLink>
+								</p:column>
+								<p:column style="width:200px;" visible="false" exportable="false" headerText="#{displayItemBean.getDisplayItemName('applicationId')}">
+									<h:outputText value="#{lineBean.applicationId}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.applicationNo}" headerText="#{displayItemBean.getDisplayItemName('applicationNo')}">
+									<h:outputText value="#{lineBean.applicationNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.applicantName}" headerText="#{displayItemBean.getDisplayItemName('applicantName')}">
+									<h:outputText value="#{lineBean.applicantName}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.nrcNo}" headerText="#{displayItemBean.getDisplayItemName('applicantNrc')}">
+									<h:outputText value="#{lineBean.nrcNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.mobileNo}" headerText="#{displayItemBean.getDisplayItemName('applicantPhoneNo')}">
+									<h:outputText value="#{lineBean.mobileNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.agreementNo}" headerText="#{displayItemBean.getDisplayItemName('agreementNo')}">
+									<h:outputText value="#{lineBean.agreementNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.appliedDate}" headerText="#{displayItemBean.getDisplayItemName('sendDate')}">
+									<h:outputText value="#{lineBean.appliedDate}" >
+									<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

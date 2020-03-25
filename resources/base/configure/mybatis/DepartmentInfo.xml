@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="DepartmentInfo">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.departmentListSearch.DepartmentListSearchReqDto"
+		resultMap="DepartmentSearchResDto">
+		SELECT 
+			da_department_info_id, name, created_time, created_by, updated_time, updated_by, del_flag
+		FROM 
+			da_department_info
+		<where>
+			DEL_FLAG = false
+		</where>
+		<if test="sortField != null and sortField != '' and sortField == 'name' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY name ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY name DESC
+			</if>
+		</if>
+			<if test="sortField == null or sortField == ''">
+				ORDER BY da_department_info_id DESC
+			</if>
+			<if test="offset != null and limit != null">
+				OFFSET #{offset} LIMIT #{limit}
+			</if>
+	</select>
+
+	<resultMap id="DepartmentSearchResDto"
+		type="mm.aeon.com.ass.base.dto.departmentListSearch.DepartmentListSearchResDto">
+		<result column="da_department_info_id" property="departmentId" />
+		<result column="INTEREST_RATE" property="name" />
+		<result column="DEL_FLAG" property="delFlag" />
+		<result column="CREATED_BY" property="createdBy" />
+		<result column="CREATED_TIME" property="createdTime" />
+		<result column="UPDATED_BY" property="updatedBy" />
+		<result column="UPDATED_TIME" property="updatedTime" />
+	</resultMap>
+	
+	<select id="count"
+		parameterType="mm.aeon.com.ass.base.dto.departmentListSearch.DepartmentListSelectCountReqDto"
+		resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM da_department_info
+		<where>
+			DEL_FLAG = false
+		</where>
+		<if test="departmentId != null ">
+				AND da_department_info_id = #{departmentId}
+		</if>
+	</select>
+	
+	
+	<insert id="insert" useGeneratedKeys="true" keyColumn="da_department_info_id"
+		keyProperty="departmentId"
+		parameterType="mm.aeon.com.ass.base.dto.departmentInfoRegister.DepartmentInfoRegisterReqDto">
+		INSERT INTO da_department_info
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			<if test="name != null and name != ''">
+				NAME,
+			</if>
+			<if test="createdBy != null and createdBy != ''">
+				CREATED_BY,
+			</if>
+			<if test="createdTime != null">
+				CREATED_TIME,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			<if test="name != null and name != ''">
+				#{name},
+			</if>
+			<if test="createdBy != null and createdBy != ''">
+				#{createdBy},
+			</if>
+			<if test="createdTime != null">
+				#{createdTime},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.departmentInfoUpdate.DepartmentInfoUpdateReqDto">
+		UPDATE da_department_info
+		<set>
+			<if test="name != null and name !=''">
+				NAME = #{name},
+			</if>
+			<if test="delFlag != null">
+				DEL_FLAG = #{delFlag},
+			</if>
+			<if test="updatedBy != null and updatedBy !=''">
+				UPDATED_BY = #{updatedBy},
+			</if>
+			<if test="updatedTime != null">
+				UPDATED_TIME = #{updatedTime},
+			</if>
+		</set>
+		<where>
+			da_department_info_id = #{departmentId}
+		</where>
+	</update>
+	
+	<select id="selectForUpdate"
+		parameterType="mm.aeon.com.ass.base.dto.departmentInfoSelectForUpdate.DepartmentInfoSelectForUpdateReqDto"
+		resultMap="DepartmentInfoSelectForUpdateResDto">
+		SELECT 
+			da_department_info_id, UPDATED_TIME
+		FROM 
+			da_department_info
+		<where>
+			DEL_FLAG = false
+			<if test="departmentId != null">
+				AND da_department_info_id = #{departmentId}
+			</if>
+		</where>
+	</select>
+
+	<resultMap id="DepartmentInfoSelectForUpdateResDto"
+		type="mm.aeon.com.ass.base.dto.departmentInfoSelectForUpdate.DepartmentInfoSelectForUpdateResDto">
+		<result property="departmentId" column="da_department_info_id" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+	</resultMap>
+	
+</mapper>

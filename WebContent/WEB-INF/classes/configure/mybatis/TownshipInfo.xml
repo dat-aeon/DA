@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="TownshipInfo">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.townshipSearch.TownshipSearchReqDto"
+		resultMap="InterestSearchResDto">
+		SELECT 
+			TOWNSHIP_ID, NAME, CREATED_TIME, CREATED_BY, UPDATED_TIME, UPDATED_BY, DEL_FLAG
+		FROM 
+			DA_TOWNSHIP_INFO
+	</select>
+
+	<resultMap id="InterestSearchResDto"
+		type="mm.aeon.com.ass.base.dto.townshipSearch.TownshipSearchResDto">
+		<result property="townshipId" column="TOWNSHIP_ID" />
+		<result property="townshipName" column="NAME" />
+		<result property="delFlag" column="DEL_FLAG" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="createdTime" column="CREATED_TIME" />
+		<result property="updatedBy" column="UPDATED_BY" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+	</resultMap>
+
+</mapper>

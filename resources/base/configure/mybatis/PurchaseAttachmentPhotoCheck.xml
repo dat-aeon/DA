@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="PurchaseAttachmentPhotoCheck">
+	<select id="refer"
+		parameterType="mm.aeon.com.ass.base.dto.purchaseAttachmentPhotoCheck.PurchaseAttachmentPhotoCheckReqDto"
+		resultMap="purchaseAttachmentPhotoCheckResultMap" >
+		SELECT
+			da_checking_attachment_id,
+			da_purchase_info_id,
+			agreement_no,
+			old_file_path,
+			new_file_path,
+			file_type,
+			status,
+			created_time,
+			updated_time
+		FROM
+			da_checking_attachment
+		WHERE
+			status=1
+		ORDER BY created_time ASC
+		LIMIT 1
+	</select>
+
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.purchaseAttachmentPhotoCheckApproveReject.PurchaseAttachmentPhotoCheckApproveRejectReqDto">
+		UPDATE da_checking_attachment
+		<set>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="rejectComment != null">
+				reject_comment = #{rejectComment},
+			</if>
+			<if test="updatedTime != null">
+				updated_time = #{updatedTime}
+			</if>
+		</set>
+		<where>
+			da_checking_attachment_id = #{checkingAttachmentId}
+		</where>
+	</update>
+
+	<resultMap id="purchaseAttachmentPhotoCheckResultMap"
+		type="mm.aeon.com.ass.base.dto.purchaseAttachmentPhotoCheck.PurchaseAttachmentPhotoCheckResDto">
+		<id column="da_checking_attachment_id" property="checkingAttachmentId" />
+		<result column="da_purchase_info_id" property="purchaseInfoId" />
+		<result column="agreement_no" property="agreementNo" />
+		<result column="old_file_path" property="oldFilePath" />
+		<result column="new_file_path" property="newFilePath" />
+		<result column="file_type" property="fileType" />
+		<result column="status" property="status" />
+		<result column="created_time" property="createdTime" />
+		<result column="updated_time" property="updatedTime" />
+	</resultMap>
+	
+	<select id="selectForUpdate"
+		parameterType="mm.aeon.com.ass.base.dto.purchaseAttachmentPhotoSelectForUpdate.PurchaseAttachmentPhotoSelectForUpdateReqDto"
+		resultMap="CheckingAttachmentPhotoSelectForUpdateResDtoResultMap">
+		SELECT DA_CHECKING_ATTACHMENT_ID, UPDATED_TIME
+		FROM DA_CHECKING_ATTACHMENT
+		<where>
+			<if test="checkingAttachmentId != null">
+				DA_CHECKING_ATTACHMENT_ID = #{checkingAttachmentId}
+			</if>
+		</where>
+	</select>
+	
+	<resultMap id="CheckingAttachmentPhotoSelectForUpdateResDtoResultMap"
+		type="mm.aeon.com.ass.base.dto.purchaseAttachmentPhotoSelectForUpdate.PurchaseAttachmentPhotoSelectForUpdateResDto">
+		<result property="checkingAttachmentId" column="DA_CHECKING_ATTACHMENT_ID" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+	</resultMap>
+	
+	<select id="count"
+		parameterType="mm.aeon.com.ass.base.dto.purchaseAttachmentPhotoCheck.PurchaseAttachmentPhotoCountReqDto"
+		resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM
+			da_checking_attachment
+		where
+			status=1	
+	</select>
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="SaleEntryInfoApplicationInsert">
+
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.saleEntryInfoApplicationUpdate.SaleEntryInfoApplicationStatusUpdateReqDto">
+		UPDATE da_application_info
+		<set>
+			<if test="saleEntryCheckFlag != null">
+				sale_entry_check_flag = #{saleEntryCheckFlag},
+			</if>
+			<if test="updated_by != null and updated_by !=''">
+				UPDATED_BY = #{updated_by,jdbcType=VARCHAR},
+			</if>
+			<if test="updated_time != null">
+        		UPDATED_TIME = #{updated_time,jdbcType=TIMESTAMP},
+      		</if>
+		</set>
+		<where>
+			da_application_info_id = #{da_application_info_id,jdbcType=INTEGER}
+		</where>
+	</update>
+
+	</mapper>
+	

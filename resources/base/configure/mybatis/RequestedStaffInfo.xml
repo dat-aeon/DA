@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="RequestedStaffInfo">
+
+	<resultMap id="requestedStaffResultMap"
+		type="mm.aeon.com.ass.front.documentFollowUpApplicationList.RequestedStaffLineBean">
+		<result column="created_by" property="name" />
+		<result column="created_time" property="requestedDate" />
+	</resultMap>
+	
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.documentFollowUpApplicationListSearch.RequestedStaffSearchReqDto"
+		resultMap="requestedStaffResultMap">
+		select
+			daih.created_by,
+			daih.created_time
+		from
+			da_application_info_history as daih
+			<where>
+				daih.DEL_FLAG = false
+				AND daih.status = #{status}
+				AND daih.da_application_info_id = #{daApplicationInfoId}
+			</where>
+	</select>
+	
+	<resultMap id="requestedStaffInfoReferResultMap"
+		type="mm.aeon.com.ass.base.dto.userInfoRefer.RequestedStaffInfoReferResDto">
+		<result column="USER_ID" property="userId" />
+	</resultMap>
+	
+	<select id="refer"
+		parameterType="mm.aeon.com.ass.base.dto.userInfoRefer.RequestedStaffInfoReferReqDto"
+		resultMap="requestedStaffInfoReferResultMap">
+		SELECT
+			UI.USER_ID
+		FROM
+			user_info UI
+			<where>
+				UI.DEL_FLAG = 0
+				AND UI.name = #{name}
+				AND UI.USER_TYPE_ID = #{userTypeId}
+			</where>
+	</select>
+</mapper>

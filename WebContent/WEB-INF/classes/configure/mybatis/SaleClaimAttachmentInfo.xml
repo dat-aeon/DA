@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="SaleClaimAttachmentInfo">
+	 
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.saleClaimApplicationUpdate.SaleClaimApplicationAttachmentFlagUpdateReqDto">
+		UPDATE da_purchase_info_attachment
+		<set>	
+			<if test="editFlag != null">		 
+				edit_flag = #{editFlag},	
+			</if>
+			<if test="updatedBy != null and updatedBy !=''">
+				UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedTime != null">
+        		UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      		</if>					 
+		</set>
+		<where>
+			<if test="attachmentId != null ">
+			da_purchase_info_attachment_id=#{attachmentId}
+			</if>
+			<if test="purchaseId != null ">
+			da_purchase_info_id=#{purchaseId}
+			</if>
+		</where>
+	</update>
+	
+	<insert id="insert" useGeneratedKeys="true"
+		parameterType="mm.aeon.com.ass.base.dto.agentDocumentErrorApplicationUpdate.AgentDocumentErrorApplicationAttachmentInsertReqDto">
+ 	insert into da_purchase_info_attachment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="purchaseId != null">
+        da_purchase_info_id,
+      </if>
+      <if test="filePath != null">
+        file_path,
+      </if>
+      <if test="fileType != null">
+        file_type,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="originalFlag != null">
+        original_flag,
+      </if>
+      <if test="editFlag != null">
+        edit_flag,
+      </if>
+      <if test="daApplicationInfoHistoryId != null">
+        da_application_info_history_id
+      </if>
+    </trim>
+     
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="purchaseId != null">
+        #{purchaseId,jdbcType=INTEGER},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="originalFlag != null">
+        #{originalFlag,jdbcType=BIT},
+      </if>
+      <if test="editFlag != null">
+        #{editFlag,jdbcType=BIT},
+      </if>
+      <if test="daApplicationInfoHistoryId != null">
+        #{daApplicationInfoHistoryId,jdbcType=INTEGER},
+      </if>
+    </trim>
+    </insert>
+</mapper>

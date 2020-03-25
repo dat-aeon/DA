@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="ApplicationInfoStatus">
+<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.applicationUpdateStatus.ApplicationUpdateStatusSearchReqBean"
+		resultMap="applicationUpdateStatusResultMap">
+		select 
+			cal.application_no,
+			cal.judgement_status,
+			cal.judgement_date,
+			cal.financial_status,
+			cal.financial_amt,
+			cal.financial_term,
+			dai.status,
+			dai.updated_time
+		from 
+			da_application_info dai 
+		left join 
+			cust_agreement_list cal 
+		on 
+			dai.application_no = cal.application_no
+		where 
+			dai.fully_paid_flag = false 
+		and 
+			cal.application_no is not null
+		</select>
+
+		<resultMap id="applicationUpdateStatusResultMap"
+		type="mm.aeon.com.ass.base.dto.applicationUpdateStatus.ApplicationUpdateStatusSearchResBean">
+		<result column="application_no" property="applicationNo" />
+		<result column="judgement_status" property="judgementStatus" />
+		<result column="judgement_date" property="judgementDate" />
+		<result column="financial_status" property="financialStatus" />
+		<result column="status" property="applicationStatus" />
+		<result column="financial_amt" property="financialAmount" />
+		<result column="financial_term" property="financialTerm" />
+		<result column="updated_time" property="updatedTime" />
+	</resultMap>
+
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.applicationUpdateStatus.ApplicationUpdateStatusUpdateReqBean">
+		UPDATE da_application_info
+		<set>
+			<if test="fullyPaidFlag != null">
+				fully_paid_flag = #{fullyPaidFlag},
+			</if>
+			<if test="status != null and status != '' ">
+				status = #{status},
+			</if>
+			<if test="financialAmount != null and financialAmount !='' ">
+				approved_finance_amount = #{financialAmount},
+			</if>	
+			<if test="financialTerm != null and financialTerm !='' ">
+				approved_finance_term = #{financialTerm},
+			</if>
+			<if test="statusChangedReadFlag != null">
+				status_changed_read_flag = #{statusChangedReadFlag},
+			</if>			
+		</set>
+		<where>
+			application_no = #{applicationNo}
+		</where>
+	</update>
+	
+	<insert id="insert" keyColumn="cust_agreement_id"
+		keyProperty="custAgreementId" useGeneratedKeys="true"
+		parameterType="mm.aeon.com.ass.base.dto.judgementResultStatusUpdate.JudgementStatusResultUpdateReqDto">
+			INSERT INTO vcs.cust_agreement_list	(
+				import_customer_id, agreement_no, qr_show, financial_status, financial_amt, financial_term, created_time, updated_time, application_no , judgement_status, judgement_date
+			)
+			VALUES (
+				#{importCustomerId}, #{agreementNo}, #{qrShow}, #{financialStatus}, #{financialAmt}, #{financialTerm}, #{createdTime}, #{updatedTime}, #{applicationNo},#{judgementResult},#{judgementDate}
+			)
+			ON CONFLICT (application_no)
+			DO UPDATE SET
+				qr_show = EXCLUDED.qr_show, financial_status = EXCLUDED.financial_status, financial_amt = EXCLUDED.financial_amt, financial_term = EXCLUDED.financial_term, updated_time = EXCLUDED.updated_time, agreement_no = EXCLUDED.agreement_no, judgement_status = EXCLUDED.judgement_status, judgement_date = EXCLUDED.judgement_date;
+	</insert>
+	
+	<select id="selectForUpdate"
+		parameterType="mm.aeon.com.ass.base.dto.applicationUpdateStatus.ApplicationStatusSelectForUpdateReqDto"
+		resultMap="ApplicationStatusSelectForUpdateResDto">
+		SELECT 
+			daih.da_application_info_id, daih.created_time
+		FROM 
+			da_application_info_history daih
+		<where>
+			daih.status = #{status}
+			and to_char(daih.created_time, 'yyyyMMdd') = (select to_char(max(idaih.created_time), 'yyyyMMdd') from da_application_info_history idaih where idaih.status = 12 and idaih.da_application_info_id = daih.da_application_info_id)  
+			<if test="applicationNo != null">
+				AND daih.application_no = #{applicationNo}
+			</if>
+		</where>
+	</select>
+
+	<resultMap id="ApplicationStatusSelectForUpdateResDto"
+		type="mm.aeon.com.ass.base.dto.applicationUpdateStatus.ApplicationStatusSelectForUpdateResDto">
+		<result column="da_application_info_id" property="daApplicationId" />
+		<result column="created_time" property="createdTime" />
+	</resultMap>
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="EditRequestLockInfo">
+
+	<select id="refer"
+		parameterType="mm.aeon.com.ass.base.dto.custEditRequestSearch.CustEditSearchCheckReqDto"
+		resultMap="custEditRequestInfoReferResultMap" >
+		SELECT
+		lock_flag,
+		lock_by
+		from da_customer_info_edit_req
+		where
+		da_customer_info_edit_req_id=#{editRequestId}
+	</select>
+	
+	<resultMap id="custEditRequestInfoReferResultMap"
+		type="mm.aeon.com.ass.base.dto.custEditRequestSearch.CustEditSearchCheckResDto">
+		<result column="lock_flag" property="lockFlag" />
+		<result column="lock_by" property="lockedBy" />
+	</resultMap>
+	
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.custEditRequestUpdate.CustEditRequestLockUpdateReqDto">
+		UPDATE da_customer_info_edit_req
+		<set>
+			<if test="lockFlag != null">
+         		lock_flag=#{lockFlag},
+     		</if>
+     		<if test="lockTime != null">
+         		lock_time = #{lockTime},
+     		</if>
+     		<if test="lockBy != null">
+         		lock_by = #{lockBy}
+     		</if>
+ 		</set>
+		<where>
+			da_customer_info_edit_req_id = #{editRequestId}
+		</where>
+	</update>
+</mapper>

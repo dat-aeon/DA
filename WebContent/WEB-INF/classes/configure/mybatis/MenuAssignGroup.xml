@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="MenuAssignGroup">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.menuAssignGroupSelectList.MenuAssignGroupSelectListReqDto"
+		resultMap="MenuAssignGroupSelectListResDto">
+		SELECT 
+			 SM.SUB_MENU_ID, 
+			 SM.MENU_NAME
+		FROM SUB_MENU SM 
+		left outer join menu_group MG
+		on SM.sub_menu_id=MG.sub_menu_id
+		and MG.group_id= #{groupId}
+		<where>
+			 SM.DEL_FLAG = 0
+			 AND MG.sub_menu_id is null
+			 AND SM.SUB_MENU_REF_ID IS NULL
+			 AND SM.MENU_NAME != 'Home' 
+		</where>
+		ORDER BY  SM.SUB_MENU_ID DESC
+	</select>
+<!-- SELECT 
+			 SM.SUB_MENU_ID, 
+			 SM.MENU_NAME
+		FROM SUB_MENU  SM
+		left outer join menu_group UG
+		on SM.SUB_MENU_ID=UG.SUB_MENU_ID
+		AND UG.group_id= #{groupId}
+		<where>
+			UG.SUB_MENU_ID is null,
+			SM.DEL_FLAG = 0
+		</where>
+		ORDER BY  SM.SUB_MENU_ID DESC -->
+	<resultMap id="MenuAssignGroupSelectListResDto"
+		type="mm.aeon.com.ass.base.dto.menuAssignGroupSelectList.MenuAssignGroupSelectListResDto">
+		<result column="SUB_MENU_ID" property="menuId"  />
+		<result column="MENU_NAME" property="menuName"  />
+	</resultMap>
+
+ 	<delete id = "delete" parameterType="mm.aeon.com.ass.base.dto.menuGroupDelete.MenuGroupDeleteReqDto">
+      DELETE from menu_group
+		<where>
+			GROUP_ID = #{groupId}
+		</where>
+   </delete>
+	<insert id="insert" useGeneratedKeys="true"	parameterType="mm.aeon.com.ass.base.dto.menuAssignGroupRegister.MenuAssignGroupRegisterReqDto">
+		INSERT INTO menu_group
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			<if test="groupId != null">
+				GROUP_ID,
+			</if>
+			<if test="menuId != null">
+				SUB_MENU_ID,
+			</if>
+			<if test="createdBy != null and createdBy != ''">
+				CREATED_BY,
+			</if>
+			<if test="createdTime != null">
+				CREATED_TIME
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffixOverrides="," suffix=")">
+		
+			<if test="groupId != null">
+				#{groupId},
+			</if>
+			<if test="menuId != null">
+				#{menuId},
+			</if>
+			<if test="createdBy != null and createdBy != ''">
+				#{createdBy},
+			</if>
+			<if test="createdTime != null">
+				#{createdTime}
+			</if>
+		</trim>
+	</insert>
+
+	<select id="selectForUpdate"
+			parameterType="mm.aeon.com.ass.base.dto.menuInfoSelectForUpdate.MenuInfoSelectForUpdateReqDto"
+			resultMap="MenuInfoSelectForUpdateResDto">
+			SELECT SUB_MENU_ID, MENU_NAME,UPDATED_BY,UPDATED_TIME
+			FROM SUB_MENU 
+			INNER JOIN menu_group 
+			on menu_group.SUB_MENU_ID=sub_menu.SUB_MENU_ID
+			<where>
+				DEL_FLAG = 0
+				<if test="groupId != null">
+					AND menu_group.user_group_id = #{groupId}
+				</if>
+			</where>
+		</select>
+	
+		<resultMap id="MenuInfoSelectForUpdateResDto"
+			type="mm.aeon.com.ass.base.dto.menuInfoSelectForUpdate.MenuInfoSelectForUpdateResDto">
+			<result property="menuId" column="SUB_MENU_ID" />
+			<result property="menuName" column="MENU_NAME"/>
+			<result property="updatedBy" column="UPDATED_BY"/>
+			<result property="updatedTime" column="UPDATED_TIME" />
+		</resultMap>
+		
+		
+</mapper>

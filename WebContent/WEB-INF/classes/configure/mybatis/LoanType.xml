@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LoanType">
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.loanTypeList.LoanTypeSelectListReqDto"
+		resultMap="LoanTypeSelectListResDto">
+		SELECT 
+			DA_LOAN_TYPE_ID, NAME, DEL_FLAG
+		FROM 
+			DA_LOAN_TYPE
+		<where>
+			<if test="delFlag != null ">
+				DEL_FLAG = #{delFlag}
+			</if>
+		</where>
+		ORDER BY DA_LOAN_TYPE_ID
+	</select>
+
+	<resultMap id="LoanTypeSelectListResDto"
+		type="mm.aeon.com.ass.base.dto.loanTypeList.LoanTypeSelectListResDto">
+		<result property="loanTypeId" column="DA_LOAN_TYPE_ID" />
+		<result property="delFlag" column="DEL_FLAG" />
+		<result property="name" column="NAME" />
+	</resultMap>
+
+</mapper>

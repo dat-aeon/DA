@@ -1,0 +1,131 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Thiha Htet Zaw $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('APR001')}" /></title>
+	</ui:define>
+	<style>
+div.sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color: yellow;
+	padding: 50px;
+	font-size: 20px;
+}
+</style>
+	<ui:define name="body">
+		<h:form id="agentAndProductListReportForm">
+			<p:focus context="agentAndProductListReportForm" />
+			<p:defaultCommand target="searchButton" />
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12 sticky" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('APR001')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-6">
+						<p:panelGrid styleClass="status-panel-grid" style="margin-top: 0%;">
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('location')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="location" style="width:100%;" autocomplete="off" value="#{agentAndProductInfoUploadedReportFormBean.headerBean.location}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('date')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar autocomplete="off" id="startDateFrom" style="width:350px;" pattern="yyyy-MM-dd" mask="true"
+										value="#{agentAndProductInfoUploadedReportFormBean.headerBean.uploadedDateFrom}" placeholder="#{displayItemBean.getDisplayItemName('from')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar autocomplete="off" id="startDateTo" style="width:350px;" pattern="yyyy-MM-dd" mask="true"
+										value="#{agentAndProductInfoUploadedReportFormBean.headerBean.uploadedDateTo}" placeholder="#{displayItemBean.getDisplayItemName('to')}" />
+								</p:column>
+							</p:row>
+							<p:row style="border: none;">
+								<p:column colspan="3" style="border: none;background:#f4f7fc;">
+									<p:commandButton id="searchButton" styleClass="button" value="#{displayItemBean.getDisplayItemName('search')}" style="margin: 3px 0px 0px -10px;" update="exportButton"
+										action="#{agentAndProductInfoUploadedReportFormBean.search()}">
+										<f:ajax listener="click" update="exportButton" />
+									</p:commandButton>
+									<p:commandButton id="clearButton" styleClass="button" value="#{displayItemBean.getDisplayItemName('clear')}" style="margin: 3px 0px 0px 5px;" ajax="false"
+										action="#{agentAndProductInfoUploadedReportFormBean.reset()}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<div class="message-block ui-g-6">
+							<pt:messages />
+						</div>
+						<div class="ui-g-6" style="text-align: right;">
+							<p:commandButton
+								rendered="#{agentAndProductInfoUploadedReportFormBean.lazyModel!=null}"
+								value="#{displayItemBean.getDisplayItemName('export')}" ajax="false" update="agentAndProductListReportForm" action="#{agentAndProductInfoUploadedReportFormBean.downloadAgentAndProductInfoUploadedReport()}" 
+								style="width:140px!important;height: 35px;" styleClass="button"
+								id="exportButton">
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean" first="#{agentAndProductInfoUploadedReportFormBean.pageFirst}" value="#{agentAndProductInfoUploadedReportFormBean.lazyModel}" rows="50" paginator="true"
+								rowIndexVar="rowIndex" paginatorPosition="both" lazy="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="50,100"
+								styleClass="resultTable" id="applicationResultTable">
+								<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column sortBy="#{lineBean.agentName}" headerText="#{displayItemBean.getDisplayItemName('agentName')}">
+									<h:outputText value="#{lineBean.agentName}" />
+								</p:column>
+								<p:column sortBy="#{lineBean.purchaseLocation}" headerText="#{displayItemBean.getDisplayItemName('location')}">
+									<h:outputText value="#{lineBean.purchaseLocation}" />
+								</p:column>
+								<p:column styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('noOfCustomer')}">
+									<h:outputText value="#{lineBean.applicationCount}" />
+								</p:column>
+								<p:column styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('financeAmount')}">
+									<h:outputText value="#{lineBean.totalFinanceAmount}">
+										<f:convertNumber type="currency" pattern="###,###,##0" />
+									</h:outputText>
+								</p:column>
+								<p:column styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('totalProcessingFeeAmount')}">
+									<h:outputText value="#{lineBean.totalProcessingFeeAmount}">
+										<f:convertNumber type="currency" pattern="###,###,##0" />
+									</h:outputText>
+								</p:column>
+								<p:column styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('totalCompulsoryAmount')}">
+									<h:outputText value="#{lineBean.totalCompulsorySaving}">
+										<f:convertNumber type="currency" pattern="###,###,##0" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</div>
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>

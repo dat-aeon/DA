@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="CompulsoryInfo">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.compulsoryInfoSearch.CompulsorySearchReqDto"
+		resultMap="CompulsorySearchResDto">
+		SELECT 
+			DA_COMPULSORY_INFO_ID, COMPULSORY_AMOUNT, CREATED_TIME, CREATED_BY, UPDATED_TIME, UPDATED_BY, DEL_FLAG 
+		FROM
+			DA_COMPULSORY_INFO
+		ORDER BY DA_COMPULSORY_INFO_ID DESC
+	</select>
+
+	<resultMap id="CompulsorySearchResDto"
+		type="mm.aeon.com.ass.base.dto.compulsoryInfoSearch.CompulsorySearchResDto">
+		<result property="compulsoryId" column="DA_COMPULSORY_INFO_ID" />
+		<result property="compulsoryAmount" column="COMPULSORY_AMOUNT" />
+		<result property="delFlag" column="DEL_FLAG" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="createdTime" column="CREATED_TIME" />
+		<result property="updatedBy" column="UPDATED_BY" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+	</resultMap>
+
+	<select id="selectForUpdate"
+		parameterType="mm.aeon.com.ass.base.dto.compulsoryInfoSelectForUpdate.CompulsorySelectForUpdateReqDto"
+		resultMap="CompulsorySelectForUpdateResDto">
+		SELECT 
+			DA_COMPULSORY_INFO_ID,UPDATED_TIME
+		FROM 
+			DA_COMPULSORY_INFO
+		<where>
+			DA_COMPULSORY_INFO_ID = #{compulsoryId}
+		</where>
+	</select>
+
+	<resultMap id="CompulsorySelectForUpdateResDto"
+		type="mm.aeon.com.ass.base.dto.compulsoryInfoSelectForUpdate.CompulsorySelectForUpdateResDto">
+		<result property="compulsoryId" column="DA_COMPULSORY_INFO_ID" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+	</resultMap>
+
+	<insert id="insert"
+		parameterType="mm.aeon.com.ass.base.dto.compulsoryRegister.CompulsoryRegisterReqDto">
+		INSERT INTO
+		DA_COMPULSORY_INFO
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			COMPULSORY_AMOUNT,
+			CREATED_BY,
+			CREATED_TIME
+		</trim>
+		VALUES
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			#{compulsoryAmount},
+			#{createdBy},
+			#{createdTime}
+		</trim>
+	</insert>
+
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.compulsoryUpdate.CompulsoryUpdateReqDto">
+		UPDATE DA_COMPULSORY_INFO
+		<set>
+			<if test="compulsoryAmount != null and compulsoryAmount != ''">
+				COMPULSORY_AMOUNT = #{compulsoryAmount},
+			</if>
+			<if test="updatedBy != null and updatedBy != ''">
+				UPDATED_BY = #{updatedBy},
+			</if>
+			<if test="updatedTime != null">
+				UPDATED_TIME = #{updatedTime},
+			</if>
+			DEL_FLAG = #{delFlag}
+		</set>
+		<where>
+			<if test="compulsoryId != null and compulsoryId !=''">
+				DA_COMPULSORY_INFO_ID = #{compulsoryId}
+			</if>
+		</where>
+	</update>
+	
+	<select id="refer"
+		parameterType="mm.aeon.com.ass.base.dto.compulsoryInfoRefer.CompulsoryInfoReferReqDto"
+		resultMap="compulsoryInfoReferResDto">
+		SELECT 
+			DA_COMPULSORY_INFO_ID, COMPULSORY_AMOUNT
+		FROM 
+			DA_COMPULSORY_INFO
+		<where>
+			<if test="delFlag != null ">
+				DEL_FLAG = #{delFlag}
+			</if>
+		</where>
+		ORDER BY DA_COMPULSORY_INFO_ID
+	</select>
+    
+    <resultMap id="compulsoryInfoReferResDto"
+		type="mm.aeon.com.ass.base.dto.compulsoryInfoRefer.CompulsoryInfoReferResDto">
+		<result property="compulsoryId" column="DA_COMPULSORY_INFO_ID" />
+		<result property="compulsoryAmount" column="COMPULSORY_AMOUNT" />
+	</resultMap>
+	
+	<select id="count"
+		parameterType="mm.aeon.com.ass.base.dto.compulsoryCount.CompulsoryCountReqDto"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM DA_COMPULSORY_INFO
+		<where>
+				DEL_FLAG != true
+		</where>		
+	</select>
+</mapper>

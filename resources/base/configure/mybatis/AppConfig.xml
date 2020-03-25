@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="AppConfig">
+
+	<select id="refer"
+		parameterType="mm.aeon.com.ass.base.dto.userInfoRefer.CustomerIdReferReqDto"
+		resultMap="customerIdReferResDto">
+		SELECT 
+			CU.CUSTOMER_ID,U.USER_TYPE_ID,CU.NAME
+		FROM 
+			USER_TYPE U
+		INNER JOIN 
+			CUSTOMER_INFO CU 
+		ON 
+			U.USER_TYPE_ID = CU.USER_TYPE_ID
+		<where>
+			U.DEL_FLAG = 0
+			<if test="customer_id != null">
+				AND CU.CUSTOMER_ID = #{customer_id}
+			</if>
+		</where>
+		
+	</select>
+
+	<resultMap id="customerIdReferResDto"
+		type="mm.aeon.com.ass.base.dto.userInfoRefer.CustomerIdReferResDto">
+		<result property="customer_id" column="CUSTOMER_ID" />
+		<result property="userTypeId" column="USER_TYPE_ID" />
+		<result property="name" column="NAME" />
+	</resultMap>
+	
+</mapper>

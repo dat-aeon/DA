@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="GroupLockInfo">
+
+	<select id="refer"
+		parameterType="mm.aeon.com.ass.base.dto.userGroupLockCheck.UserGroupLockCheckReqDto"
+		resultMap="groupLockInfoReferResultMap" >
+		SELECT
+		lock_flag,
+		locked_by
+		from groups
+		where
+		group_id=#{groupId}
+	</select>
+	
+	<resultMap id="groupLockInfoReferResultMap"
+		type="mm.aeon.com.ass.base.dto.userGroupLockCheck.UserGroupLockCheckResDto">
+		<result column="lock_flag" property="lockFlag" />
+		<result column="locked_by" property="lockedBy" />
+	</resultMap>
+	
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.userGroupLock.UserGroupLockReqDto">
+		UPDATE groups
+		<set>
+			<if test="lockFlag != null">
+         		lock_flag=#{lockFlag},
+     		</if>
+     		<if test="lockedTime != null">
+         		locked_time = #{lockedTime},
+     		</if>
+     		<if test="lockedBy != null">
+         		locked_by = #{lockedBy}
+     		</if>
+ 		</set>
+		<where>
+			group_id = #{groupId}
+		</where>
+	</update>
+</mapper>

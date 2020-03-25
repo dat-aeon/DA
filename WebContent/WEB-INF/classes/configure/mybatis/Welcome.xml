@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Welcome">
+	<select id="count" parameterType="mm.aeon.com.ass.base.dto.welcome.WelcomeCountReqDto"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM
+		da_application_info as dai
+		<where>
+			dai.del_flag = false
+			<if test="allApplicationFlag">
+				AND dai.status != 1
+			</if>
+			<if test="newApplicationFlag">
+				AND dai.status = 2
+			</if>
+			<if test="indexApplicationFlag">
+				AND dai.status = 3
+			</if>
+			<if test="uploadedApplicationFlag">
+				AND dai.status = 4
+			</if>
+			<if test="cancelledApplicationFlag">
+				AND dai.status = 8
+			</if>
+			<if test="documentFollowUpApplicationFlag">
+				AND dai.status in (5,6,7)
+			</if>
+			<if test="settlementIndexApplicationFlag">
+				AND dai.status in (15,17)
+			</if>
+			<if test="settlementUploadedApplicationFlag">
+				AND dai.status in (16,17)
+			</if>
+		</where>
+	</select>
+</mapper>

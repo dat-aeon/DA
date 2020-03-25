@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="AgreementModificationCancelReport">
+	<select id="count"
+		parameterType="mm.aeon.com.ass.base.dto.agreementModificationCancelReportSearch.AgreementModificationCancelReportCountSearchReqDto"
+		resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			DA_APPLICATION_INFO_HISTORY daih
+		LEFT JOIN 
+			CUST_AGREEMENT_LIST cal
+		ON
+			cal.application_no = daih.application_no
+			<where> 
+			daih.MODIFY_STATUS = 0
+			and daih.status = 10
+			<if test="applicationNo != null and applicationNo !=''">
+					AND LOWER(daih.application_no) LIKE LOWER('%' || #{applicationNo} || '%')
+				</if>
+				<if test="applicantName != null and applicantName !=''">
+					AND LOWER(daih.name) LIKE LOWER('%' || #{applicantName} || '%')
+				</if>
+				<if test="phoneNo != null and phoneNo !=''">
+					AND LOWER(daih.mobile_no) LIKE LOWER('%' || #{phoneNo} || '%')
+				</if>
+				<if test="nrcNo != null and nrcNo !=''">
+					AND LOWER(daih.nrc_no) LIKE LOWER('%' || #{nrcNo} || '%')
+				</if>
+				<if test="modifyTimeFrom != null ">
+					AND TO_CHAR(daih.created_time::DATE,'YYYYMMDD') &gt;= TO_CHAR(#{modifyTimeFrom,jdbcType=DATE}::DATE,'YYYYMMDD')
+				</if>
+				<if test="modifyTimeTo != null ">
+					AND TO_CHAR(daih.created_time::DATE,'YYYYMMDD') &lt;= TO_CHAR(#{modifyTimeTo,jdbcType=DATE}::DATE,'YYYYMMDD')
+				</if>
+		</where>
+	</select>
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.agreementModificationCancelReportSearch.AgreementModificationCancelReportSearchReqDto"
+		resultMap="agreementModificationCancelReportSearchResultMap">
+		SELECT
+			daih.application_no,
+			daih.name,
+			daih.nrc_no,
+			daih.mobile_no,
+			daih.created_time as modify_time,
+			daih.modify_finance_amount,
+			daih.modify_finance_term,
+			daih.modify_comment,
+			cal.financial_amt as current_finance_amount,
+			cal.financial_term as current_finance_term,
+			cal.agreement_no
+		FROM 
+			DA_APPLICATION_INFO_HISTORY daih
+		LEFT JOIN 
+			CUST_AGREEMENT_LIST cal
+		ON
+			cal.application_no = daih.application_no
+			<where> 
+			daih.MODIFY_STATUS = 0
+			and daih.status = 10
+			<if test="applicationNo != null and applicationNo !=''">
+					AND LOWER(daih.application_no) LIKE LOWER('%' || #{applicationNo} || '%')
+				</if>
+				<if test="applicantName != null and applicantName !=''">
+					AND LOWER(daih.name) LIKE LOWER('%' || #{applicantName} || '%')
+				</if>
+				<if test="phoneNo != null and phoneNo !=''">
+					AND LOWER(daih.mobile_no) LIKE LOWER('%' || #{phoneNo} || '%')
+				</if>
+				<if test="nrcNo != null and nrcNo !=''">
+					AND LOWER(daih.nrc_no) LIKE LOWER('%' || #{nrcNo} || '%')
+				</if>
+				<if test="modifyTimeFrom != null ">
+					AND TO_CHAR(daih.created_time::DATE,'YYYYMMDD') &gt;= TO_CHAR(#{modifyTimeFrom,jdbcType=DATE}::DATE,'YYYYMMDD')
+				</if>
+				<if test="modifyTimeTo != null ">
+					AND TO_CHAR(daih.created_time::DATE,'YYYYMMDD') &lt;= TO_CHAR(#{modifyTimeTo,jdbcType=DATE}::DATE,'YYYYMMDD')
+				</if>
+		</where>
+		<if test="sortField != null and sortField != '' and sortField == 'applicationNo' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY daih.application_no ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY daih.application_no DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'applicantName' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY daih.name ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY daih.name DESC
+			</if>
+			</if>
+		<if test="sortField != null and sortField != '' and sortField == 'nrcNo' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY daih.nrc_no ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY daih.nrc_no DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'phoneNo' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY daih.mobile_no ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY daih.mobile_no DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'agreementNo' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY cal.agreement_no ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY cal.agreement_no DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'cancelComment' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY daih.modify_comment ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY daih.modify_comment DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'modifyFinanceAmount' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY daih.modify_finance_amount ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY daih.modify_finance_amount DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'modifyFinanceTerm' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY daih.modify_finance_term ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY daih.modify_finance_term DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'currentFinanceAmount' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY cal.financial_amt ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY cal.financial_amt DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'currentFinanceTerm' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY cal.financial_term ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY cal.financial_term DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'modifyTime' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY daih.created_time ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY daih.created_time DESC
+			</if>
+		</if>
+		<if test="sortField == null or sortField == ''">
+			ORDER BY daih.created_time DESC
+		</if>
+		<if test="offset != null and limit != null">
+			OFFSET #{offset} LIMIT #{limit}
+		</if>
+
+	</select>
+
+	<resultMap id="agreementModificationCancelReportSearchResultMap"
+		type="mm.aeon.com.ass.base.dto.agreementModificationCancelReportSearch.AgreementModificationCancelReportSearchResDto">
+		<result column="application_no" jdbcType="VARCHAR" property="applicationNo" />
+		<result column="name" jdbcType="VARCHAR" property="applicantName" />
+		<result column="nrc_no" jdbcType="VARCHAR" property="nrcNo" />
+		<result column="mobile_no" jdbcType="VARCHAR" property="phoneNo" />
+		<result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+		<result column="modify_finance_amount" jdbcType="NUMERIC" property="modifyFinanceAmount" />
+		<result column="modify_finance_term" jdbcType="INTEGER" property="modifyFinanceTerm" />
+		<result column="current_finance_amount" jdbcType="NUMERIC" property="currentFinanceAmount" />
+		<result column="current_finance_term" jdbcType="INTEGER" property="currentFinanceTerm" />
+		<result column="agreement_no" jdbcType="VARCHAR" property="agreementNo" />
+		<result column="modify_comment" jdbcType="VARCHAR" property="modifyComment" />
+	</resultMap>
+	
+
+</mapper>

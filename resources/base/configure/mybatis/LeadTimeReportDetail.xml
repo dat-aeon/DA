@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="LeadTimeReportDetail">
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.leadTimeReportSearch.LeadTimeReportAttachmentEditedTimeSearchReqDto"
+		resultMap="StaffSearchResDto">
+		SELECT 
+			SETTLEMENT_PENDING_COMMENT, 
+			UPDATED_BY, 
+			UPDATED_TIME 
+		FROM 
+			DA_APPLICATION_INFO_HISTORY 
+		<where> 
+			to_char(created_time, 'yyyyMMdd HH24:MI:SS') != (select to_char(min(idaih.created_time), 'yyyyMMdd HH24:MI:SS') from da_application_info_history idaih where idaih.status = #{status,jdbcType=INTEGER} and idaih.application_no = #{applicationNo,jdbcType=VARCHAR})  
+			<if test="applicationNo != null ">
+				AND APPLICATION_NO =  #{applicationNo,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null ">
+				AND STATUS =  #{status,jdbcType=INTEGER}
+			</if>
+		</where>
+		ORDER BY UPDATED_TIME ASC 
+	</select>
+
+	<resultMap id="StaffSearchResDto"
+		type="mm.aeon.com.ass.base.dto.leadTimeReportSearch.LeadTimeReportAttachmentEditedTimeSearchResDto">
+		<result column="SETTLEMENT_PENDING_COMMENT" property="pendingComment"  />
+		<result column="UPDATED_BY" property="updatedBy" />
+		<result column="UPDATED_TIME" property="updatedTime" />
+	</resultMap>
+</mapper>

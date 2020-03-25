@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ApplicationType">
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.applicationTypeList.ApplicationTypeSelectListReqDto"
+		resultMap="LoanTypeSelectListResDto">
+		SELECT 
+			DA_APPLICATION_TYPE_ID, NAME, DEL_FLAG
+		FROM 
+			DA_APPLICATION_TYPE
+		<where>
+			<if test="delFlag != null ">
+				DEL_FLAG = #{delFlag}
+			</if>
+		</where>
+		ORDER BY DA_APPLICATION_TYPE_ID
+	</select>
+
+	<resultMap id="LoanTypeSelectListResDto"
+		type="mm.aeon.com.ass.base.dto.applicationTypeList.ApplicationTypeSelectListResDto">
+		<result property="applicationTypeId" column="DA_APPLICATION_TYPE_ID" />
+		<result property="name" column="NAME" />
+	</resultMap>
+
+</mapper>

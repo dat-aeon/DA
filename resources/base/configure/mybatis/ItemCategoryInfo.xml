@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="ItemCategoryInfo">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.itemLabelSearch.ItemCategorySelectListReqDto"
+		resultMap="itemCategoryReferResDto">
+		SELECT DISTINCT CATEGORY FROM DA_ITEM_LABEL
+	</select>
+    
+    <resultMap id="itemCategoryReferResDto"
+		type="mm.aeon.com.ass.base.dto.itemLabelSearch.ItemCategorySelectListResDto">
+		<result property="itemCategory" column="CATEGORY" />
+	</resultMap>
+
+</mapper>

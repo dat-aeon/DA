@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="MenuData">
+   
+   <select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.menuDataSelectList.MenuDataSelectListReqDto"
+		resultMap="MenuSelectListResDtoResultMap">
+		SELECT 
+			DISTINCT
+			SM.SUB_MENU_ID,
+			SM.MENU_NAME AS SUB_MENU_NAME,
+			SM.MENU_LEVEL AS SUB_MENU_LEVEL,
+			SM.MENU_ACTION,
+			SM.MENU_DISPLAY_ORDER AS SUB_MENU_ORDER,
+			SM.SUB_MENU_REF_ID
+		FROM
+			MENU_GROUP MG
+		LEFT JOIN
+			SUB_MENU SM
+		ON
+			MG.SUB_MENU_ID = SM.SUB_MENU_ID
+		LEFT JOIN
+			MAIN_MENU MM
+		ON
+			MM.MAIN_MENU_ID = SM.MAIN_MENU_ID
+		<where>
+			SM.DEL_FLAG = 0
+			AND MM.DEL_FLAG = 0
+			<if test="groupId != null">
+				AND MG.GROUP_ID = #{groupId}
+			</if>
+			<if test="mainMenuId != null">
+				AND SM.MAIN_MENU_ID = #{mainMenuId}
+			</if>
+			<if test="menuLevel != null">
+				AND SM.MENU_LEVEL = #{menuLevel}
+			</if>
+			<if test="subMenuId != null">
+				AND SM.SUB_MENU_REF_ID = #{subMenuId}
+			</if>
+			<if test="subMenuFlag != null">
+				AND SM.SUB_MENU_REF_ID is null
+			</if>
+		</where>
+		ORDER BY SM.MENU_DISPLAY_ORDER
+	</select>
+
+	<resultMap id="MenuSelectListResDtoResultMap"
+		type="mm.aeon.com.ass.base.dto.menuDataSelectList.MenuDataSelectListResDto">
+		<result column="SUB_MENU_ID" property="subMenuId"  />
+		<result column="SUB_MENU_NAME" property="subMenuName"  />
+		<result column="SUB_MENU_LEVEL" property="subMenuLevel"  />
+		<result column="MENU_ACTION" property="menuAction"  />
+		<result column="SUB_MENU_ORDER" property="subMenuOrder"  />
+		<result column="SUB_MENU_REF_ID" property="subMenuRef"  />
+	</resultMap>
+
+</mapper>

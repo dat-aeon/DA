@@ -1,0 +1,357 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Khin Yadanar Thein$
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="Digital Application System" /></title>
+	</ui:define>
+	<ui:define name="body">
+		<h:form id="welcome">
+
+
+			<div class="ui-g" style="margin-top: 50px;">
+				<div class="ui-g-3" style="padding-bottom: 25px;">
+					<p:panel
+						style="text-align:center;  height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid style="width:100%;  ">
+						
+							<h:outputText value="#{displayItemBean.getDisplayItemName('applicationInquiry')}"
+								style="font-weight:bold" />
+						
+							<h:commandLink action="#{mnu001FormBean.propagate('APL001')}" disabled="#{welcomeCountFormBean.allStatusApplicationCss}">
+								<img src="../images/all.png" class="#{(welcomeCountFormBean.allStatusApplicationCss)? '': 'zoom'}" style="margin-top:10px;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							
+							<h:outputText value="#{welcomeCountFormBean.allApplicationCount}" 
+								styleClass="count icon-bl-label-count" />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				<div class="ui-g-3" style="padding-bottom: 25px;">
+					<p:panel
+						style="text-align:center; height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+						<h:outputText
+								value="#{displayItemBean.getDisplayItemName('newApplicationInquiry')}"
+								style="font-weight:bold" />
+							<h:commandLink action="#{mnu001FormBean.propagate('APL003')}" disabled="#{welcomeCountFormBean.newStatusApplication}">
+								<img src="../images/new.png" class="#{(welcomeCountFormBean.newStatusApplication)?'':'zoom'}" style="margin-top:10px;" />
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							
+							<h:outputText
+								value="#{welcomeCountFormBean.newApplicationCount}"
+								styleClass="count icon-bl-label-count" />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				
+				<div class="ui-g-3" style="padding-bottom: 25px;">
+					<p:panel
+						style="text-align:center; height:158px; " styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+						<h:outputText
+								value="#{displayItemBean.getDisplayItemName('uploadedApplicationInquiry')}"
+								style="font-weight:bold" />
+
+						
+							<h:commandLink action="#{mnu001FormBean.propagate('APL005')}" disabled="#{welcomeCountFormBean.uploadedStatusApplication}">
+								<img src="../images/upload.png" class="#{(welcomeCountFormBean.uploadedStatusApplication)?'':'zoom'}"  style="margin-top:10px;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							
+							<h:outputText
+								value="#{welcomeCountFormBean.uploadedApplicationCount}"
+							styleClass="count icon-bl-label-count"  />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				
+				<div class="ui-g-3" style="padding-bottom: 25px;">
+					<p:panel
+						style="text-align:center; height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+						<h:outputText
+								value="#{displayItemBean.getDisplayItemName('cancelledApplicationInquiry')}"
+								style="font-weight:bold" />
+						
+							<h:commandLink action="#{mnu001FormBean.propagate('APL006')}"  disabled="#{welcomeCountFormBean.cancelStatusApplication}">
+								<img src="../images/remove.png" class="#{(welcomeCountFormBean.cancelStatusApplication)?'':'zoom'}"  style="margin-top:10px;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+
+							<h:outputText
+								value="#{welcomeCountFormBean.cancelledApplicationCount}"
+							styleClass="count icon-bl-label-count"  />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+
+				<div class="ui-g-3" style="padding-top: 25px;">
+					<p:panel
+						style="text-align:center; height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:outputText
+								value="#{displayItemBean.getDisplayItemName('documentFollowUpApplicationInquiry')}"
+								style="font-weight:bold" />
+
+						
+							<h:commandLink action="#{mnu001FormBean.propagate('APL007')}"  disabled="#{welcomeCountFormBean.followupStatusApplications}">
+								<img src="../images/follow-up.png" class="#{(welcomeCountFormBean.followupStatusApplications)?'':'zoom'}"   style="margin-top:10px;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							
+							<h:outputText
+								value="#{welcomeCountFormBean.documentFollowUpApplicationCount}"
+								styleClass="count icon-bl-label-count"  />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				
+				<div class="ui-g-3" style="padding-top: 25px;">
+					<p:panel
+						style="text-align:center; height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:outputText
+								value="#{displayItemBean.getDisplayItemName('agreementModificationRequestInquiry')}"
+								style="font-weight:bold" />
+
+						
+							<h:commandLink action="#{mnu001FormBean.propagate('APL026')}"  disabled="#{welcomeCountFormBean.agreementModificationRequestInfoStatusApplication}">
+								<img src="../images/AgreementModificationRequest.png" class="#{(welcomeCountFormBean.agreementModificationRequestInfoStatusApplication)?'':'zoom'}"   style="margin-top:10px;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							
+							<h:outputText
+								value="#{welcomeCountFormBean.agreementModificationRequestInfoApplicationCount}"
+								styleClass="count icon-bl-label-count"  />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				
+				<div class="ui-g-3" style="padding-top: 25px;">
+					<p:panel
+						style="text-align:center; height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:outputText
+								value="#{displayItemBean.getDisplayItemName('agentAndProductInfoApplicationInquiry')}"
+								style="font-weight:bold" />
+							<h:commandLink action="#{mnu001FormBean.propagate('APL017')}" disabled="#{welcomeCountFormBean.agentAndProductStatusApplication}">
+								<img src="../images/settlement-index.png" class="#{(welcomeCountFormBean.agentAndProductStatusApplication)?'':'zoom'}"  style="margin-top:10px;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+
+							<h:outputText
+								value="#{welcomeCountFormBean.agentAndProductApplicationCount}"
+								styleClass="count icon-bl-label-count" />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				
+				<div class="ui-g-3" style="padding-top: 25px;">
+					<p:panel
+						style="text-align:center; height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:outputText
+								value="#{displayItemBean.getDisplayItemName('saleClaimInfoApplicationInquiry')}"
+								style="font-weight:bold" />
+						
+							<h:commandLink action="#{mnu001FormBean.propagate('APL021')}" disabled="#{welcomeCountFormBean.saleClaimInfoStatusApplication}">
+								<img src="../images/index.png" class="#{(welcomeCountFormBean.saleClaimInfoStatusApplication)?'':'zoom'}"  style="margin-top:10px;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+
+							<h:outputText
+								value="#{welcomeCountFormBean.saleClaimInfoApplicationCount}"
+								styleClass="count icon-bl-label-count"  />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				
+				<div class="ui-g-3" style="padding-top: 25px;">
+					<p:panel
+						style="text-align:center; height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:outputText
+								value="#{displayItemBean.getDisplayItemName('agentDocumentErrorInfoApplicationInquiry')}"
+								style="font-weight:bold" />
+						
+							<h:commandLink action="#{mnu001FormBean.propagate('APL023')}" disabled="#{welcomeCountFormBean.agentDocumentErrorInfoStatusApplication}">
+								<img src="../images/refresh-document.png" class="#{(welcomeCountFormBean.agentDocumentErrorInfoStatusApplication)?'':'zoom'}"  style="margin-top:10px;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+
+							<h:outputText
+								value="#{welcomeCountFormBean.agentDocumentErrorInfoApplicationCount}"
+								styleClass="count icon-bl-label-count"  />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				
+				<div class="ui-g-3" style="padding-top: 25px;">
+					<p:panel
+						style="text-align:center; height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:outputText
+								value="#{displayItemBean.getDisplayItemName('saleEntryInfoApplicationInquiry')}"
+								style="font-weight:bold" />
+						
+							<h:commandLink action="#{mnu001FormBean.propagate('APL019')}" disabled="#{welcomeCountFormBean.saleEntryInfoStatusApplication}">
+								<img src="../images/settlement-upload.png" class="#{(welcomeCountFormBean.saleEntryInfoStatusApplication)?'':'zoom'}"  style="margin-top:10px;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+
+							<h:outputText
+								value="#{welcomeCountFormBean.saleEntryInfoApplicationCount}"
+								styleClass="count icon-bl-label-count"  />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				
+				<div class="ui-g-3" style="padding-top: 25px;">
+					<p:panel
+						style="text-align:center; height:158px;" styleClass="ColoredPanel">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:outputText
+								value="#{displayItemBean.getDisplayItemName('inspectPhoto')}"
+								style="font-weight:bold" />
+						
+							<h:commandLink action="#{mnu001FormBean.propagate('PC001')}" disabled="#{welcomeCountFormBean.inspectPhoto}">
+								<img src="../images/inspect-photo.png" class="#{(welcomeCountFormBean.inspectPhoto)?'':'zoom'}"  style="margin-top:10px; color: pink;"/>
+							</h:commandLink>
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+							<h:outputText value="" />
+
+							<h:outputText
+								value="#{welcomeCountFormBean.inspectPhotoCount}"
+								styleClass="count icon-bl-label-count" />
+
+
+						</h:panelGrid>
+					</p:panel>
+				</div>
+				
+			</div>
+			<!-- <p:poll interval="5" listener="#{welcomeCountFormBean.search()}"  update="welcome" /> -->
+
+			<style type="text/css">
+.ColoredPanel .ui-panel-titlebar .ui-panel-title {
+	color: black;
+}
+
+.p-grid {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: 25px;
+	margin-left: 45px;
+	margin-top: 25px;
+	width:1250px;
+	height :150px;
+
+	
+	
+}
+
+.p-grid>.p-col, .p-grid>[class*="p-col"] {
+	width: 250px;
+	height: 175px;
+	padding-bottom: 50px;
+	margin-right: 25px;
+	margin-left: 25px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+
+}
+.count{
+font-weight:bold;
+ font-size:18px;
+
+ color: #0652DD;
+ 
+}
+
+
+
+.zoom {
+	transition: transform .3s; /* Animation */
+}
+
+.zoom:hover {
+	transform: scale(1.2);
+}
+
+</style>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+

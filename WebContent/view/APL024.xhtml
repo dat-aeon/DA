@@ -1,0 +1,1014 @@
+<!--***********************************************************************
+ * $Date: 2020-02-11$
+ * $Author: Thiha Htet Zaw $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('APL0024')}" /></title>
+	</ui:define>
+	<ui:define name="body">
+		<h:form id="APL0010Form">
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('APL0024')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<span class="message-style">
+							<pt:messages />
+						</span>
+					</div>
+					<!-- left table -->
+					<div class="ui-g-6">
+						<p:scrollPanel style="height:500px" mode="native">
+							<p:panelGrid styleClass="status-panel-grid tblAppDetail">
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('applicationNo')}" />
+									</p:column>
+									<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicationNo}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('applicationDate')}" />
+									</p:column>
+									<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.appliedDate}">
+											<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('applicationData')}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('name')}" />
+									</p:column>
+									<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantName}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('dob')}" />
+									</p:column>
+									<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.dob}">
+											<f:convertDateTime pattern="yyyy-MM-dd" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('nrcNo')}" />
+									</p:column>
+									<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.nrcNo}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('fatherName')}" />
+									</p:column>
+									<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.fatherName}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('nationality')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getNationalityValue(agentDocumentErrorApplicationListFormBean.lineBean.nationality)}" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.nationality == 2}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('nationalityOther')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.nationalityOther}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('gender')}" />
+									</p:column>
+									<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getGenderValue(agentDocumentErrorApplicationListFormBean.lineBean.gender)}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('maritalStatus')}" />
+									</p:column>
+									<p:column style="width: 70%;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getMaritalStatusValue(agentDocumentErrorApplicationListFormBean.lineBean.maritalStatus)}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column style="width: 30%" styleClass="status-panel-grid-column tblSingleLabel tblAppBorderLeft">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('currentAddress')}" />
+									</p:column>
+									<p:column style="width: 300px;word-break: break-all;" styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText
+											value="#{displayItemBean.getDisplayItemName('buildingNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.currentAddressBuildingNo},
+									#{displayItemBean.getDisplayItemName('roomNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.currentAddressRoomNo},
+									#{displayItemBean.getDisplayItemName('floor')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.currentAddressFloor},
+									#{displayItemBean.getDisplayItemName('street')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.currentAddressStreet},
+									#{displayItemBean.getDisplayItemName('qtr')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.currentAddressQtr},
+									#{displayItemBean.getDisplayItemName('township')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getTownshipValue(agentDocumentErrorApplicationListFormBean.lineBean.currentAddressTownship)},
+									#{displayItemBean.getDisplayItemName('city')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getCityValue(agentDocumentErrorApplicationListFormBean.lineBean.currentAddressCity)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('permanentAddress')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="word-break: break-all;">
+										<h:outputText
+											value="#{displayItemBean.getDisplayItemName('buildingNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.permanentAddressBuildingNo},
+									#{displayItemBean.getDisplayItemName('roomNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.permanentAddressRoomNo},
+									#{displayItemBean.getDisplayItemName('floor')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.permanentAddressFloor},
+									#{displayItemBean.getDisplayItemName('street')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.permanentAddressStreet},
+									#{displayItemBean.getDisplayItemName('qtr')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.permanentAddressQtr},
+									#{displayItemBean.getDisplayItemName('township')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getTownshipValue(agentDocumentErrorApplicationListFormBean.lineBean.permanentAddressTownship)},
+									#{displayItemBean.getDisplayItemName('city')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getCityValue(agentDocumentErrorApplicationListFormBean.lineBean.permanentAddressCity)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('typeOfResidence')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getTypeOfResidenceValue(agentDocumentErrorApplicationListFormBean.lineBean.typeOfResident)}" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.typeOfResident == 5}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('typeOfResidenceOther')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.typeOfResidentOther}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('livingWith')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getLivingWithValue(agentDocumentErrorApplicationListFormBean.lineBean.livingWith)}" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.livingWith == 6}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('livingWithOther')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.livingWithOther}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('highestEducation')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getEducationValue(agentDocumentErrorApplicationListFormBean.lineBean.highestEducationTypeId)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('yearOfStay')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText
+											value="#{(agentDocumentErrorApplicationListFormBean.lineBean.stayYear == 1) ? ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.stayYear).concat(' Year') : ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.stayYear).concat(' Years')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('monthOfStay')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText
+											value="#{(agentDocumentErrorApplicationListFormBean.lineBean.stayMonth == 1) ? ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.stayMonth).concat(' Month') : ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.stayMonth).concat(' Months')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('mobileNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.mobileNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('residentTelNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.residentTelNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('otherPhoneNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.otherPhoneNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('email')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.email}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('applicantCompanyInfo')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('companyName')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyName}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('companyAddress')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="word-break: break-all;">
+										<h:outputText
+											value="#{displayItemBean.getDisplayItemName('buildingNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyAddressBuildingNo},
+									#{displayItemBean.getDisplayItemName('roomNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyAddressRoomNo},
+									#{displayItemBean.getDisplayItemName('floor')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyAddressFloor},
+									#{displayItemBean.getDisplayItemName('street')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyAddressStreet},
+									#{displayItemBean.getDisplayItemName('qtr')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyAddressQtr},
+									#{displayItemBean.getDisplayItemName('township')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getTownshipValue(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyAddressTownship)},
+									#{displayItemBean.getDisplayItemName('city')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getCityValue(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyAddressCity)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('companyTelNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyTelNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('contactTime')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText
+											value="#{''.concat(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.contactTimeFrom).concat(' AM - ').concat(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.contactTimeTo).concat(' PM')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('department')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.department}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('position')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.position}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('yearOfService')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText
+											value="#{(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.serviceYear == 1) ? ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.serviceYear).concat(' Year') : ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.serviceYear).concat(' Years')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('monthOfService')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText
+											value="#{(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.serviceMonth == 1) ? ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.serviceMonth).concat(' Month'): ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.serviceMonth).concat(' Months')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('companyStatus')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getCompanyStatusValue(agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyStatus)}" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyStatus == 12}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('companyStatusOther')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.companyStatusOther}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('monthlyBasicIncome')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.monthlyBasicIncome}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('otherIncome')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.otherIncome}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('totalIncome')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.totalIncome}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('salaryDay')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.applicantCompanyDto.salaryDay}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('emergencyContactInfo')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('name')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.emergencyContactName}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('relationship')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getRelatinshipValue(agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.relationship)}" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.relationship == 5}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('relationshipOther')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.relationshipOther}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('currentAddress')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="word-break: break-all;">
+										<h:outputText
+											value="#{displayItemBean.getDisplayItemName('buildingNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.currentAddressBuildingNo},
+									#{displayItemBean.getDisplayItemName('roomNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.currentAddressRoomNo},
+									#{displayItemBean.getDisplayItemName('floor')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.currentAddressFloor},
+									#{displayItemBean.getDisplayItemName('street')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.currentAddressStreet},
+									#{displayItemBean.getDisplayItemName('qtr')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.currentAddressQtr},
+									#{displayItemBean.getDisplayItemName('township')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getTownshipValue(agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.currentAddressTownship)},
+									#{displayItemBean.getDisplayItemName('city')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getCityValue(agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.currentAddressCity)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('mobileNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.mobileNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('residentTelNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.residentTelNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('otherPhoneNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.emergencyContactDto.otherPhoneNo}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('guarantorInfo')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('name')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.guarantorName}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('dob')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.dob}">
+											<f:convertDateTime pattern="yyyy-MM-dd" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('nrcNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.nrcNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('nationality')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getNationalityValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.nationality)}" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.nationality == 2}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('nationalityOther')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.nationalityOther}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('mobileNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.mobileNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('residentTelNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.residentTelNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('relationship')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getRelatinshipValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.relationship)}" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.relationship == 5}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('relationshipOther')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.relationshipOther}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('currentAddress')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="word-break: break-all;">
+										<h:outputText
+											value="#{displayItemBean.getDisplayItemName('buildingNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.currentAddressBuildingNo},
+									#{displayItemBean.getDisplayItemName('roomNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.currentAddressRoomNo}, 
+									#{displayItemBean.getDisplayItemName('floor')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.currentAddressFloor},
+									#{displayItemBean.getDisplayItemName('street')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.currentAddressStreet},
+									#{displayItemBean.getDisplayItemName('qtr')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.currentAddressQtr},
+									#{displayItemBean.getDisplayItemName('township')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getTownshipValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.currentAddressTownship)},
+									#{displayItemBean.getDisplayItemName('city')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getCityValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.currentAddressCity)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('typeOfResidence')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getTypeOfResidenceValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.typeOfResident)}" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.typeOfResident == 5}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('typeOfResidenceOther')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.typeOfResidentOther}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('livingWith')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getLivingWithValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.livingWith)}" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.livingWith == 6}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('livingWithOther')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.livingWithOther}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('gender')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getGenderValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.gender)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('maritalStatus')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getMaritalStatusValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.maritalStatus)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('yearOfStay')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText
+											value="#{(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.yearStay == 1) ? ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.yearStay).concat(' Year') : ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.yearStay).concat(' Years')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('monthOfStay')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText
+											value="#{(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.monthStay == 1) ? ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.monthStay).concat(' Month') : ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.monthStay).concat(' Months')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('companyName')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.companyName}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('companyTelNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.companyTelNo}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('companyAddress')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="word-break: break-all;">
+										<h:outputText
+											value="#{displayItemBean.getDisplayItemName('buildingNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.companyAddressBuildingNo},
+									#{displayItemBean.getDisplayItemName('roomNo')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.companyAddressRoomNo},
+									#{displayItemBean.getDisplayItemName('floor')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.companyAddressFloor},
+									#{displayItemBean.getDisplayItemName('street')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.companyAddressStreet},
+									#{displayItemBean.getDisplayItemName('qtr')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.companyAddressQtr},
+									#{displayItemBean.getDisplayItemName('township')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getTownshipValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.companyAddressTownship)},
+									#{displayItemBean.getDisplayItemName('city')}&#160;-&#160;#{agentDocumentErrorApplicationListFormBean.getCityValue(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.companyAddressCity)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('department')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.department}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('position')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.position}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('yearOfService')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText
+											value="#{(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.serviceYear == 1) ? ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.serviceYear).concat(' Year'): ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.serviceYear).concat(' Years')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('monthOfService')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText
+											value="#{(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.serviceMonth == 1) ? ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.serviceMonth).concat(' Month'): ''.concat(agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.serviceMonth).concat(' Months')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('monthlyBasicIncome')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.monthlyIncome}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('totalIncome')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.guarantorDto.totalIncome}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('loanConfirmation')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('status')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getApplicationStatusValue(agentDocumentErrorApplicationListFormBean.lineBean.status)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('loanType')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getLoanTypeValue(agentDocumentErrorApplicationListFormBean.lineBean.loanTypeId)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('productCategory')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getProductTypeValue(agentDocumentErrorApplicationListFormBean.lineBean.productId)}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('productDescription')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.productDescription}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('approvedAmount')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.approvedFinanceAmount}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('financeTerm')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{''.concat(agentDocumentErrorApplicationListFormBean.lineBean.approvedFinanceTerm).concat(' Months')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('processingFees')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.processingFees}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('compulsorySaving')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.compulsoryAmount}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('totalRepaymentAmount')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.modifyTotalRepayment}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('firstRepaymentAmount')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.firstPayment}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('monthlyRepaymentAmount')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.monthlyInstallment}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('lastPayment')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.lastPayment}">
+											<f:convertNumber type="currency" pattern="###,###,##0" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</p:scrollPanel>
+					</div>
+					<!-- right table -->
+					<div class="ui-g-6">
+						<p:scrollPanel style="height:500px" mode="native">
+							<p:panelGrid styleClass="status-panel-grid tblAppDetail">
+								<p:row styleClass="status-panel-grid-row">
+									<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('purchaseDetail')}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('agentName')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.purchaseDto.agentName}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('outletName')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.purchaseDto.outletName}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('purchaseDate')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.purchaseDto.purchaseDate}">
+											<f:convertDateTime pattern="yyyy-MM-dd" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('invoiceNo')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<h:outputText value="#{agentDocumentErrorApplicationListFormBean.lineBean.purchaseDto.invoiceNo}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+										<h:outputText value="#{displayItemBean.getDisplayItemName('purchaseProductDetail')}" />
+									</p:column>
+								</p:row>
+								<p:row styleClass="status-panel-grid-row">
+									<p:column colspan="3" style="width: 30%" styleClass="tblColumnHeader">
+										<p:dataTable var="lineBean" value="#{agentDocumentErrorApplicationListFormBean.lineBean.purchaseProductDtoList}" paginator="false" rowIndexVar="rowIndex" styleClass="resultTable"
+											id="purchaseProductTable">
+											<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+												<h:outputText value="#{rowIndex+1}" />
+											</p:column>
+											<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('productType')}">
+												<h:outputText value="#{lineBean.productType}" />
+											</p:column>
+											<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('productDescription')}">
+												<h:outputText value="#{lineBean.productDescription}" />
+											</p:column>
+											<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('loanType')}">
+												<h:outputText value="#{lineBean.loanType}" />
+											</p:column>
+											<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('model')}">
+												<h:outputText value="#{lineBean.model}" />
+											</p:column>
+											<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('brand')}">
+												<h:outputText value="#{lineBean.brand}" />
+											</p:column>
+											<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('price')}">
+												<h:outputText value="#{lineBean.price}">
+													<f:convertNumber type="currency" pattern="###,###,##0" />
+												</h:outputText>
+											</p:column>
+											<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('cashdownAmount')}">
+												<h:outputText value="#{lineBean.cashDownAmount}">
+													<f:convertNumber type="currency" pattern="###,###,##0" />
+												</h:outputText>
+											</p:column>
+										</p:dataTable>
+									</p:column>
+								</p:row>
+								<p:row   rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.memberCardImageFilePath != null}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('memberCard')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<p:graphicImage url="#{agentDocumentErrorApplicationListFormBean.lineBean.memberCardImageFilePath}" style="width:250px;height:auto;" />
+									</p:column>
+								</p:row>
+								<p:row  rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.uloanImageFilePath != null}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('uloan')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<p:graphicImage url="#{agentDocumentErrorApplicationListFormBean.lineBean.uloanImageFilePath}" style="width:250px;height:auto;" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.invoiceImageFilePath != null}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('invoice')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<p:graphicImage url="#{agentDocumentErrorApplicationListFormBean.lineBean.invoiceImageFilePath}" style="width:250px;height:auto;" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.letterOfAgreementImageFilePath != null}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('letterOfAgreement')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<p:graphicImage url="#{agentDocumentErrorApplicationListFormBean.lineBean.letterOfAgreementImageFilePath}" style="width:250px;height:auto;" />
+									</p:column>
+								</p:row>
+								<p:row rendered="#{agentDocumentErrorApplicationListFormBean.lineBean.cashReceiptImageFilePath != null}">
+									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('cashReceipt')}" />
+									</p:column>
+									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+										<p:graphicImage url="#{agentDocumentErrorApplicationListFormBean.lineBean.cashReceiptImageFilePath}" style="width:250px;height:auto;" />
+									</p:column>
+								</p:row>
+								<c:forEach var="item" items="#{agentDocumentErrorApplicationListFormBean.lineBean.othersImageFilePathList}">
+									<p:row>
+										<p:column styleClass="tblSingleLabel tblAppBorderLeft">
+											<h:outputLabel value="#{displayItemBean.getDisplayItemName('others')}" />
+										</p:column>
+										<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
+											<p:graphicImage url="#{item.imagePath}" style="width:250px;height:auto;" />
+										</p:column>
+									</p:row>
+								</c:forEach>
+							</p:panelGrid>
+						</p:scrollPanel>
+					</div>
+					<div class="ui-g-12" style="clear: both;">
+						<FIELDSET>
+							<legend><p:outputLabel value="#{displayItemBean.getDisplayItemName('errorCorrection')}" style="font-size: 14px; color: #302873; font-weight: bold;" /></legend>
+
+						<p:dataTable var="lineBean" value="#{agentDocumentErrorApplicationListFormBean.lineBean.agentDocumentErrorEditImageBeanList}" paginator="false" rowIndexVar="rowIndex" styleClass="resultTable"
+							id="editFileCommentTable" rendered="#{agentDocumentErrorApplicationListFormBean.notyetFlag}">
+							<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+								<h:outputText value="#{rowIndex+1}" />
+							</p:column>
+							<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('fileName')}">
+								<h:outputText value="#{lineBean.fileName}" />
+							</p:column>
+							<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('fileType')}">
+								<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getPurchaseFileValue(lineBean.fileType)}" />
+							</p:column>
+							<p:column styleClass="unsort-column" id="imageUpload" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('operation')}">
+								<p:fileUpload value="#{agentDocumentErrorApplicationListFormBean.pendingHeaderBean.editImage}" mode="advanced" dragDropSupport="false"
+                  				fileLimit="1" fileUploadListener="#{agentDocumentErrorApplicationListFormBean.uploadImage}" oncomplete="doFinishedImage(this);" auto="true" allowTypes="/(\.|\/)(jpeg)$/" >
+                  				<f:attribute name="attachmentId" value="#{lineBean.attachmentId}" />
+                  				<f:attribute name="purchaseId" value="#{lineBean.purchaseId}" />
+                  				</p:fileUpload>
+                  				<p:remoteCommand name="importImage" update="imageUpload" action="#{agentDocumentErrorApplicationListFormBean.importImage()}" />
+									<script type="text/javascript">
+										function doFinishedImage(fileupload) {
+											if (fileupload.files.length == 0) {
+												importImage();
+											}
+										}
+									</script>
+							</p:column>
+						</p:dataTable>
+													
+						</FIELDSET>
+					</div>
+					<div class="ui-g-12" style="clear: both;">
+						<p:dataTable var="lineBean" value="#{agentDocumentErrorApplicationListFormBean.lineBean.agentDocumentErrorStaffBeanList}" paginator="false" rowIndexVar="rowIndex" styleClass="resultTable"
+							id="staffCommentTable">
+							<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+								<h:outputText value="#{rowIndex+1}" />
+							</p:column>
+							<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('staffName')}">
+								<h:outputText value="#{lineBean.staffName}" />
+							</p:column>
+							<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('department')}">
+								<h:outputText value="#{agentDocumentErrorApplicationListFormBean.getDepartmentValue(lineBean.departmentId)}" />
+							</p:column>
+							<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('comment')}">
+								<h:outputText value="#{lineBean.pendingComment}" />
+							</p:column>
+							<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('dateTime')}">
+								<h:outputText value="#{lineBean.updatedTime}">
+								<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss a" />
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+					</div>
+					<div class="ui-g-12">
+						<p:inputTextarea id="pendingComment" onkeyup="this.value = this.value.toUpperCase();" maxlength="256"
+							value="#{agentDocumentErrorApplicationListFormBean.errorApplicationHeaderBean.pendingComment}" placeholder="#{displayItemBean.getDisplayItemName('comment')}" style="width: 50%;"
+							rendered="#{agentDocumentErrorApplicationListFormBean.notyetFlag}" />
+					</div>
+					<div class="ui-g-12" style="clear: both;">
+						<p:commandButton value="#{displayItemBean.getDisplayItemName('done')}" rendered="#{agentDocumentErrorApplicationListFormBean.notyetFlag}" action="#{agentDocumentErrorApplicationListFormBean.done()}" id="permitButton"
+							styleClass="button"/>
+						<p:commandButton value="#{displayItemBean.getDisplayItemName('download')}" rendered="#{agentDocumentErrorApplicationListFormBean.notyetFlag}"
+							action="#{agentDocumentErrorApplicationListFormBean.downloadPhotoZip()}" id="downloadPhotoBtn" style="width: auto" ajax="false" styleClass="button" />
+						<p:commandButton value="#{displayItemBean.getDisplayItemName('back')}" action="#{agentDocumentErrorApplicationListFormBean.back()}" id="bckButton" immediate="true" styleClass="button" />
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

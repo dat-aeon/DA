@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="CommonApplicationInsert">
+	<insert id="insert" useGeneratedKeys="true"
+		keyColumn="da_application_info_history_id" keyProperty="daApplicationInfoHistoryId"
+		parameterType="mm.aeon.com.ass.base.dto.commonApplicationUpdate.CommonApplicationHistoryInsertReqDto">
+		insert into da_application_info_history
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="daApplicationInfoId != null">
+				da_application_info_id,
+			</if>
+			<if test="applicationNo != null">
+				application_no,
+			</if>
+			<if test="daApplicationTypeId != null">
+				da_application_type_id,
+			</if>
+			<if test="appliedDate != null">
+				applied_date,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="dob != null">
+				dob,
+			</if>
+			<if test="nrcNo != null">
+				nrc_no,
+			</if>
+			<if test="fatherName != null">
+				father_name,
+			</if>
+			<if test="nationality != null">
+				nationality,
+			</if>
+			<if test="nationalityOther != null">
+				nationality_other,
+			</if>
+			<if test="gender != null">
+				gender,
+			</if>
+			<if test="maritalStatus != null">
+				marital_status,
+			</if>
+			<if test="currentAddress != null">
+				current_address,
+			</if>
+			<if test="permanentAddress != null">
+				permanent_address,
+			</if>
+			<if test="currentAddressBuildingNo != null">
+				current_address_building_no,
+			</if>
+			<if test="currentAddressRoomNo != null">
+				current_address_room_no,
+			</if>
+			<if test="currentAddressFloor != null">
+				current_address_floor,
+			</if>
+			<if test="currentAddressStreet != null">
+				current_address_street,
+			</if>
+			<if test="currentAddressQtr != null">
+				current_address_qtr,
+			</if>
+			<if test="permanentAddressBuildingNo != null">
+				permanent_address_building_no,
+			</if>
+			<if test="permanentAddressRoomNo != null">
+				permanent_address_room_no,
+			</if>
+			<if test="permanentAddressFloor != null">
+				permanent_address_floor,
+			</if>
+			<if test="permanentAddressStreet != null">
+				permanent_address_street,
+			</if>
+			<if test="permanentAddressQtr != null">
+				permanent_address_qtr,
+			</if>
+			<if test="currentAddressTownship != null">
+				current_address_township,
+			</if>
+			<if test="currentAddressCity != null">
+				current_address_city,
+			</if>
+			<if test="permanentAddressTownship != null">
+				permanent_address_township,
+			</if>
+			<if test="permanentAddressCity != null">
+				permanent_address_city,
+			</if>
+			<if test="typeOfResidence != null">
+				type_of_residence,
+			</if>
+			<if test="typeOfResidenceOther != null">
+				type_of_residence_other,
+			</if>
+			<if test="livingWith != null">
+				living_with,
+			</if>
+			<if test="livingWithOther != null">
+				living_with_other,
+			</if>
+			<if test="yearOfStayYear != null">
+				year_of_stay_year,
+			</if>
+			<if test="yearOfStayMonth != null">
+				year_of_stay_month,
+			</if>
+			<if test="mobileNo != null">
+				mobile_no,
+			</if>
+			<if test="residentTelNo != null">
+				resident_tel_no,
+			</if>
+			<if test="otherPhoneNo != null">
+				other_phone_no,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="customerId != null">
+				customer_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="daInterestInfoId != null">
+				da_interest_info_id,
+			</if>
+			<if test="daCompulsoryInfoId != null">
+				da_compulsory_info_id,
+			</if>
+			<if test="daLoanTypeId != null">
+				da_loan_type_id,
+			</if>
+			<if test="financeAmount != null">
+				finance_amount,
+			</if>
+			<if test="financeTerm != null">
+				finance_term,
+			</if>
+			<if test="daProductTypeId != null">
+				da_product_type_id,
+			</if>
+			<if test="productDescription != null">
+				product_description,
+			</if>
+			<if test="channelType != null">
+				channel_type,
+			</if>
+			<if test="createdTime != null">
+				created_time,
+			</if>
+			<if test="createdBy != null">
+				created_by,
+			</if>
+			<if test="updatedTime != null">
+				updated_time,
+			</if>
+			<if test="updatedBy != null">
+				updated_by,
+			</if>
+			<if test="delFlag != null">
+				del_flag,
+			</if>
+			<if test="settlementPendingComment != null">
+				settlement_pending_comment,
+			</if>
+			<if test="highestEducationTypeId != null">
+				highest_education_type_id,
+			</if>
+			<if test="approvedFinanceAmount != null">
+				approved_finance_amount,
+			</if>
+			<if test="approvedFinanceTerm != null">
+				approved_finance_term,
+			</if>
+			<if test="modifyFinanceAmount != null">
+				modify_finance_amount,
+			</if>
+			<if test="modifyFinanceTerm != null">
+				modify_finance_term,
+			</if>
+			<if test="modifyComment != null">
+				modify_comment,
+			</if>
+			<if test="modifyStatus != null">
+				modify_status
+			</if>
+		</trim>
+
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="daApplicationInfoId != null">
+				#{daApplicationInfoId,jdbcType=INTEGER},
+			</if>
+			<if test="applicationNo != null">
+				#{applicationNo,jdbcType=VARCHAR},
+			</if>
+			<if test="daApplicationTypeId != null">
+				#{daApplicationTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="appliedDate != null">
+				#{appliedDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="dob != null">
+				#{dob,jdbcType=DATE},
+			</if>
+			<if test="nrcNo != null">
+				#{nrcNo,jdbcType=VARCHAR},
+			</if>
+			<if test="fatherName != null">
+				#{fatherName,jdbcType=VARCHAR},
+			</if>
+			<if test="nationality != null">
+				#{nationality,jdbcType=INTEGER},
+			</if>
+			<if test="nationalityOther != null">
+				#{nationalityOther,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=INTEGER},
+			</if>
+			<if test="maritalStatus != null">
+				#{maritalStatus,jdbcType=INTEGER},
+			</if>
+			<if test="currentAddress != null">
+				#{currentAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="permanentAddress != null">
+				#{permanentAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="currentAddressBuildingNo != null">
+				#{currentAddressBuildingNo,jdbcType=VARCHAR},
+			</if>
+			<if test="currentAddressRoomNo != null">
+				#{currentAddressRoomNo,jdbcType=VARCHAR},
+			</if>
+			<if test="currentAddressFloor != null">
+				#{currentAddressFloor,jdbcType=VARCHAR},
+			</if>
+			<if test="currentAddressStreet != null">
+				#{currentAddressStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="currentAddressQtr != null">
+				#{currentAddressQtr,jdbcType=VARCHAR},
+			</if>
+			<if test="permanentAddressBuildingNo != null">
+				#{permanentAddressBuildingNo,jdbcType=VARCHAR},
+			</if>
+			<if test="permanentAddressRoomNo != null">
+				#{permanentAddressRoomNo,jdbcType=VARCHAR},
+			</if>
+			<if test="permanentAddressFloor != null">
+				#{permanentAddressFloor,jdbcType=VARCHAR},
+			</if>
+			<if test="permanentAddressStreet != null">
+				#{permanentAddressStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="permanentAddressQtr != null">
+				#{permanentAddressQtr,jdbcType=VARCHAR},
+			</if>
+			<if test="currentAddressTownship != null">
+				#{currentAddressTownship,jdbcType=INTEGER},
+			</if>
+			<if test="currentAddressCity != null">
+				#{currentAddressCity,jdbcType=INTEGER},
+			</if>
+			<if test="permanentAddressTownship != null">
+				#{permanentAddressTownship,jdbcType=INTEGER},
+			</if>
+			<if test="permanentAddressCity != null">
+				#{permanentAddressCity,jdbcType=INTEGER},
+			</if>
+			<if test="typeOfResidence != null">
+				#{typeOfResidence,jdbcType=INTEGER},
+			</if>
+			<if test="typeOfResidenceOther != null">
+				#{typeOfResidenceOther,jdbcType=VARCHAR},
+			</if>
+			<if test="livingWith != null">
+				#{livingWith,jdbcType=INTEGER},
+			</if>
+			<if test="livingWithOther != null">
+				#{livingWithOther,jdbcType=VARCHAR},
+			</if>
+			<if test="yearOfStayYear != null">
+				#{yearOfStayYear,jdbcType=INTEGER},
+			</if>
+			<if test="yearOfStayMonth != null">
+				#{yearOfStayMonth,jdbcType=INTEGER},
+			</if>
+			<if test="mobileNo != null">
+				#{mobileNo,jdbcType=VARCHAR},
+			</if>
+			<if test="residentTelNo != null">
+				#{residentTelNo,jdbcType=VARCHAR},
+			</if>
+			<if test="otherPhoneNo != null">
+				#{otherPhoneNo,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="customerId != null">
+				#{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="daInterestInfoId != null">
+				#{daInterestInfoId,jdbcType=INTEGER},
+			</if>
+			<if test="daCompulsoryInfoId != null">
+				#{daCompulsoryInfoId,jdbcType=INTEGER},
+			</if>
+			<if test="daLoanTypeId != null">
+				#{daLoanTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="financeAmount != null">
+				#{financeAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="financeTerm != null">
+				#{financeTerm,jdbcType=INTEGER},
+			</if>
+			<if test="daProductTypeId != null">
+				#{daProductTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="productDescription != null">
+				#{productDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="channelType != null">
+				#{channelType,jdbcType=INTEGER},
+			</if>
+			<if test="createdTime != null">
+				#{createdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createdBy != null">
+				#{createdBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedTime != null">
+				#{updatedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatedBy != null">
+				#{updatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=BIT},
+			</if>
+			<if test="settlementPendingComment != null">
+				#{settlementPendingComment,jdbcType=VARCHAR},
+			</if>
+			<if test="highestEducationTypeId != null">
+				#{highestEducationTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="approvedFinanceAmount != null">
+				#{approvedFinanceAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="approvedFinanceTerm != null">
+				#{approvedFinanceTerm,jdbcType=INTEGER},
+			</if>
+			<if test="modifyFinanceAmount != null">
+				#{modifyFinanceAmount,jdbcType=NUMERIC},
+			</if>
+			<if test="modifyFinanceTerm != null">
+				#{modifyFinanceTerm,jdbcType=INTEGER},
+			</if>
+			<if test="modifyComment != null">
+				#{modifyComment,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyStatus != null">
+				#{modifyStatus,jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.commonApplicationUpdate.CommonApplicationStatusUpdateReqDto">
+		UPDATE da_application_info
+		<set>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="modifyComment != null and modifyComment !=''">
+				MODIFY_COMMENT = #{modifyComment,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyStatus != null">
+				modify_status = #{modifyStatus,jdbcType=INTEGER},
+			</if>
+			<if test="pendingComment != null and pendingComment !=''">
+				settlement_pending_comment = #{pendingComment,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedBy != null and updatedBy !=''">
+				UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedTime != null">
+				UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+			</if>
+				status_changed_read_flag = false,
+		</set>
+		<where>
+			<if test="updatedTime != null">
+				da_application_info_id =
+				#{daApplicationInfoId,jdbcType=INTEGER}
+			</if>
+		</where>
+	</update>
+
+	<select id="refer"
+		parameterType="mm.aeon.com.ass.base.dto.commonApplicationSearch.CommonApplicationSearchCheckReqDto"
+		resultMap="newApplicationInfoReferResultMap">
+		SELECT
+			lock_flag,
+			locked_by
+		from 
+			da_application_info
+		where
+			da_application_info_id=#{applicationID}
+	</select>
+
+	<resultMap id="newApplicationInfoReferResultMap"
+		type="mm.aeon.com.ass.base.dto.commonApplicationSearch.CommonApplicationSearchCheckResDto">
+		<result column="lock_flag" property="lockFlag" />
+		<result column="locked_by" property="lockedBy" />
+	</resultMap>
+</mapper>
+	

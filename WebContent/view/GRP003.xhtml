@@ -1,0 +1,60 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Swe Hsu Mon $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('GRP003')}" /></title>
+	</ui:define>
+	<ui:define name="body">
+		<h:form id="userAssignForm">
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('GRP003')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12" style="display: flex; justify-content: center;">
+						<p:panelGrid styleClass="status-panel-grid" style="margin-top: 0%; width: 694px;">
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 200px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('userGroupName')}" />
+								</p:column>
+								<p:column style="width: 300px;" styleClass="status-panel-grid-column">
+									<h:outputText value="#{adminAssignManagementFormBean.userLineBean.groupName}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</div>
+				</div>
+
+				<div class="ui-g">
+					
+					<div class="ui-g-12" style="display: flex; justify-content: center;">
+						<div style="margin: auto; width: 57%; padding-top: 3%;">
+							<pt:messages />
+							
+							<p:growl id="msg" showDetail="true" escape="false" />
+							<p:pickList style="display: flex; justify-content: center;" id="adminResultTable" value="#{adminAssignManagementFormBean.dualLineBeanList}" var="lineBean" itemLabel="#{lineBean.adminName} - #{lineBean.userTypeName}"
+								itemValue="#{lineBean.adminId}" />
+							<div style="margin: auto; width: 50%; padding-left: 20%;">
+								<p:commandButton id="assignUser" style="width:100px !important" action="#{adminAssignManagementFormBean.register()}"
+									value="#{displayItemBean.getDisplayItemName('assign')}" styleClass="button">
+								</p:commandButton>
+								<p:commandButton value="#{displayItemBean.getDisplayItemName('back')}" action="#{adminAssignManagementFormBean.back()}" id="bcakButton" style="margin-top: 2%;" ajax="false"
+									styleClass="button" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

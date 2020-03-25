@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="UserAssignGroup">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.userAssignGroupSelectList.UserAssignGroupSelectListReqDto"
+		resultMap="UserAssignGroupSelectListResDto">
+		SELECT 
+			UI.USER_ID, 
+			UI.LOGIN_ID, 
+			UI.NAME,
+			UI.USER_TYPE_ID
+		FROM user_info UI 
+		full outer join user_group UG
+		on UI.user_id = UG.user_id
+		<where>
+			UI.DEL_FLAG = 0
+			AND UG.user_id is null
+			AND UI.USER_TYPE_ID IN (4,5)
+		</where>
+		ORDER BY UI.LOGIN_ID DESC
+	</select>
+	
+	<resultMap id="UserAssignGroupSelectListResDto"
+		type="mm.aeon.com.ass.base.dto.userAssignGroupSelectList.UserAssignGroupSelectListResDto">
+		<result column="USER_ID" property="userId"  />
+		<result column="LOGIN_ID" property="loginId"  />
+		<result column="NAME" property="name"  />
+		<result column="USER_TYPE_ID" property="userTypeId" />
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" parameterType="mm.aeon.com.ass.base.dto.userAssignGroupRegister.UserAssingGroupRegisterReqDto">
+		INSERT INTO user_group
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			<if test="groupId != null">
+				GROUP_ID,
+			</if>
+			<if test="userId != null">
+				USER_ID
+			</if>
+			
+		</trim>
+		VALUES
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			<if test="groupId != null">
+				#{groupId},
+			</if>
+			<if test="userId != null">
+				#{userId}
+			</if>
+		</trim>
+	</insert>
+	
+	<select id="selectForUpdate"
+		parameterType="mm.aeon.com.ass.base.dto.userGroupSelectedList.UserGroupSelectedListReqDto"
+		resultMap="UserGroupSelectedListResDto">
+		SELECT 
+			UI.USER_ID, 
+			UI.LOGIN_ID, 
+			UI.NAME
+		FROM user_info UI 
+		full outer join user_group UG
+		on UI.user_id = UG.user_id
+		<where>
+			UI.DEL_FLAG = 0
+			
+			AND UG.user_id is not null
+			<if test="userTypeId != null">
+				AND UI.USER_TYPE_ID = #{userTypeId}
+			</if>
+			<if test="name != null and name != ''">
+				AND LOWER(UI.NAME) LIKE '%' || #{name} || '%'
+			</if>
+			<if test="loginId != null and loginId != ''">
+				AND LOWER(UI.LOGIN_ID) LIKE '%' || #{loginId} || '%'
+			</if>
+		</where>
+		ORDER BY UI.LOGIN_ID DESC
+	</select>
+	
+	<resultMap id="UserGroupSelectedListResDto"
+		type="mm.aeon.com.ass.base.dto.userGroupSelectedList.UserGroupSelectedListResDto">
+		<result column="USER_ID" property="userId"  />
+		<result column="LOGIN_ID" property="loginId"  />
+		<result column="NAME" property="name"  />
+	</resultMap>
+
+</mapper>

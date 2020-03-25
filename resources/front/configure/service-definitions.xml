@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.1.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<!-- ************************************************************************************** 
+		************************ Configuration of Service Classes. *************************** 
+		************************************************************************************** -->
+
+	<bean name="UserInfoRegisterService"
+		class="mm.aeon.com.ass.base.service.userInfoRegisterService.UserInfoRegisterService" />
+
+	<bean name="UserInfoUpdateService"
+		class="mm.aeon.com.ass.base.service.userInfoUpdateService.UserInfoUpdateService" />
+		
+	<bean name="UserAssignGroupService"
+		class="mm.aeon.com.ass.base.service.userAssignGroupService.UserAssignGroupService" />
+
+	<bean name="MenuAssignGroupService"
+		class="mm.aeon.com.ass.base.service.menuAssignGroupService.MenuAssignGroupService" />
+
+	<bean name="PasswordInfoUpdateService"
+		class="mm.aeon.com.ass.base.service.passwordInfoUpdateService.PasswordInfoUpdateService" />
+
+	<bean name="TermsAndConditionsInfoUpdateService"
+		class="mm.aeon.com.ass.base.service.termsAndConditionsInfoUpdateService.TermsAndConditionsInfoUpdateService" />
+
+	<bean name="InterestRateInfoUpdateService"
+		class="mm.aeon.com.ass.base.service.interestRateUpdateService.InterestRateUpdateService" />
+
+	<bean name="InterestRateInfoRegisterService"
+		class="mm.aeon.com.ass.base.service.interestRateRegisterService.InterestRateRegisterService" />
+
+	<bean name="CompulsoryInfoUpdateService"
+		class="mm.aeon.com.ass.base.service.compulsoryUpdateService.CompulsoryUpdateService" />
+
+	<bean name="CompulsoryInfoRegisterService"
+		class="mm.aeon.com.ass.base.service.compulsoryRegisterService.CompulsoryRegisterService" />
+
+	<bean name="UserGroupInfoUpdateService"
+		class="mm.aeon.com.ass.base.service.userGroupUpdateService.UserGroupUpdateService" />
+		
+	<bean name="UserGroupInfoRegisterService"
+		class="mm.aeon.com.ass.base.service.userGroupRegisterService.UserGroupRegisterService" />
+		
+	<bean name="UserGroupDeleteService"
+		class="mm.aeon.com.ass.base.service.userGroupDeleteService.UserGroupDeleteService" />
+		
+	<bean name="MenuGroupDeleteService"
+		class="mm.aeon.com.ass.base.service.menuGroupDeleteService.MenuGroupDeleteService" />
+		
+	<bean name="GroupDeleteService"
+		class="mm.aeon.com.ass.base.service.groupDeleteService.GroupDeleteService" />
+		
+	<bean name="ItemLabelInfoUpdateService"
+		class="mm.aeon.com.ass.base.service.itemLabelInfoUpdateService.ItemLabelInfoUpdateService" />
+
+	<bean name="CustEditInfoUpdateService"
+		class="mm.aeon.com.ass.base.service.custEditReqUpdateService.CustEditReqUpdateService" />
+		
+	<bean name="CustEditInfoLockService"
+		class="mm.aeon.com.ass.base.service.custEditReqLockUpdateService.CustEditReqLockUpdateService" />
+		
+	<bean name="GroupInfoLockService"
+		class="mm.aeon.com.ass.base.service.userGroupLockService.UserGroupLockService" />
+
+	<bean name="CustStatusInfoUpdateService"
+		class="mm.aeon.com.ass.base.service.custEditReqUpdateService.CustStatusRejectStatusService" />
+
+	<bean name="CustStatusInfoDelService"
+		class="mm.aeon.com.ass.base.service.custEditReqUpdateService.CustStatusApproveService" />
+
+	<bean name="PurchaseAttachmentPhotoCheckService"
+		class="mm.aeon.com.ass.base.service.purchaseAttachmentPhotoCheckService.PurchaseAttachmentPhotoCheckService" />
+
+	<bean name="CommonApplicationStatusUpdateService"
+		class="mm.aeon.com.ass.base.service.commonApplicationUpdateService.CommonApplicationStatusUpdateService" />
+
+	<bean name="CommonApplicationLockUpdateService"
+		class="mm.aeon.com.ass.base.service.commonApplicationUpdateService.CommonApplicationInfoLockUpdateService" />
+
+
+	<bean name="CommonApplicationHistoryInsertService"
+		class="mm.aeon.com.ass.base.service.commonApplicationInsertService.CommonApplicationHistoryInsertService" />
+
+	<bean name="SettlementApplicationStatusUpdateService"
+		class="mm.aeon.com.ass.base.service.settlementIndexUpdateService.SettlementIndexApplicationStatusUpdateService" />
+		
+	<bean name="AgentAndProductApplicationStatusUpdateService"
+		class="mm.aeon.com.ass.base.service.agentAndProductUpdateService.AgentAndProductApplicationStatusUpdateService" />
+		
+	<bean name="SaleClaimApplicationStatusUpdateService"
+		class="mm.aeon.com.ass.base.service.saleClaimUpdateService.SaleClaimApplicationStatusUpdateService" />
+		
+	<bean name="AgentDocumentErrorApplicationStatusUpdateService"
+		class="mm.aeon.com.ass.base.service.agentDocumentErrorUpdateService.AgentDocumentErrorApplicationStatusUpdateService" />
+		
+	<bean name="SaleEntryInfoApplicationStatusUpdateService"
+		class="mm.aeon.com.ass.base.service.saleEntryInfoUpdateService.SaleEntryApplicationStatusUpdateService" />
+		
+	<bean name="SettlementApplicationHistoryStatusUpdateService"
+		class="mm.aeon.com.ass.base.service.settlementIndexHistoryUpdateService.SettlementIndexApplicationStatusHistoryUpdateService" />
+
+	<bean name="SettlementApplicationLockUpdateService"
+		class="mm.aeon.com.ass.base.service.settlementIndexUpdateService.SettlementIndexApplicationInfoLockUpdateService" />
+		
+	<bean name="AgentAndProductApplicationLockUpdateService"
+		class="mm.aeon.com.ass.base.service.agentAndProductUpdateService.AgentAndProductApplicationInfoLockUpdateService" />
+
+	<bean name="AgentAndProductApplicationFollowUpLockUpdateService"
+		class="mm.aeon.com.ass.base.service.agentAndProductUpdateService.AgentAndProductApplicationInfoFollowUpLockUpdateService" />
+	
+	<bean name="SaleClaimApplicationLockUpdateService"
+		class="mm.aeon.com.ass.base.service.saleClaimUpdateService.SaleClaimApplicationInfoLockUpdateService" />
+		
+	<bean name="AgentDocumentErrorApplicationLockUpdateService"
+		class="mm.aeon.com.ass.base.service.agentDocumentErrorUpdateService.AgentDocumentErrorApplicationInfoLockUpdateService" />
+	
+	<bean name="SettlementApplicationHistoryInsertService"
+		class="mm.aeon.com.ass.base.service.settlementIndexInsertService.SettlementIndexApplicationHistoryInsertService" />
+
+	<bean name="AgentAndProductApplicationHistoryInsertService"
+		class="mm.aeon.com.ass.base.service.agentAndProductInsertService.AgentAndProductApplicationHistoryInsertService" />
+	
+	<bean name="SaleClaimApplicationHistoryInsertService"
+		class="mm.aeon.com.ass.base.service.saleClaimInsertService.SaleClaimApplicationHistoryInsertService" />
+	
+	<bean name="AgentDocumentErrorApplicationHistoryInsertService"
+		class="mm.aeon.com.ass.base.service.agentDocumentErrorInsertService.AgentDocumentErrorApplicationHistoryInsertService" />
+		
+	<bean name="ApplicationInfoStatusUpdateService"
+		class="mm.aeon.com.ass.base.service.applicationInfoStatus.ApplicationInfoStatusUpdateService" />
+
+	<bean name="UploadedAttachmentFlagUpdateService"
+		class="mm.aeon.com.ass.base.service.uploadedAttachmentFlagUpdateService.UploadedAttachmentFlagUpdateService" />
+		
+	<bean name="SaleClaimAttachmentFlagUpdateService"
+		class="mm.aeon.com.ass.base.service.saleClaimAttachmentFlagUpdateService.SaleClaimAttachmentFlagUpdateService" />
+		
+	<bean name="UnpermitAttachmentUpdateService"
+		class="mm.aeon.com.ass.base.service.unpermitAttachmentUpdateService.UnpermitAttachmentUpdateService" />
+
+	<bean name="JudgementStatusUpdateService"
+		class="mm.aeon.com.ass.base.service.judgementStatusUpdateService.JudgementStatusUpdateService" />
+		
+	<bean name="DepartmentRegisterService"
+		class="mm.aeon.com.ass.base.service.departmentInfoRegisterService.DepartmentInfoRegisterService" />
+		
+	<bean name="DocumentFollowUpAttachmentEditStatusUpdateService"
+	class="mm.aeon.com.ass.base.service.documentFollowUpAttachmentEditStatusUpdateService.DocumentFollowUpAttachmentEditStatusUpdateService" />
+	
+	<bean name="DepartmentUpdateService"
+		class="mm.aeon.com.ass.base.service.departmentInfoUpdateService.DepartmentInfoUpdateService" />
+		
+	<bean name="AgentDocumentErrorAttachmentInsertService"
+		class="mm.aeon.com.ass.base.service.agentDocumentErrorPurchaseAttachmentInsertService.AgentDocumentErrorApplicationPurchaseAttachmentInsertService" />
+
+	<bean name="requestServiceInfoRepository"
+		class="mm.com.dat.presto.main.core.base.controller.RequestServiceInfoRepository" >
+		
+		
+		<property name="serviceInfoRepository">
+			<map>
+				<!-- *************************************************************************** 
+					********************Configuration Service id and Service Bean************** 
+					*************************************************************************** -->
+
+				<entry key="USERINFOSI">
+					<ref bean="UserInfoRegisterService" />
+				</entry>
+
+				<entry key="USERINFOSU">
+					<ref bean="UserInfoUpdateService" />
+				</entry>
+
+
+				<entry key="USERASSIGNSI">
+					<ref bean="UserAssignGroupService" />
+				</entry>
+				
+				<entry key="MENUASSIGNSI">
+					<ref bean="MenuAssignGroupService" />
+				</entry>
+				
+				<entry key="PASSWORDCHANGE">
+					<ref bean="PasswordInfoUpdateService" />
+				</entry>
+
+				<entry key="TNCINFOSU">
+					<ref bean="TermsAndConditionsInfoUpdateService" />
+				</entry>
+
+				<entry key="INTERESTSU">
+					<ref bean="InterestRateInfoUpdateService" />
+				</entry>
+				<entry key="AISU001">
+					<ref bean="ApplicationInfoStatusUpdateService" />
+				</entry>
+
+				<entry key="INTERESTSI">
+					<ref bean="InterestRateInfoRegisterService" />
+				</entry>
+
+				<entry key="COMPULSORYSU">
+					<ref bean="CompulsoryInfoUpdateService" />
+				</entry>
+
+				<entry key="COMPULSORYSI">
+					<ref bean="CompulsoryInfoRegisterService" />
+				</entry>
+				<entry key="EDSTUP">
+					<ref bean="DocumentFollowUpAttachmentEditStatusUpdateService" />
+				</entry>
+				
+
+				<entry key="USERGROUPSU">
+					<ref bean="UserGroupInfoUpdateService" />
+				</entry>
+				
+				<entry key="USERGROUPSI">
+					<ref bean="UserGroupInfoRegisterService" />
+				</entry>
+				
+				<entry key="USERGROUPDE">
+					<ref bean="UserGroupDeleteService" />
+				</entry>
+				<entry key="MENUGROUPDE">
+					<ref bean="MenuGroupDeleteService" />
+				</entry>
+				<entry key="GROUPDE">
+					<ref bean="GroupDeleteService" />
+				</entry>
+				
+				<entry key="ITEMINFOSU">
+					<ref bean="ItemLabelInfoUpdateService" />
+				</entry>
+
+				<entry key="EDITREQUESTSU">
+					<ref bean="CustEditInfoUpdateService" />
+				</entry>
+				
+				<entry key="EDITREQUESTLU">
+					<ref bean="CustEditInfoLockService" />
+				</entry>
+				
+				<entry key="GROUPLU">
+					<ref bean="GroupInfoLockService" />
+				</entry>
+
+				<entry key="STATUSU">
+					<ref bean="CustStatusInfoUpdateService" />
+				</entry>
+				
+				<entry key="STATUSD">
+					<ref bean="CustStatusInfoDelService" />
+				</entry>
+				
+				<entry key="COMMONINFOSU">
+					<ref bean="CommonApplicationStatusUpdateService" />
+				</entry>
+
+				<entry key="COMMONINFOLU">
+					<ref bean="CommonApplicationLockUpdateService" />
+				</entry>
+
+				<entry key="HISTORYI">
+					<ref bean="CommonApplicationHistoryInsertService" />
+				</entry>
+
+				<entry key="SETTLEMENTINFOSU">
+					<ref bean="SettlementApplicationStatusUpdateService" />
+				</entry>
+				
+				<entry key="APPINFOSU">
+					<ref bean="AgentAndProductApplicationStatusUpdateService" />
+				</entry>
+				
+				<entry key="SALECLAIMINFOSU">
+					<ref bean="SaleClaimApplicationStatusUpdateService" />
+				</entry>
+				
+				<entry key="AGENTDERRORINFOSU">
+					<ref bean="AgentDocumentErrorApplicationStatusUpdateService" />
+				</entry>
+				
+				<entry key="SALEENTRYINFOSU">
+					<ref bean="SaleEntryInfoApplicationStatusUpdateService" />
+				</entry>
+				
+				<entry key="SETTLEMENTINFOHISSU">
+					<ref bean="SettlementApplicationHistoryStatusUpdateService" />
+				</entry>
+
+				<entry key="SETTLEMENTINFOLU">
+					<ref bean="SettlementApplicationLockUpdateService" />
+				</entry>
+				
+				<entry key="AAPINFOLU">
+					<ref bean="AgentAndProductApplicationLockUpdateService" />
+				</entry>
+				
+				<entry key="AAPINFOFULU">
+					<ref bean="AgentAndProductApplicationFollowUpLockUpdateService" />
+				</entry>
+				
+				<entry key="SALECLAIMINFOLU">
+					<ref bean="SaleClaimApplicationLockUpdateService" />
+				</entry>
+				
+				<entry key="AGENTDERRORINFOLU">
+					<ref bean="AgentDocumentErrorApplicationLockUpdateService" />
+				</entry>
+
+				<entry key="SETTLEMENTHISTORYI">
+					<ref bean="SettlementApplicationHistoryInsertService" />
+				</entry>
+				
+				<entry key="APPHISTORYI">
+					<ref bean="AgentAndProductApplicationHistoryInsertService" />
+				</entry>
+				
+				<entry key="SALECLAIMHISTORYI">
+					<ref bean="SaleClaimApplicationHistoryInsertService" />
+				</entry>
+				
+				<entry key="AGENTDERRORHISTORYI">
+					<ref bean="AgentDocumentErrorApplicationHistoryInsertService" />
+				</entry>
+
+				<entry key="STATUSARU">
+					<ref bean="PurchaseAttachmentPhotoCheckService" />
+				</entry>
+				 
+				<entry key="ATTACHMENTU">
+					<ref bean="UploadedAttachmentFlagUpdateService" />
+				</entry> 
+				
+				<entry key="SALECLAIMATTACHMENTU">
+					<ref bean="SaleClaimAttachmentFlagUpdateService" />
+				</entry> 
+				
+				<entry key="UNPERMITU">
+					<ref bean="UnpermitAttachmentUpdateService" />
+				</entry> 
+				
+				<entry key="JUDGEMENTUI">
+					<ref bean="JudgementStatusUpdateService" />
+				</entry> 
+				
+				<entry key="DEPARTMENTINFOSI">
+					<ref bean="DepartmentRegisterService" />
+				</entry> 
+				
+				<entry key="DEPARTMENTINFOSU">
+					<ref bean="DepartmentUpdateService" />
+				</entry> 
+				
+				<entry key="AGENTDERRORATTACHIN">
+					<ref bean="AgentDocumentErrorAttachmentInsertService" />
+				</entry> 
+				
+			</map>
+		</property>
+	</bean>
+
+	<bean name="serviceInvoker"
+		class="mm.com.dat.presto.main.core.base.controller.ServiceInvoker"
+		scope="prototype">
+		<property name="requestServiceInfoRepository">
+			<ref bean="requestServiceInfoRepository" />
+		</property>
+	</bean>
+
+</beans>

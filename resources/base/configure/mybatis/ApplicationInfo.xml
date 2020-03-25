@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="ApplicationInfo">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.applicationListSearch.ApplicationSearchReqDto"
+		resultMap="applicationSearchResDtoResultMap">
+		select
+			dai.da_application_info_id,
+			dai.application_no,
+			dai.da_application_type_id,
+			dai.applied_date,
+			dai.name,
+			dai.dob,
+			dai.nrc_no,
+			dai.father_name,
+			dai.nationality,
+			dai.nationality_other,
+			dai.gender,
+			dai.marital_status,
+			dai.current_address,
+			dai.current_address_building_no,
+			dai.current_address_room_no,
+			dai.current_address_floor,
+			dai.current_address_street,
+			dai.current_address_qtr,
+			dai.current_address_township,
+			dai.current_address_city,
+			dai.permanent_address,
+			dai.permanent_address_building_no,
+			dai.permanent_address_room_no,
+			dai.permanent_address_floor,
+			dai.permanent_address_street,
+			dai.permanent_address_qtr,
+			dai.permanent_address_township,
+			dai.permanent_address_city,
+			dai.type_of_residence,
+			dai.type_of_residence_other,
+			dai.living_with,
+			dai.living_with_other,
+			dai.year_of_stay_year,
+			dai.year_of_stay_month,
+			dai.mobile_no,
+			dai.resident_tel_no,
+			dai.other_phone_no,
+			dai.email,
+			dai.customer_id,
+			dai.status,
+			dai.da_interest_info_id,
+			dai.da_compulsory_info_id,
+			dai.da_loan_type_id,
+			dai.finance_amount,
+			dai.finance_term,
+			dai.da_product_type_id,
+			dai.product_description,
+			dai.channel_type,
+			dai.highest_education_type_id,
+			dai.created_time,
+			dai.created_by,
+			dai.updated_time,
+			dai.updated_by,
+			dai.del_flag,
+			dai.approved_finance_amount,
+			dai.approved_finance_term,
+			daci.da_applicant_company_info_id,
+			daci.company_name as daci_company_name,
+			daci.company_address as daci_company_address,
+			daci.company_address_building_no as daci_company_address_building_no,
+			daci.company_address_room_no as daci_company_address_room_no,
+			daci.company_address_floor as daci_company_address_floor,
+			daci.company_address_street as daci_company_address_street,
+			daci.company_address_qtr as daci_company_address_qtr,
+			daci.company_address_township as daci_company_address_township,
+			daci.company_address_city as daci_company_address_city,
+			daci.company_tel_no as daci_company_tel_no,
+			daci.contact_time_from as daci_contact_time_from,
+			daci.contact_time_to as daci_contact_time_to,
+			daci.department as daci_department,
+			daci.position as daci_position,
+			daci.year_of_service_year as daci_year_of_service_year,
+			daci.year_of_service_month as daci_year_of_service_month,
+			daci.company_status as daci_company_status,
+			daci.company_status_other as daci_company_status_other,
+			daci.monthly_basic_income as daci_monthly_basic_income,
+			daci.other_income as daci_other_income,
+			daci.total_income as daci_total_income,
+			daci.salary_day as daci_salary_day,
+			deci.da_emergency_contact_info_id,
+			deci.name as deci_name,
+			deci.relationship as deci_relationship,
+			deci.relationship_other as deci_relationship_other,
+			deci.current_address as deci_current_address,
+			deci.current_address_building_no as deci_current_address_building_no,
+			deci.current_address_room_no as deci_current_address_room_no,
+			deci.current_address_floor as deci_current_address_floor,
+			deci.current_address_street as deci_current_address_street,
+			deci.current_address_qtr as deci_current_address_qtr,
+			deci.current_address_township as deci_current_address_township,
+			deci.current_address_city as deci_current_address_city,
+			deci.mobile_no as deci_mobile_no,
+			deci.resident_tel_no as deci_resident_tel_no,
+			deci.other_phone_no as deci_other_phone_no,
+			dgi.da_guarantor_info_id,
+			dgi.name as dgi_name,
+			dgi.dob as dgi_dob,
+			dgi.nrc_no as dgi_nrc_no,
+			dgi.nationality as dgi_nationality,
+			dgi.nationality_other as dgi_nationality_other,
+			dgi.mobile_no as dgi_mobile_no,
+			dgi.resident_tel_no as dgi_resident_tel_no,
+			dgi.relationship as dgi_relationship,
+			dgi.relationship_other as dgi_relationship_other,
+			dgi.current_address as dgi_current_address,
+			dgi.current_address_building_no as dgi_current_address_building_no,
+			dgi.current_address_room_no as dgi_current_address_room_no,
+			dgi.current_address_floor as dgi_current_address_floor,
+			dgi.current_address_street as dgi_current_address_street,
+			dgi.current_address_qtr as dgi_current_address_qtr,
+			dgi.current_address_township as dgi_current_address_township,
+			dgi.current_address_city as dgi_current_address_city,			
+			dgi.type_of_residence as dgi_type_of_residence,
+			dgi.type_of_residence_other as dgi_type_of_residence_other,
+			dgi.living_with as dgi_living_with,
+			dgi.living_with_other as dgi_living_with_other,
+			dgi.gender as dgi_gender,
+			dgi.marital_status as dgi_marital_status,
+			dgi.year_of_stay_year as dgi_year_of_stay_year,
+			dgi.year_of_stay_month as dgi_year_of_stay_month,
+			dgi.company_name as dgi_company_name,
+			dgi.company_tel_no as dgi_company_tel_no,
+			dgi.company_address as dgi_company_address,
+			dgi.company_address_building_no as dgi_company_address_building_no,
+			dgi.company_address_room_no as dgi_company_address_room_no,
+			dgi.company_address_floor as dgi_company_address_floor,
+			dgi.company_address_street as dgi_company_address_street,
+			dgi.company_address_qtr as dgi_company_address_qtr,
+			dgi.company_address_township as dgi_company_address_township,
+			dgi.company_address_city as dgi_company_address_city, 
+			dgi.department as dgi_department,
+			dgi.position as dgi_position,
+			dgi.year_of_service_year as dgi_year_of_service_year,
+			dgi.year_of_service_month as dgi_year_of_service_month,
+			dgi.monthly_basic_income as dgi_monthly_basic_income,
+			dgi.total_income as dgi_total_income,
+			cgl.judgement_status,
+			cgl.financial_amt as approved_amount,
+			cgl.judgement_date,
+			dii.interest_rate,
+			dci.compulsory_amount
+		from
+			da_application_info dai
+		left join
+			da_applicant_company_info daci
+		on
+			dai.da_application_info_id = daci.da_application_info_id
+		left join
+			da_emergency_contact_info deci
+		on 
+			dai.da_application_info_id = deci.da_application_info_id
+		left join
+			da_guarantor_info dgi
+		on
+			dai.da_application_info_id = dgi.da_application_info_id
+		left join
+			cust_agreement_list as cgl
+		on 
+			dai.application_no = cgl.application_no
+		left join
+			da_interest_info as dii
+		on
+			dai.da_interest_info_id = dii.da_interest_info_id
+		left join
+			da_compulsory_info as dci
+		on
+			dai.da_compulsory_info_id = dci.da_compulsory_info_id
+		<where>
+			dai.DEL_FLAG = false
+			AND (dai.status != 1 AND dai.status != 3)
+			<if test="applicationNo != null and applicationNo !=''">
+				AND LOWER(dai.application_no) LIKE LOWER('%' || #{applicationNo} ||
+				'%')
+			</if>
+			<if test="status != null and status !=''">
+				AND dai.status = #{status}
+			</if>
+			<if test="finalJudgementStatus != null and finalJudgementStatus !=''">
+				AND cgl.judgement_status = #{finalJudgementStatus}
+			</if>
+			<if test="finalJudgementApprovedStatus != null and finalJudgementApprovedStatus !=''">
+				AND cgl.judgement_status IN (0,1,4,5)
+			</if>
+			<if test="applicantName != null and applicantName !=''">
+				AND LOWER(dai.name) LIKE LOWER('%' || #{applicantName} || '%')
+			</if>
+			<if test="applicantPhoneNo != null and applicantPhoneNo !=''">
+				AND LOWER(dai.mobile_no) LIKE LOWER('%' || #{applicantPhoneNo} || '%')
+			</if>
+			<if test="applicantNrcNo != null and applicantNrcNo !=''">
+				AND LOWER(dai.nrc_no) LIKE LOWER('%' || #{applicantNrcNo} || '%')
+			</if>
+			<if test="newApplicationDateFrom != null">
+				AND TO_CHAR(dai.applied_date::DATE,'YYYYMMDD') &gt;=
+				TO_CHAR(#{newApplicationDateFrom,jdbcType=DATE}::DATE,'YYYYMMDD')
+			</if>
+			<if test="newApplicationDateTo != null">
+				AND TO_CHAR(dai.applied_date::DATE,'YYYYMMDD') &lt;=
+				TO_CHAR(#{newApplicationDateTo,jdbcType=DATE}::DATE,'YYYYMMDD')
+			</if>
+		</where>
+		<if test="sortField != null and sortField != '' and sortField == 'applicationNo' ">
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dai.application_no ASC
+			</if>
+			<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dai.application_no DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'applicantName' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY dai.name ASC
+				</if>
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY dai.name DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'nrcNo' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY dai.nrc_no ASC
+				</if>
+				<if
+					test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY dai.nrc_no DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'mobileNo' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY dai.mobile_no ASC
+				</if>
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY dai.mobile_no DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'financeAmount' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY dai.finance_amount ASC
+				</if>
+				<if
+					test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY dai.finance_amount DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'financeTerm' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY dai.finance_term ASC
+				</if>
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY dai.finance_term DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'judgementStatus' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY cgl.judgement_status ASC
+				</if>
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY cgl.judgement_status DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'judgementDate' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY cgl.judgement_date ASC
+				</if>
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY cgl.judgement_date DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'applicationStatus' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY dai.status ASC
+				</if>
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY dai.status DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'appliedDate' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY dai.applied_date ASC
+				</if>
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY dai.applied_date DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'approvedFinanceAmount' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY dai.approved_finance_amount ASC
+				</if>
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY dai.approved_finance_amount DESC
+				</if>
+			</if>
+			<if test="sortField != null and sortField != '' and sortField == 'approvedFinanceTerm' ">
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+					ORDER BY dai.approved_finance_term ASC
+				</if>
+				<if test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+					ORDER BY dai.approved_finance_term DESC
+				</if>
+			</if>
+			<if test="sortField == null or sortField == ''">
+				ORDER BY dai.application_no DESC
+			</if>
+			<if test="offset != null and limit != null">
+				OFFSET #{offset} LIMIT #{limit}
+			</if>
+	</select>
+
+	<resultMap id="applicationSearchResDtoResultMap"
+		type="mm.aeon.com.ass.base.dto.applicationListSearch.ApplicationSearchResDto">
+		<id column="da_application_info_id" property="applicationId" />
+		<result column="application_no" property="applicationNo" />
+		<result column="da_application_type_id" property="applicationTypeId" />
+		<result column="applied_date" jdbcType="TIMESTAMP" property="appliedDate" />
+		<result column="name" property="applicantName" />
+		<result column="dob" property="dob" />
+		<result column="nrc_no" property="nrcNo" />
+		<result column="father_name" property="fatherName" />
+		<result column="nationality" property="nationality" />
+		<result column="nationality_other" property="nationalityOther" />
+		<result column="gender" property="gender" />
+		<result column="marital_status" property="maritalStatus" />
+		<result column="current_address" property="currentAddress" />
+		<result column="current_address_building_no" property="currentAddressBuildingNo" />
+		<result column="current_address_room_no" property="currentAddressRoomNo" />
+		<result column="current_address_floor" property="currentAddressFloor" />
+		<result column="current_address_street" property="currentAddressStreet" />
+		<result column="current_address_qtr" property="currentAddressQtr" />
+		<result column="current_address_township" property="currentAddressTownship" />
+		<result column="current_address_city" property="currentAddressCity" />
+		<result column="permanent_address" property="permanentAddress" />
+		<result column="permanent_address_building_no" property="permanentAddressBuildingNo" />
+		<result column="permanent_address_room_no" property="permanentAddressRoomNo" />
+		<result column="permanent_address_floor" property="permanentAddressFloor" />
+		<result column="permanent_address_street" property="permanentAddressStreet" />
+		<result column="permanent_address_qtr" property="permanentAddressQtr" />
+		<result column="permanent_address_township" property="permanentAddressTownship" />
+		<result column="permanent_address_city" property="permanentAddressCity" />
+		<result column="type_of_residence" property="typeOfResident" />
+		<result column="type_of_residence_other" property="typeOfResidentOther" />
+		<result column="living_with" property="livingWith" />
+		<result column="living_with_other" property="livingWithOther" />
+		<result column="year_of_stay_year" property="stayYear" />
+		<result column="year_of_stay_month" property="stayMonth" />
+		<result column="mobile_no" property="mobileNo" />
+		<result column="resident_tel_no" property="residentTelNo" />
+		<result column="other_phone_no" property="otherPhoneNo" />
+		<result column="email" property="email" />
+		<result column="customer_id" property="customerId" />
+		<result column="status" property="status" />
+		<result column="da_interest_info_id" property="interestId" />
+		<result column="da_compulsory_info_id" property="compulsoryId" />
+		<result column="interest_rate" property="interestRate" />
+		<result column="compulsory_amount" property="compulsoryAmount" />
+		<result column="da_loan_type_id" property="loanTypeId" />
+		<result column="finance_amount" property="financeAmount" />
+		<result column="finance_term" property="financeTerm" />
+		<result column="da_product_type_id" property="productId" />
+		<result column="product_description" property="productDescription" />
+		<result column="channel_type" property="channelType" />
+		<result column="created_by" property="createdBy" />
+		<result column="created_time" property="createdTime" />
+		<result column="updated_by" property="updatedBy" />
+		<result column="updated_time" property="updatedTime" />
+		<result column="del_flag" property="delFlag" />
+		<result column="judgement_status" property="judgementStatus" />
+		<result column="judgement_date" property="judgementDate" />
+		<result column="approved_amount" property="approvedAmount" />
+		<result column="highest_education_type_id" property="highestEducationTypeId" />
+		<result column="approved_finance_amount" property="approvedFinanceAmount" />
+		<result column="approved_finance_term" property="approvedFinanceTerm" />
+		
+		<association property="applicantCompanyDto"
+			javaType="mm.aeon.com.ass.base.dto.applicationListSearch.ApplicationApplicantCompanySearchResDto">
+			<id column="da_applicant_company_info_id" property="daApplicantCompanyId" />
+			<result column="daci_company_name" property="companyName" />
+			<result column="daci_company_address" property="companyAddress" />
+			<result column="daci_company_address_building_no" property="companyAddressBuildingNo" />
+			<result column="daci_company_address_room_no" property="companyAddressRoomNo" />
+			<result column="daci_company_address_floor" property="companyAddressFloor" />
+			<result column="daci_company_address_street" property="companyAddressStreet" />
+			<result column="daci_company_address_qtr" property="companyAddressQtr" />
+			<result column="daci_company_address_township" property="companyAddressTownship" />
+			<result column="daci_company_address_city" property="companyAddressCity" />
+			<result column="daci_company_tel_no" property="companyTelNo" />
+			<result column="daci_contact_time_from" property="contactTimeFrom" />
+			<result column="daci_contact_time_to" property="contactTimeTo" />
+			<result column="daci_department" property="department" />
+			<result column="daci_position" property="position" />
+			<result column="daci_year_of_service_year" property="serviceYear" />
+			<result column="daci_year_of_service_month" property="serviceMonth" />
+			<result column="daci_company_status" property="companyStatus" />
+			<result column="daci_company_status_other" property="companyStatusOther" />
+			<result column="daci_monthly_basic_income" property="monthlyBasicIncome" />
+			<result column="daci_other_income" property="otherIncome" />
+			<result column="daci_total_income" property="totalIncome" />
+			<result column="daci_salary_day" property="salaryDay" />
+		</association>
+
+		<association property="emergencyContactDto"
+			javaType="mm.aeon.com.ass.base.dto.applicationListSearch.ApplicationEmergencyContactSearchResDto">
+			<id column="da_emergency_contact_info_id" property="daEmergencyContactId" />
+			<result column="deci_name" property="emergencyContactName" />
+			<result column="deci_relationship" property="relationship" />
+			<result column="deci_relationship_other" property="relationshipOther" />
+			<result column="deci_current_address" property="currentAddress" />
+			<result column="deci_current_address_building_no" property="currentAddressBuildingNo" />
+			<result column="deci_current_address_room_no" property="currentAddressRoomNo" />
+			<result column="deci_current_address_floor" property="currentAddressFloor" />
+			<result column="deci_current_address_street" property="currentAddressStreet" />
+			<result column="deci_current_address_qtr" property="currentAddressQtr" />
+			<result column="deci_current_address_township" property="currentAddressTownship" />
+			<result column="deci_current_address_city" property="currentAddressCity" />
+			<result column="deci_mobile_no" property="mobileNo" />
+			<result column="deci_resident_tel_no" property="residentTelNo" />
+			<result column="deci_other_phone_no" property="otherPhoneNo" />
+		</association>
+
+		<association property="guarantorDto"
+			javaType="mm.aeon.com.ass.base.dto.applicationListSearch.ApplicationGuarantorSearchResDto">
+			<id column="da_guarantor_info_id" property="daGuarantorId"  />
+			<result column="dgi_name" property="guarantorName" />
+			<result column="dgi_dob" property="dob" />
+			<result column="dgi_nrc_no" property="nrcNo" />
+			<result column="dgi_nationality" property="nationality" />
+			<result column="dgi_nationality_other" property="nationalityOther" />
+			<result column="dgi_mobile_no" property="mobileNo" />
+			<result column="dgi_resident_tel_no" property="residentTelNo" />
+			<result column="dgi_relationship" property="relationship" />
+			<result column="dgi_relationship_other" property="relationshipOther" />
+			<result column="dgi_current_address" property="currentAddress" />
+			<result column="dgi_current_address_building_no" property="currentAddressBuildingNo" />
+			<result column="dgi_current_address_room_no" property="currentAddressRoomNo" />
+			<result column="dgi_current_address_floor" property="currentAddressFloor" />
+			<result column="dgi_current_address_street" property="currentAddressStreet" />
+			<result column="dgi_current_address_qtr" property="currentAddressQtr" />
+			<result column="dgi_current_address_township" property="currentAddressTownship" />
+			<result column="dgi_current_address_city" property="currentAddressCity" />
+			<result column="dgi_type_of_residence" property="typeOfResident" />
+			<result column="dgi_type_of_residence_other" property="typeOfResidentOther" />
+			<result column="dgi_living_with" property="livingWith" />
+			<result column="dgi_living_with_other" property="livingWithOther" />
+			<result column="dgi_gender" property="gender" />
+			<result column="dgi_marital_status" property="maritalStatus" />
+			<result column="dgi_year_of_stay_year" property="yearStay" />
+			<result column="dgi_year_of_stay_month" property="monthStay" />
+			<result column="dgi_company_name" property="companyName" />
+			<result column="dgi_company_tel_no" property="companyTelNo" />
+			<result column="dgi_company_address" property="companyAddress" />
+			<result column="dgi_company_address_building_no" property="companyAddressBuildingNo" />
+			<result column="dgi_company_address_room_no" property="companyAddressRoomNo" />
+			<result column="dgi_company_address_floor" property="companyAddressFloor" />
+			<result column="dgi_company_address_street" property="companyAddressStreet" />
+			<result column="dgi_company_address_qtr" property="companyAddressQtr" />
+			<result column="dgi_company_address_township" property="companyAddressTownship" />
+			<result column="dgi_company_address_city" property="companyAddressCity" />	
+			<result column="dgi_department" property="department" />
+			<result column="dgi_position" property="position" />
+			<result column="dgi_year_of_service_year" property="serviceYear" />
+			<result column="dgi_year_of_service_month" property="serviceMonth" />
+			<result column="dgi_monthly_basic_income" property="monthlyIncome" />
+			<result column="dgi_total_income" property="totalIncome" />
+		</association>
+		
+		<collection property="attachmentDtoList" javaType="ArrayList" column="da_application_info_id" select="selectApplicationInfoAttachmentList" />
+
+	</resultMap>
+	
+	<resultMap id="applicationInfoAttachmentResultMap"
+		type="mm.aeon.com.ass.base.dto.applicationListSearch.ApplicationAttachmentSearchResDto">
+		<id column="DA_APPLICATION_INFO_ATTACHMENT_ID" property="attachmentId" />
+		<result column="FILE_PATH" property="filePath" />
+		<result column="FILE_TYPE" property="fileType" />
+	</resultMap>
+	
+	<select id="selectApplicationInfoAttachmentList"
+		parameterType="java.lang.Integer"
+		resultMap="applicationInfoAttachmentResultMap">
+		SELECT
+			DAIA.DA_APPLICATION_INFO_ATTACHMENT_ID,
+			DAIA.FILE_PATH,
+			DAIA.FILE_TYPE
+		FROM
+			da_application_info_attachment DAIA
+		WHERE
+			DAIA.DA_APPLICATION_INFO_ID = #{da_application_info_id}
+	</select>
+
+	<select id="count"
+		parameterType="mm.aeon.com.ass.base.dto.applicationListSearch.ApplicationSelectCountReqDto"
+		resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		from
+			da_application_info dai
+		left join
+			da_applicant_company_info daci
+		on
+			dai.da_application_info_id = daci.da_application_info_id
+		left join
+			da_emergency_contact_info deci
+		on 
+			dai.da_application_info_id = deci.da_application_info_id
+		left join
+			da_guarantor_info dgi
+		on
+			dai.da_application_info_id = dgi.da_application_info_id
+		left join
+			cust_agreement_list as cgl
+		on 
+			dai.application_no = cgl.application_no
+		left join
+			da_interest_info as dii
+		on
+			dai.da_interest_info_id = dii.da_interest_info_id
+		left join
+			da_compulsory_info as dci
+		on
+			dai.da_compulsory_info_id = dci.da_compulsory_info_id
+		<where>
+			dai.DEL_FLAG = false
+			AND (dai.status != 1 AND dai.status != 3)
+			<if test="applicationNo != null and applicationNo !=''">
+				AND LOWER(dai.application_no) LIKE LOWER('%' || #{applicationNo} ||
+				'%')
+			</if>
+			<if test="status != null and status !=''">
+				AND dai.status = #{status}
+			</if>
+			<if test="finalJudgementStatus != null and finalJudgementStatus !=''">
+				AND cgl.judgement_status = #{finalJudgementStatus}
+			</if>
+			<if test="finalJudgementApprovedStatus != null and finalJudgementApprovedStatus !=''">
+				AND cgl.judgement_status IN (0,1,4,5)
+			</if>
+			<if test="applicantName != null and applicantName !=''">
+				AND LOWER(dai.name) LIKE LOWER('%' || #{applicantName} || '%')
+			</if>
+			<if test="applicantPhoneNo != null and applicantPhoneNo !=''">
+				AND LOWER(dai.mobile_no) LIKE LOWER('%' || #{applicantPhoneNo} || '%')
+			</if>
+			<if test="applicantNrcNo != null and applicantNrcNo !=''">
+				AND LOWER(dai.nrc_no) LIKE LOWER('%' || #{applicantNrcNo} || '%')
+			</if>
+			<if test="newApplicationDateFrom != null">
+				AND TO_CHAR(dai.applied_date::DATE,'YYYYMMDD') &gt;=
+				TO_CHAR(#{newApplicationDateFrom,jdbcType=DATE}::DATE,'YYYYMMDD')
+			</if>
+			<if test="newApplicationDateTo != null">
+				AND TO_CHAR(dai.applied_date::DATE,'YYYYMMDD') &lt;=
+				TO_CHAR(#{newApplicationDateTo,jdbcType=DATE}::DATE,'YYYYMMDD')
+			</if>
+		</where>
+	</select>
+</mapper>

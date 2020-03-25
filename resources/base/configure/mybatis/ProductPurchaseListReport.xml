@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="ProductPurchaseListReport">
+	<select id="count"
+		parameterType="mm.aeon.com.ass.base.dto.productPurchaseListReportSearch.ProductPurchaseListReportCountSearchReqDto"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM
+			da_purchase_info as dpi
+		left join
+			da_application_info as dai
+		on
+			dpi.da_application_info_id=dai.da_application_info_id
+		left join
+			da_application_info_history as daih
+		on
+			dai.da_application_info_id=daih.da_application_info_id
+		left join
+			da_interest_info as dii
+		on
+			dai.da_interest_info_id=dii.da_interest_info_id
+		left join
+			da_compulsory_info as dci
+		on
+			dai.da_compulsory_info_id=dci.da_compulsory_info_id
+		<where>
+			dpi.del_flag=false
+		AND
+			dpi.status=5
+		AND
+			daih.status=20
+		AND
+			dai.del_flag=false
+		AND
+			daih.del_flag=dai.del_flag
+			<if test="agentName!=null and agentName!=''">
+				AND dpi.agent_name =#{agentName}
+
+			</if>
+			<if test="outletName!=null and outletName!=''">
+				AND LOWER(dpi.outlet_name) LIKE LOWER('%' ||
+				#{outletName} || '%')
+			</if>
+			<if test="settlementDate!=null">
+				AND
+				(daih.created_time)::timestamp::date=#{settlementDate}
+			</if>
+		</where>
+	</select>
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.productPurchaseListReportSearch.ProductPurchaseListReportSearchReqDto"
+		resultMap="productPurchaseListReportSearchResultMap">
+		SELECT
+		dpi.outlet_name,
+		dpi.agent_name,
+		dpi.agreement_no,
+		dpi.purchase_date,
+		dai.finance_amount,
+		dai.finance_term,
+		daih.created_time,
+		dci.compulsory_amount
+		FROM
+		da_purchase_info as dpi
+		left join
+		da_application_info as dai
+		on
+		dpi.da_application_info_id=dai.da_application_info_id
+		left join
+		da_application_info_history as daih
+		on
+		dai.da_application_info_id=daih.da_application_info_id
+		left join
+		da_compulsory_info as dci
+		on
+		dai.da_compulsory_info_id=dci.da_compulsory_info_id
+
+		<where>
+			dpi.del_flag=false
+			AND
+			dpi.status=5
+			AND
+			daih.status=20
+			AND
+			dai.del_flag=false
+			AND
+			daih.del_flag=dai.del_flag
+			<if test="agentName!=null and agentName!=''">
+				AND dpi.agent_name =#{agentName}
+			</if>
+			<if test="outletName!=null and outletName!=''">
+				AND LOWER(dpi.outlet_name) LIKE LOWER('%' ||
+				#{outletName} || '%')
+			</if>
+			<if test="settlementDate!=null">
+				AND
+				(daih.created_time)::timestamp::date=#{settlementDate}
+			</if>
+		</where>
+		<if test="sortField != null and sortField != '' and sortField == 'date' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dpi.purchase_date ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dpi.purchase_date DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'outletName' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dpi.outlet_name ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dpi.outlet_name DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'settlementDate' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY daih.created_time ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY daih.created_time DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'agentName' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dpi.agent_name ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dpi.agent_name DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'claimDate' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY daih.created_time ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY daih.created_time DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'agreementCode' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dpi.agreement_no ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dpi.agreement_no DESC
+			</if>
+		</if>
+		<if test="sortField != null and sortField != '' and sortField == 'amount' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dai.finance_amount ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dai.finance_amount DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'processingFees' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dai.finance_amount ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dai.finance_amount DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'compulsorySaving' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dci.compulsory_amount ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dci.compulsory_amount DESC
+			</if>
+		</if>
+
+		<if
+			test="sortField != null and sortField != '' and sortField == 'settlementAmount' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dci.compulsory_amount DESC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dci.compulsory_amount ASC
+			</if>
+		</if>
+		<if test="sortField == null or sortField == ''">
+			ORDER BY dpi.purchase_date DESC
+		</if>
+		<if test="offset != null and limit != null">
+			OFFSET #{offset} LIMIT #{limit}
+		</if>
+
+	</select>
+	<resultMap id="productPurchaseListReportSearchResultMap"
+		type="mm.aeon.com.ass.base.dto.productPurchaseListReportSearch.ProductPurchaseListReportSearchResDto">
+		<result column="outlet_name" property="outletName" />
+		<result column="agent_name" property="agentName" />
+		<result column="agreement_no" property="agreementNo" />
+		<result column="purchase_date" property="purchaseDate" />
+		<result column="finance_amount" property="financeAmount" />
+		<result column="created_time" property="createdDate" />
+		<result column="compulsory_amount" property="compulsoryAmount" />
+		<result column="finance_term" property="financeTerm" />
+	</resultMap>
+
+</mapper>

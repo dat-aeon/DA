@@ -1,0 +1,269 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Thiha Htet Zaw $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('APL008')}" /></title>
+	</ui:define>
+	<style>
+div.sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color: yellow;
+	padding: 50px;
+	font-size: 20px;
+}
+</style>
+	<ui:define name="body">
+		<h:form id="settlementIndexApplicationInfoListForm">
+			<p:focus context="settlementIndexApplicationInfoListForm" />
+			<p:defaultCommand target="searchButton" />
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12 sticky" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('APL008')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-6">
+						<p:panelGrid styleClass="status-panel-grid" style="margin-top: 0%;">
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicationNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="appNo" style="width:100%;" autocomplete="off" value="#{settlementIndexApplicationListFormBean.searchHeaderBean.applicationNo}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicantName')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="appName" style="width:100%;" autocomplete="off" value="#{settlementIndexApplicationListFormBean.searchHeaderBean.applicantName}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicantPhoneNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="phoneNo" style="width:100%;" autocomplete="off" value="#{settlementIndexApplicationListFormBean.searchHeaderBean.applicantPhoneNo}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('sendDate')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar id="startDateFrom" style="width:350px;" autocomplete="off" pattern="yyyy-MM-dd" mask="true"
+										value="#{settlementIndexApplicationListFormBean.searchHeaderBean.newApplicationDateFrom}" placeholder="#{displayItemBean.getDisplayItemName('from')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar id="startDateTo" style="width:350px;" autocomplete="off" pattern="yyyy-MM-dd" mask="true"
+										value="#{settlementIndexApplicationListFormBean.searchHeaderBean.newApplicationDateTo}" placeholder="#{displayItemBean.getDisplayItemName('to')}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicantNrc')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="nrcNo" style="width:100%;" autocomplete="off" value="#{settlementIndexApplicationListFormBean.searchHeaderBean.applicantNrcNo}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('agentName')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="agentName" style="width:100%;" autocomplete="off" value="#{settlementIndexApplicationListFormBean.searchHeaderBean.agentName}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('outletName')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="outletName" style="width:100%;" autocomplete="off" value="#{settlementIndexApplicationListFormBean.searchHeaderBean.outletName}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('requestedStaffName')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="staffName" style="width:100%;" autocomplete="off" value="#{settlementIndexApplicationListFormBean.searchHeaderBean.staffName}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('requestedStaffUserType')}" />
+								</p:column>
+								<p:column colspan="2" style="width: 150px;" styleClass="status-panel-grid-column">
+									<p:selectOneMenu id="requestedStaffUserType" value="#{settlementIndexApplicationListFormBean.searchHeaderBean.userTypeId}">
+										<f:selectItem itemValue="#{null}" itemLabel="" />
+										<f:selectItems value="#{settlementIndexApplicationListFormBean.userTypeSelectItemList}" />
+									</p:selectOneMenu>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('settlementStatus')}" />
+								</p:column>
+								<p:column colspan="2" style="width: 150px;" styleClass="status-panel-grid-column">
+									<p:selectOneMenu id="settlementType" value="#{settlementIndexApplicationListFormBean.searchHeaderBean.status}">
+										<f:selectItem itemValue="#{null}" itemLabel="#{displayItemBean.getDisplayItemName('all')}" />
+										<f:selectItems value="#{settlementIndexApplicationListFormBean.settlementTypeSelectItemList}" />
+									</p:selectOneMenu>
+								</p:column>
+							</p:row>
+							<p:row style="border: none;">
+								<p:column colspan="3" style="border: none;background:#f4f7fc;">
+									<p:commandButton id="searchButton" styleClass="button" value="#{displayItemBean.getDisplayItemName('search')}" style="margin: 3px 0px 0px -10px;" ajax="false"
+										action="#{settlementIndexApplicationListFormBean.search()}" />
+									<p:commandButton id="clearButton" styleClass="button" value="#{displayItemBean.getDisplayItemName('clear')}" style="margin: 3px 0px 0px 5px;" ajax="false"
+										action="#{settlementIndexApplicationListFormBean.reset()}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<div class="message-block ui-g-6">
+							<pt:messages />
+						</div>
+						<div class="ui-g-6" style="text-align: right;">
+							<p:commandButton styleClass="button" ajax="false" rendered="#{settlementIndexApplicationListFormBean.lazyModel != null}" style="margin: 3px 0px 0px 10px;"
+								value="#{displayItemBean.getDisplayItemName('export')}">
+								<p:dataExporter type="xlsxstream" target="applicationResultTable" fileName="SettlementIndexApplicationInfoList">
+								</p:dataExporter>
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean" first="#{settlementIndexApplicationListFormBean.pageFirst}" value="#{settlementIndexApplicationListFormBean.lazyModel}" rows="50"
+								paginator="true" rowIndexVar="rowIndex" paginatorPosition="both" lazy="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="50,100"
+								styleClass="resultTable" style="width: 100%;" id="applicationResultTable">
+								<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column style="width:200px;" id="actions" styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('operation')}" exportable="false">
+									<p:commandLink id="notYet" styleClass="management-link" rendered="#{lineBean.lockFlag == false or lineBean.lockBy == settlementIndexApplicationListFormBean.loginUserName}"
+										style="width:auto !important" action="#{settlementIndexApplicationListFormBean.notYet(lineBean)}" value="#{displayItemBean.getDisplayItemName('notYet')}">
+										<f:setPropertyActionListener value="#{lineBean}" target="#{settlementIndexApplicationListFormBean.lineBean}" />
+									</p:commandLink>
+									<p:commandLink id="detail" styleClass="management-link" style="width:auto !important" action="#{settlementIndexApplicationListFormBean.detail(lineBean)}"
+										value="#{displayItemBean.getDisplayItemName('detail')}">
+									</p:commandLink>
+								</p:column>
+								<p:column visible="false" exportable="false" headerText="#{displayItemBean.getDisplayItemName('applicationId')}">
+									<h:outputText value="#{lineBean.applicationId}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.applicationNo}" headerText="#{displayItemBean.getDisplayItemName('applicationNo')}">
+									<h:outputText value="#{lineBean.applicationNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.applicantName}" headerText="#{displayItemBean.getDisplayItemName('name')}">
+									<h:outputText value="#{lineBean.applicantName}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.nrcNo}" headerText="#{displayItemBean.getDisplayItemName('applicantNrc')}">
+									<h:outputText value="#{lineBean.nrcNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.mobileNo}" headerText="#{displayItemBean.getDisplayItemName('applicantPhoneNo')}">
+									<h:outputText value="#{lineBean.mobileNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.purchaseDto.agreementNo}" headerText="#{displayItemBean.getDisplayItemName('agreementNo')}">
+									<h:outputText value="#{lineBean.purchaseDto.agreementNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.purchaseDto.agentName}" headerText="#{displayItemBean.getDisplayItemName('agentName')}">
+									<h:outputText value="#{lineBean.purchaseDto.agentName}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.purchaseDto.outletName}" headerText="#{displayItemBean.getDisplayItemName('outletName')}">
+									<h:outputText value="#{lineBean.purchaseDto.outletName}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.financeAmount}" headerText="#{displayItemBean.getDisplayItemName('financeAmount')}">
+									<h:outputText value="#{lineBean.financeAmount}">
+										<f:convertNumber type="currency" pattern="###,###,##0" />
+									</h:outputText>
+								</p:column>
+								<p:column style="width:200px;" styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('processingFees')}">
+									<h:outputText value="#{settlementIndexApplicationListFormBean.getProcessingFees(lineBean.financeAmount)}">
+										<f:convertNumber type="currency" pattern="###,###,##0" />
+									</h:outputText>
+								</p:column>
+								<p:column style="width:200px;" styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('compulsorySaving')}">
+									<h:outputText value="#{lineBean.compulsoryAmount}">
+										<f:convertNumber type="currency" pattern="###,###,##0" />
+									</h:outputText>
+								</p:column>
+								<p:column style="width:200px;" styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('settlementAmount')}">
+									<h:outputText value="#{lineBean.purchaseDto.settlementAmount}">
+										<f:convertNumber type="currency" pattern="###,###,##0" />
+									</h:outputText>
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.status}" headerText="#{displayItemBean.getDisplayItemName('settlementStatus')}">
+									<h:outputText value="#{settlementIndexApplicationListFormBean.getSettlementTypeValue(lineBean.status)}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.pendingComment}" headerText="#{displayItemBean.getDisplayItemName('pendingComment')}">
+									<h:outputText value="#{lineBean.pendingComment}" />
+								</p:column>
+								<p:column styleClass="unsort-column" style="width:200px;" headerText="#{displayItemBean.getDisplayItemName('lastRequestedStaffName')}">
+									<h:outputText value="#{lineBean.lastRequestedStaffName}" />
+								</p:column>
+								<p:column style="width:200px;" exportable="false" styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('requestedStaff')}">
+									<p:commandLink id="viewRequestedStaff" styleClass="management-link" style="width:auto !important"
+										action="#{settlementIndexApplicationListFormBean.viewRequestedStaff(lineBean)}" value="#{displayItemBean.getDisplayItemName('viewRequestedStaff')}">
+									</p:commandLink>
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.appliedDate}" headerText="#{displayItemBean.getDisplayItemName('sendDate')}">
+									<h:outputText value="#{lineBean.appliedDate}">
+										<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</div>
+		</h:form>
+		<h:form id="viewRequestedStaffForm">
+			<p:dialog modal="true" visible="#{settlementIndexApplicationListFormBean.dialogVisible}" resizable="false" header="Requested Staff List" appendToBody="true"
+				widgetVar="viewRequestedStaffDialog" showEffect="explode" hideEffect="explode" id="viewRequestedStaffDialog" closable="true" width="800" height="150">
+				<p:ajax event="close" listener="#{settlementIndexApplicationListFormBean.closeDialog}" />
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean" value="#{settlementIndexApplicationListFormBean.requestedStaffLineBeanList}" paginator="false" rowIndexVar="rowIndex" styleClass="resultTable"
+								id="viewRequestedStaffTable">
+								<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('requestedStaffName')}">
+									<h:outputText value="#{lineBean.name}" />
+								</p:column>
+								<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('requestedDate')}">
+									<h:outputText value="#{lineBean.requestedDate}">
+										<f:convertDateTime pattern="yyyy-MM-dd" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

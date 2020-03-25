@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="TermsAndConditionsInfo">
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.termsAndConditionsInfoSearch.TermsAndConditionsInfoSearchReqDto"
+		resultMap="TermsAndConditionsInfoSearchResDto">
+			SELECT terms_and_conditions_id, description_eng, description_myn, updated_by, updateD_time
+			FROM terms_and_conditions
+			ORDER BY terms_and_conditions_id DESC
+	</select>
+	<resultMap id="TermsAndConditionsInfoSearchResDto"
+		type="mm.aeon.com.ass.base.dto.termsAndConditionsInfoSearch.TermsAndConditionsInfoSearchResDto">
+		<result property="termsAndConditionsId" column="terms_and_conditions_id" />
+		<result property="descEng" column="description_eng" />
+		<result property="descMyan" column="description_myn" />
+		<result property="updatedTime" column="updated_time" />
+		<result property="updatedBy" column="updated_by" />
+	</resultMap>
+	
+	
+
+	<select id="selectForUpdate"
+		parameterType="mm.aeon.com.ass.base.dto.termsAndConditionsInfoSelectForUpdate.TermsAndConditionsInfoSelectForUpdateReqDto"
+		resultMap="TermsAndConditionsInfoSelectForUpdateResDto">
+		SELECT terms_and_conditions_id, UPDATED_TIME
+		FROM terms_and_conditions
+		<where>
+			<!-- <if test="secId != null and secId!= ''"> -->
+				 terms_and_conditions_id = #{termsAndConditionsId}
+			<!-- </if> -->
+		</where>
+	</select>
+
+	<resultMap id="TermsAndConditionsInfoSelectForUpdateResDto"
+		type="mm.aeon.com.ass.base.dto.termsAndConditionsInfoSelectForUpdate.TermsAndConditionsInfoSelectForUpdateResDto">
+		<result property="termsAndConditionsId" column="terms_and_conditions_id" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+	</resultMap>
+
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.termsAndConditionsInfoUpdate.TermsAndConditionsInfoUpdateReqDto">
+		UPDATE terms_and_conditions 
+		<set>
+				description_eng = #{descEng},
+				description_myn = #{descMyan},
+				updated_by = #{updatedBy},
+				updated_time = #{updatedTime}
+		</set>
+		 <where>
+				terms_and_conditions_id = #{termsAndConditionsId}
+		</where>  
+	</update>
+</mapper>

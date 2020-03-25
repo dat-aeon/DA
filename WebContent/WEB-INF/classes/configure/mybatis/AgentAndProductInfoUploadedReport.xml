@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="AgentAndProductInfoUploadedReport">
+	<select id="count"
+		parameterType="mm.aeon.com.ass.base.dto.agentAndProductInfoUploadedReportSearch.AgentAndProductInfoUploadedReportCountSearchReqDto"
+		resultType="java.lang.Integer">
+		select 
+			count(distinct dpa.agent_name)
+		from 
+			da_purchase_info dpa 
+		left join 
+			da_application_info dai 
+		on 
+			dpa.da_application_info_id = dai.da_application_info_id 
+		left join 
+			da_application_info_history daih 
+		on 
+			dai.da_application_info_id = daih.da_application_info_id 
+		<where>
+			dpa.status = 5 
+			and 
+			dai.status = 18 
+			and 
+			daih.status = 18 
+			and 
+			to_char(daih.created_time, 'yyyyMMdd') = (select to_char(min(idaih.created_time), 'yyyyMMdd') from da_application_info_history idaih where idaih.status = 18 and idaih.da_application_info_id = dai.da_application_info_id)  
+			<if test="location != null and location != ''">
+				AND LOWER(dpa.purchase_location) LIKE LOWER('%' || #{location} || '%')
+			</if>
+			<if test="uploadedDateFrom != null">
+				AND TO_CHAR(daih.created_time, 'yyyyMMdd') &gt;=
+				TO_CHAR(#{uploadedDateFrom,jdbcType=DATE}::DATE,'YYYYMMDD')
+			</if>
+			<if test="uploadedDateTo != null">
+				AND TO_CHAR(daih.created_time, 'yyyyMMdd') &lt;=
+				TO_CHAR(#{uploadedDateTo,jdbcType=DATE}::DATE,'YYYYMMDD')
+			</if>
+		</where>
+	</select>
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.agentAndProductInfoUploadedReportSearch.AgentAndProductInfoUploadedReportSearchReqDto"
+		resultMap="agentSaleReportSearchResultMap">
+		select
+			dpa.agent_id, 
+			dpa.agent_name, 
+			dpa.purchase_location, 
+			cal.application_no, 
+			cal.financial_amt, 
+			cal.financial_term, 
+			dci.compulsory_amount,
+			dai.approved_finance_amount,
+			dai.approved_finance_term
+		from 
+			da_purchase_info dpa 
+		left join 
+			da_application_info dai 
+		on 
+			dpa.da_application_info_id = dai.da_application_info_id 
+		left join 
+			da_compulsory_info dci 
+		on 
+			dai.da_compulsory_info_id = dci.da_compulsory_info_id 
+		left join 
+			cust_agreement_list cal 
+		on 
+			dai.application_no = cal.application_no 
+		left join 
+			da_application_info_history daih 
+		on 
+			dai.da_application_info_id = daih.da_application_info_id 
+		<where>
+			dpa.status = 5 
+			and 
+			dai.status = 18 
+			and 
+			daih.status = 18 
+			and 
+			to_char(daih.created_time, 'yyyyMMdd') = (select to_char(min(idaih.created_time), 'yyyyMMdd') from da_application_info_history idaih where idaih.status = 18 and idaih.da_application_info_id = dai.da_application_info_id)  
+			<if test="location != null and location != ''">
+				AND LOWER(dpa.purchase_location) LIKE LOWER('%' || #{location} || '%')
+			</if>
+			<if test="uploadedDateFrom != null">
+				AND TO_CHAR(daih.created_time, 'yyyyMMdd') &gt;=
+				TO_CHAR(#{uploadedDateFrom,jdbcType=DATE}::DATE,'YYYYMMDD')
+			</if>
+			<if test="uploadedDateTo != null">
+				AND TO_CHAR(daih.created_time, 'yyyyMMdd') &lt;=
+				TO_CHAR(#{uploadedDateTo,jdbcType=DATE}::DATE,'YYYYMMDD')
+			</if>
+		</where>
+		group by 
+		dpa.agent_id,dpa.agent_name,dpa.purchase_location,dpa.outlet_id, dpa.outlet_name, daih.created_time, cal.application_no, cal.financial_amt, cal.financial_term,dci.compulsory_amount, dai.approved_finance_amount, dai.approved_finance_term
+		<if
+			test="sortField != null and sortField != '' and sortField == 'agentName' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dpa.agent_name ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dpa.agent_name DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'purchaseLocation' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dpa.purchase_location ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dpa.purchase_location DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'totalFinanceAmount' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dai.approved_finance_amount ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dai.approved_finance_amount DESC
+			</if>
+		</if>
+		<if
+			test="sortField != null and sortField != '' and sortField == 'totalCompulsorySaving' ">
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'ASCENDING' ">
+				ORDER BY dci.compulsory_amount ASC
+			</if>
+			<if
+				test="sortOrder != null and sortOrder != '' and sortOrder == 'DESCENDING' ">
+				ORDER BY dci.compulsory_amount DESC
+			</if>
+		</if>
+		<if test="sortField == null or sortField == ''">
+			ORDER BY daih.created_time DESC
+		</if>
+		<if test="offset != null and limit != null">
+			OFFSET #{offset} LIMIT #{limit}
+		</if>
+
+	</select>
+
+	<resultMap id="agentSaleReportSearchResultMap"
+		type="mm.aeon.com.ass.base.dto.agentAndProductInfoUploadedReportSearch.AgentAndProductInfoUploadedReportSearchResDto">
+		<result column="agent_id" jdbcType="INTEGER" property="agentId" />
+		<result column="agent_name" jdbcType="VARCHAR" property="agentName" />
+		<result column="purchase_location" jdbcType="VARCHAR" property="purchaseLocation" />
+		
+		<collection resultMap="agentAndProductAppInfoResultMap" property="agentAndProductAppInfoList" />
+		
+	</resultMap>
+	
+	<resultMap id="agentAndProductAppInfoResultMap" type="mm.aeon.com.ass.base.dto.agentAndProductInfoUploadedReportSearch.AgentAndProductAppInfo">
+		<result column="application_no" jdbcType="VARCHAR" property="applicationNo" />
+		<result column="financial_amt" jdbcType="NUMERIC" property="financialAmt" />
+		<result column="financial_term" jdbcType="NUMERIC" property="financialTerm" />
+		<result column="approved_finance_amount" jdbcType="NUMERIC" property="approvedFinanceAmount" />
+		<result column="approved_finance_term" jdbcType="NUMERIC" property="approvedFinanceTerm" />
+		<result column="compulsory_amount" jdbcType="NUMERIC" property="compulsoryAmount" />
+	</resultMap>
+
+</mapper>

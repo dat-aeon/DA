@@ -1,0 +1,215 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Thiha Htet Zaw $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('APL007')}" /></title>
+	</ui:define>
+	<style>
+div.sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color: yellow;
+	padding: 50px;
+	font-size: 20px;
+}
+</style>
+	<ui:define name="body">
+		<h:form id="documentFollowUpApplicationInfoListForm">
+			<p:focus context="documentFollowUpApplicationInfoListForm"/>
+			<p:defaultCommand target="searchButton" />
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12 sticky" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('APL007')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-6">
+						<p:panelGrid styleClass="status-panel-grid" style="margin-top: 0%;">
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicationNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="appNo" autocomplete="off" style="width:100%;" value="#{documentFollowUpApplicationListFormBean.searchHeaderBean.applicationNo}"/>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicantName')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="appName" style="width:100%;" autocomplete="off" value="#{documentFollowUpApplicationListFormBean.searchHeaderBean.applicantName}"/>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicantPhoneNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="phoneNo" style="width:100%;" autocomplete="off" value="#{documentFollowUpApplicationListFormBean.searchHeaderBean.applicantPhoneNo}"/>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('sendDate')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar id="startDateFrom" style="width:350px;" autocomplete="off" pattern="yyyy-MM-dd" mask="true" value="#{documentFollowUpApplicationListFormBean.searchHeaderBean.newApplicationDateFrom}" placeholder="#{displayItemBean.getDisplayItemName('from')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar id="startDateTo" style="width:350px;" autocomplete="off" pattern="yyyy-MM-dd" mask="true" value="#{documentFollowUpApplicationListFormBean.searchHeaderBean.newApplicationDateTo}" placeholder="#{displayItemBean.getDisplayItemName('to')}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicantNrc')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="nrcNo" style="width:100%;" autocomplete="off" value="#{documentFollowUpApplicationListFormBean.searchHeaderBean.applicantNrcNo}"/>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('requestedStaffName')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="staffName" style="width:100%;" autocomplete="off" value="#{documentFollowUpApplicationListFormBean.searchHeaderBean.staffName}"/>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('requestedStaffUserType')}" />
+								</p:column>
+								<p:column colspan="2" style="width: 150px;" styleClass="status-panel-grid-column">
+									<p:selectOneMenu id="requestedStaffUserType" value="#{documentFollowUpApplicationListFormBean.searchHeaderBean.userTypeId}">
+										<f:selectItems value="#{documentFollowUpApplicationListFormBean.userTypeSelectItemList}" />
+									</p:selectOneMenu>
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column style="width: 110px" styleClass="status-panel-grid-column tblSingleLabel">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('documentFollowUpStatus')}" />
+								</p:column>
+								<p:column colspan="2" style="width: 150px;" styleClass="status-panel-grid-column">
+									<p:selectOneMenu id="loanType" value="#{documentFollowUpApplicationListFormBean.searchHeaderBean.status}">
+										<f:selectItem itemValue="#{null}" itemLabel="#{displayItemBean.getDisplayItemName('all')}" />
+										<f:selectItems value="#{documentFollowUpApplicationListFormBean.docFollowUpTypeSelectItemList}" />
+									</p:selectOneMenu>
+								</p:column>
+							</p:row>
+							<p:row style="border: none;">
+								<p:column colspan="3" style="border: none;background:#f4f7fc;">
+									<p:commandButton id="searchButton" styleClass="button" value="#{displayItemBean.getDisplayItemName('search')}" style="margin: 3px 0px 0px -10px;" ajax="false"
+										action="#{documentFollowUpApplicationListFormBean.search()}" />
+									<p:commandButton id="clearButton" styleClass="button" value="#{displayItemBean.getDisplayItemName('clear')}" style="margin: 3px 0px 0px 5px;" ajax="false"
+										action="#{documentFollowUpApplicationListFormBean.reset()}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<div class="message-block ui-g-6">
+							<pt:messages />
+						</div>
+						<div class="ui-g-6" style="text-align: right;">
+							<p:commandButton styleClass="button" ajax="false" rendered="#{documentFollowUpApplicationListFormBean.lazyModel != null}" style="margin: 3px 0px 0px 10px;"
+								value="#{displayItemBean.getDisplayItemName('export')}">
+								<p:dataExporter type="xlsxstream" target="applicationResultTable" fileName="DocumentFollowUpApplicationInfoList">
+								</p:dataExporter>
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean" first="#{documentFollowUpApplicationListFormBean.pageFirst}" value="#{documentFollowUpApplicationListFormBean.lazyModel}" rows="50" paginator="true" rowIndexVar="rowIndex"
+								paginatorPosition="both" lazy="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="50,100"
+								styleClass="resultTable" id="applicationResultTable">
+								<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column id="actions" styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('operation')}" exportable="false">
+									<p:commandLink rendered="#{lineBean.lockFlag == false or lineBean.lockBy == documentFollowUpApplicationListFormBean.loginUserName}" id="detail" styleClass="management-link" style="width:auto !important" action="#{documentFollowUpApplicationListFormBean.detail(lineBean)}"
+										value="#{displayItemBean.getDisplayItemName('viewDetail')}">
+										<f:setPropertyActionListener value="#{lineBean}" target="#{documentFollowUpApplicationListFormBean.lineBean}" />
+									</p:commandLink>
+								</p:column>
+								<p:column visible="false" exportable="false" headerText="#{displayItemBean.getDisplayItemName('applicationId')}">
+									<h:outputText value="#{lineBean.applicationId}" />
+								</p:column>
+								<p:column sortBy="#{lineBean.applicationNo}" headerText="#{displayItemBean.getDisplayItemName('applicationNo')}">
+									<h:outputText value="#{lineBean.applicationNo}" />
+								</p:column>
+								<p:column sortBy="#{lineBean.applicantName}" headerText="#{displayItemBean.getDisplayItemName('name')}">
+									<h:outputText value="#{lineBean.applicantName}" />
+								</p:column>
+								<p:column sortBy="#{lineBean.nrcNo}" style="width: 135px;" headerText="#{displayItemBean.getDisplayItemName('applicantNrc')}">
+									<h:outputText value="#{lineBean.nrcNo}" />
+								</p:column>
+								<p:column sortBy="#{lineBean.mobileNo}" headerText="#{displayItemBean.getDisplayItemName('applicantPhoneNo')}">
+									<h:outputText value="#{lineBean.mobileNo}" />
+								</p:column>
+								<p:column sortBy="#{lineBean.appliedDate}" headerText="#{displayItemBean.getDisplayItemName('sendDate')}">
+									<h:outputText value="#{lineBean.appliedDate}" >
+									<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+								<p:column styleClass="unsort-column"  headerText="#{displayItemBean.getDisplayItemName('lastRequestedStaffName')}">
+									<h:outputText value="#{lineBean.lastDocumentRequestedStaffName}" />
+								</p:column>
+								<p:column styleClass="unsort-column"  exportable="false" headerText="#{displayItemBean.getDisplayItemName('requestedStaff')}">
+									<p:commandLink id="viewRequestedStaff" styleClass="management-link" style="width:auto !important" action="#{documentFollowUpApplicationListFormBean.viewRequestedStaff(lineBean)}"
+										value="#{displayItemBean.getDisplayItemName('viewRequestedStaff')}">
+									</p:commandLink>
+								</p:column>
+								<p:column sortBy="#{lineBean.status}" headerText="#{displayItemBean.getDisplayItemName('status')}">
+									<h:outputText value="#{documentFollowUpApplicationListFormBean.getDocFollowUpTypeValue(lineBean.status)}" />
+								</p:column>
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</div>
+		</h:form>
+		<h:form id="viewRequestedStaffForm">
+			<p:dialog modal="true" visible="#{documentFollowUpApplicationListFormBean.dialogVisible}" resizable="false" header="Requested Staff List" appendToBody="true"
+				widgetVar="viewRequestedStaffDialog" showEffect="explode" hideEffect="explode" id="viewRequestedStaffDialog" closable="true" width="800" height="150">
+				<p:ajax event="close"  listener="#{documentFollowUpApplicationListFormBean.closeDialog}" />
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean" value="#{documentFollowUpApplicationListFormBean.requestedStaffLineBeanList}" paginator="false" rowIndexVar="rowIndex"
+								styleClass="resultTable" id="viewRequestedStaffTable">
+								<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('documentRequestedStaffName')}">
+									<h:outputText value="#{lineBean.name}" />
+								</p:column>
+								<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('documentRequestedDate')}">
+									<h:outputText value="#{lineBean.requestedDate}" >
+										<f:convertDateTime pattern="yyyy-MM-dd" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

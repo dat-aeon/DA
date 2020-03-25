@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CustEditRequest">
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.custEditRequestSearch.CustEditReqSelectListReqDto"
+		resultMap="custEditRequestSearchResDto">
+		SELECT 
+			cur.CUSTOMER_ID as cur_customer_id, 
+ 			cur.NAME as cur_name,
+ 			cur.DOB as cur_dob,
+ 			cur.NRC_NO as cur_nrc,
+			cur.PHONE_NO as cur_phone,
+ 			edReq.DA_CUSTOMER_INFO_EDIT_REQ_ID as edReq_id,			
+ 			edReq.CUSTOMER_ID as edReq_customer_id,
+ 			edReq.NAME as edReq_name,
+ 			edReq.DOB as edReq_dob,
+ 			edReq.NRC_NO as edReq_nrc,
+			edReq.PHONE_NO as edReq_phone,
+ 			edReq.STATUS as edReq_status,
+ 			edReq.LOCK_TIME,
+ 			edReq.LOCK_BY,
+ 			edReq.LOCK_FLAG,
+			cur.CREATED_BY, 
+			cur.UPDATED_BY, 
+			cur.CREATED_TIME, 
+			cur.UPDATED_TIME	 
+ 		FROM
+		  	da_customer_info_edit_req edReq 
+		JOIN 
+			customer_info cur 
+		ON 
+			cur.CUSTOMER_ID =edReq.CUSTOMER_ID
+		<where>
+			status = 1
+		</where>
+		ORDER BY CREATED_TIME DESC
+	</select>
+ 	
+	<select id="count"
+		parameterType="mm.aeon.com.ass.base.dto.custEditRequestSearch.CustEditRequestSelectCountReqDto"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM
+		da_customer_info_edit_req
+	</select>
+   <resultMap id="custEditRequestSearchResDto"
+		type="mm.aeon.com.ass.base.dto.custEditRequestSearch.CustEditReqSelectListResDto">
+		<result property="current_customerId" column="cur_customer_id" />
+ 		<result property="current_name" column="cur_name" />
+		<result property="current_dob" column="cur_dob" />
+		<result property="current_phoneNo" column="cur_phone" />
+		<result property="current_nrcNo" column="cur_nrc"/>
+		
+		<result property="custEditReqId" column="edReq_id" />
+ 		<result property="createdBy" column="CREATED_BY" />
+		<result property="createdTime" column="CREATED_TIME" />
+		<result property="customerId" column="edReq_customer_id" />
+ 		<result property="dob" column="edReq_dob" />
+ 		<result property="name" column="edReq_name" />
+		<result property="nrc_no" column="edReq_nrc" />
+		<result property="phone_no" column="edReq_phone" />
+ 		<result property="updatedBy" column="UPDATED_BY" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+		<result property="status" column="edReq_status" />
+		<result property="lockTime" column="LOCK_TIME" />
+		<result property="lockBy" column="LOCK_BY" />
+		<result property="lockFlag" column="LOCK_FLAG" />
+ 	</resultMap> 
+	
+	<update id="update"
+		parameterType="mm.aeon.com.ass.base.dto.custEditRequestUpdate.CustEditRequestInfoUpdateReqDto">
+		UPDATE customer_info
+		<set>
+			<if test="name != null">
+				 name=#{name},
+			 </if>
+			 <if test="dob != null">
+			 	dob=#{dob},
+			 </if>
+			 <if test="nrc_no != null">
+				 nrc_no=#{nrc_no},
+			 </if>
+			 <if test="phone_no != null">
+			 	phone_no=#{phone_no},
+			 </if>
+			  <if test="updatedBy != null">
+			 	updated_by=#{updatedBy},
+			 </if>
+			  <if test="updatedTime != null">
+			 	updated_time=#{updatedTime},
+			 </if>	 			  			  
+		</set>
+		from 
+			customer_info ci
+		INNER JOIN 
+			da_customer_info_edit_req dr
+		ON 
+			ci.customer_id=dr.customer_id
+		<where>
+			customer_info.customer_id = #{customerId}<!-- proper name -->
+		</where>
+	</update>
+	
+</mapper>
+

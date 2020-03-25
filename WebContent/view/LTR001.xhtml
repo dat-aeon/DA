@@ -1,0 +1,241 @@
+<!--***********************************************************************
+ * $Date: 2018-06-20$
+ * $Author: Thiha Htet Zaw $
+ * $Rev:  $
+ * 2018 AEON Microfinance (Myanmar) Company	Limited. All Rights Reserved.
+ ***********************************************************************-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:rich="http://richfaces.org/rich"
+	xmlns:pt="http://presto.dat.com/tag" template="/layout/template.xhtml">
+	<ui:define name="title">
+		<title><h:outputText value="#{displayItemBean.getDisplayItemName('LTR001')}" /></title>
+	</ui:define>
+	<style>
+div.sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color: yellow;
+	padding: 50px;
+	font-size: 20px;
+}
+</style>
+	<ui:define name="body">
+		<h:form id="leadTimeListReportForm" >
+			<p:focus context="leadTimeListReportForm"/>
+			<p:defaultCommand target="searchButton" />
+			<div class="ui-fluid">
+				<div class="ui-g">
+					<div class="ui-g-12 sticky" style="color: #302873; font-size: 10pt; text-align: center;">
+						<H1>
+							<p:outputLabel value="#{displayItemBean.getDisplayItemName('LTR001')}" />
+						</H1>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-6">
+						<p:panelGrid styleClass="status-panel-grid" style="margin-top: 0%;">
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('applicationNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="applicationNo" style="width:100%;" autocomplete="off"
+										value="#{LeadTimeReportFormBean.headerBean.applicationNo}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('customerName')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="customerName" style="width:100%;" autocomplete="off"
+										value="#{LeadTimeReportFormBean.headerBean.customerName}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('nrcNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="nrcNo" style="width:100%;" autocomplete="off"
+										value="#{LeadTimeReportFormBean.headerBean.nrcNo}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('phoneNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="phoneNo" style="width:100%;" autocomplete="off"
+										value="#{LeadTimeReportFormBean.headerBean.phoneNo}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('agreementNo')}" />
+								</p:column>
+								<p:column colspan="2" styleClass="status-panel-grid-column" style="width: 320px;">
+									<p:inputText id="agreementNo" style="width:100%;" autocomplete="off"
+										value="#{LeadTimeReportFormBean.headerBean.agreementNo}" />
+								</p:column>
+							</p:row>
+							<p:row styleClass="status-panel-grid-row">
+								<p:column styleClass="status-panel-grid-column tblSingleLabel" style="width:110px;">
+									<h:outputText value="#{displayItemBean.getDisplayItemName('agentInformationReceivedDate')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar autocomplete="off" id="agentInformationReceivedDateFrom" style="width:350px;" pattern="yyyy-MM-dd" mask="true" value="#{LeadTimeReportFormBean.headerBean.agentInformationReceivedDateFrom}" placeholder="#{displayItemBean.getDisplayItemName('from')}" />
+								</p:column>
+								<p:column styleClass="status-panel-grid-column">
+									<p:calendar autocomplete="off" id="agentInformationReceivedDateTo" style="width:350px;" pattern="yyyy-MM-dd" mask="true" value="#{LeadTimeReportFormBean.headerBean.agentInformationReceivedDateTo}" placeholder="#{displayItemBean.getDisplayItemName('to')}" />
+								</p:column>
+							</p:row>
+							<p:row style="border: none;">
+								<p:column colspan="3" style="border: none;background:#f4f7fc;">
+									<p:commandButton id="searchButton" styleClass="button"
+										value="#{displayItemBean.getDisplayItemName('search')}" style="margin: 3px 0px 0px -10px;"
+										update="exportButton" action="#{LeadTimeReportFormBean.search()}">
+										<f:ajax listener="click" update="exportButton" />
+									</p:commandButton>
+									<p:commandButton id="clearButton" styleClass="button"
+										value="#{displayItemBean.getDisplayItemName('clear')}" style="margin: 3px 0px 0px 5px;"
+										ajax="false" action="#{LeadTimeReportFormBean.reset()}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<div class="message-block ui-g-6">
+							<pt:messages />
+						</div>
+						<div class="ui-g-6" style="text-align: right;">
+							<p:commandButton
+								rendered="#{LeadTimeReportFormBean.lazyModel!=null}"
+								value="#{displayItemBean.getDisplayItemName('export')}" ajax="false" update="leadTimeListReportForm" action="#{LeadTimeReportFormBean.downloadLeadTimeReport()}" 
+								style="width:140px!important;height: 35px;" styleClass="button"
+								id="exportButton">
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean" first="#{LeadTimeReportFormBean.pageFirst}"
+								value="#{LeadTimeReportFormBean.lazyModel}" rows="50" paginator="true"
+								rowIndexVar="rowIndex" paginatorPosition="both" lazy="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="50,100" styleClass="resultTable" id="applicationResultTable">
+								<p:column style="width:20px;" styleClass="unsort-column" exportable="false"
+									headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.applicationNo}"
+									headerText="#{displayItemBean.getDisplayItemName('applicationNo')}">
+									<h:outputText value="#{lineBean.applicationNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.customerName}"
+									headerText="#{displayItemBean.getDisplayItemName('customerName')}">
+									<h:outputText value="#{lineBean.customerName}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.nrcNo}"
+									headerText="#{displayItemBean.getDisplayItemName('nrcNo')}">
+									<h:outputText value="#{lineBean.nrcNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.phoneNo}"
+									headerText="#{displayItemBean.getDisplayItemName('phoneNo')}">
+									<h:outputText value="#{lineBean.phoneNo}" />
+								</p:column>
+								<p:column style="width:200px;" sortBy="#{lineBean.agreementNo}"
+									headerText="#{displayItemBean.getDisplayItemName('agreementNo')}">
+									<h:outputText value="#{lineBean.agreementNo}" />
+								</p:column>
+								<p:column style="width:200px;" styleClass="unsort-column"
+									headerText="#{displayItemBean.getDisplayItemName('agentInformationReceivedTime')}">
+									<h:outputText value="#{lineBean.informationReceivedTime}">
+										<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+								<p:column style="width:200px;" styleClass="unsort-column"
+									headerText="#{displayItemBean.getDisplayItemName('agentSaleClaimTime')}">
+									<h:outputText value="#{lineBean.saleClaimTime}">
+										<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+								<p:column style="width:200px;" exportable="false" styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('agentDocumentErrorTime')}">
+									<p:commandLink id="viewDocumentErrorTime" styleClass="management-link" style="width:auto !important"
+										action="#{LeadTimeReportFormBean.viewDocumentErrorTime(lineBean)}" value="#{displayItemBean.getDisplayItemName('viewDocumentErrorTime')}">
+									</p:commandLink>
+								</p:column>
+								<p:column style="width:200px;" exportable="false" styleClass="unsort-column" headerText="#{displayItemBean.getDisplayItemName('agentSaleClaimTime')}">
+									<p:commandLink id="viewSaleClaimTime" styleClass="management-link" style="width:auto !important"
+										action="#{LeadTimeReportFormBean.viewSaleClaimTime(lineBean)}" value="#{displayItemBean.getDisplayItemName('viewAgentSaleClaimTime')}">
+									</p:commandLink>
+								</p:column>
+								<p:column style="width:200px;" styleClass="unsort-column"
+									headerText="#{displayItemBean.getDisplayItemName('agentSaleEntryTime')}">
+									<h:outputText value="#{lineBean.saleEntryTime}">
+										<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</div>
+		</h:form>
+		<h:form id="viewSaleClaimTimeForm">
+			<p:dialog modal="true" visible="#{LeadTimeReportFormBean.saleClaimdialogVisible}" resizable="false" header="Sale Claim Time List" appendToBody="true"
+				widgetVar="viewSaleClaimTime" showEffect="explode" hideEffect="explode" id="viewSaleClaimTime" closable="true" width="800" height="150">
+				<p:ajax event="close" listener="#{LeadTimeReportFormBean.closeSaleClaimDialog}" />
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean" value="#{LeadTimeReportFormBean.timeBeanList}" paginator="false" rowIndexVar="rowIndex" styleClass="resultTable"
+								id="viewDocFollowUpStaffTable">
+								<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('agentSaleClaimTime')}">
+									<h:outputText value="#{lineBean.reportTime}">
+										<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</p:dialog>
+		</h:form>
+		<h:form id="viewDocumentErrorTimeForm">
+			<p:dialog modal="true" visible="#{LeadTimeReportFormBean.documentErrordialogVisible}" resizable="false" header="Document Error Time List" appendToBody="true"
+				widgetVar="viewDocumentErrorTime" showEffect="explode" hideEffect="explode" id="viewDocumentErrorTime" closable="true" width="800" height="150">
+				<p:ajax event="close" listener="#{LeadTimeReportFormBean.closeDocumentErrorDialog}" />
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<f:view encoding="utf-8">
+							<p:dataTable var="lineBean" value="#{LeadTimeReportFormBean.timeBeanList}" paginator="false" rowIndexVar="rowIndex" styleClass="resultTable"
+								id="viewDataEntryStaffTable">
+								<p:column style="width:20px;" styleClass="unsort-column" exportable="false" headerText="#{displayItemBean.getDisplayItemName('no')}">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column styleClass="unsort-column" style="width:100px;" headerText="#{displayItemBean.getDisplayItemName('agentDocumentErrorTime')}">
+									<h:outputText value="#{lineBean.reportTime}">
+										<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						</f:view>
+					</div>
+				</div>
+			</p:dialog>
+		</h:form>
+		
+			
+	</ui:define>
+</ui:composition>

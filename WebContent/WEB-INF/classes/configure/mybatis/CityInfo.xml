@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="CityInfo">
+
+	<select id="selectList"
+		parameterType="mm.aeon.com.ass.base.dto.citySearch.CitySearchReqDto"
+		resultMap="InterestSearchResDto">
+		SELECT 
+			CITY_ID, NAME, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, DEL_FLAG
+		FROM 
+			DA_CITY_INFO
+	</select>
+
+	<resultMap id="InterestSearchResDto"
+		type="mm.aeon.com.ass.base.dto.citySearch.CitySearchResDto">
+		<result property="cityId" column="CITY_ID" />
+		<result property="cityName" column="NAME" />
+		<result property="delFlag" column="DEL_FLAG" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="createdTime" column="CREATED_TIME" />
+		<result property="updatedBy" column="UPDATED_BY" />
+		<result property="updatedTime" column="UPDATED_TIME" />
+	</resultMap>
+
+</mapper>
