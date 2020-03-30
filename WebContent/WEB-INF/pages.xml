@@ -145,6 +145,11 @@
 				<redirect view-id="/view/APL023.xhtml" />
 			</rule>
 			
+			<rule if-outcome="APL019">
+				<end-conversation before-redirect="true" root="false" />
+				<redirect view-id="/view/APL019.xhtml" />
+			</rule>
+			
 			<rule if-outcome="APR001">
 				<end-conversation before-redirect="true" root="false" />
 				<redirect view-id="/view/APR001.xhtml" />
@@ -1289,24 +1294,24 @@
 	</page>
 	
 	<!-- Exception that occurs when uploading exceeds the file's maximum size -->
-	<!-- <exception class="org.jboss.seam.web.FileUploadException"
+	<exception class="org.jboss.seam.web.FileUploadException"
 		log-level="INFO">
 		<redirect view-id="/view/Error.xhtml">
 			<message>File size exceeds 2MB.</message>
 		</redirect>
-	</exception> -->
+	</exception>
 
 	<!-- Exception that occurs when conversation control is not correctly done -->
-	 <!-- <exception
+	 <exception
 		class="org.jboss.seam.ConcurrentRequestTimeoutException"
 		log-level="FATAL">
 		<redirect view-id="/view/Error.xhtml">
 			<message>Processing was interrupted. Please log in again from the login screen.</message>
 		</redirect>
-	</exception> -->
+	</exception>
 
 	<!-- Exception that occurs when an exception on View occurs -->
-	<!-- <exception
+	<exception
 		class="javax.faces.application.ViewExpiredException" log-level="FATAL">
 		<redirect view-id="/view/Error.xhtml">
 			<message>Processing was interrupted. Please log in again from the login screen.</message>
@@ -1326,38 +1331,38 @@
 		<redirect view-id="/view/Login.xhtml">
 			<message severity="ERROR">Please Log In First.</message>
 		</redirect>
-	</exception> -->
+	</exception>
 
 
 	<!-- When a service layer exception occurs -->
-	<!-- <exception
+	<exception
 		class="mm.com.dat.presto.main.exception.BaseException"
 		log-level="FATAL">
 		<redirect view-id="/view/Error.xhtml">
 			<message severity="ERROR">An error occurred in the system. Please inform the system administrator.[BaseException] </message>
 		</redirect>
 	</exception>
- -->
+	
 	<!-- FrontException -->
-	 <!-- <exception
+	 <exception
 		class="mm.aeon.com.ass.front.common.exception.SMSFrontException"
 		log-level="FATAL">
 		<redirect view-id="/view/Error.xhtml">
 			<message severity="ERROR">An error occurred in the system. Please inform the system administrator. </message>
 		</redirect>
-	</exception> -->
+	</exception>
 
 	<!-- FrontException -->
-	 <!-- <exception
+	 <exception
 		class="mm.aeon.com.ass.front.common.exception.InvalidScreenTransitionException"
 		log-level="FATAL">
 		<redirect view-id="/view/Error.xhtml">
 			<message severity="ERROR">Access denied. Please log in again from the login screen. </message>
 		</redirect>
-	</exception> -->
+	</exception>
 
 	<!-- PrestoDBException -->
-	<!-- <exception
+	<exception
 		class="mm.com.dat.presto.main.exception.PrestoDBException"
 		log-level="FATAL">
 		<redirect view-id="/view/Error.xhtml">
@@ -1369,7 +1374,7 @@
 		<redirect view-id="/view/Error.xhtml">
 			<message severity="ERROR">An error occurred in the system. Please inform the system administrator.[Exception] </message>
 		</redirect>
-	</exception> -->
+	</exception>
 
 	<!-- EXCEPTION HANDLING -->
 </pages>

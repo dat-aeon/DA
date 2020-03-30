@@ -10,7 +10,7 @@
 		parameterType="mm.aeon.com.ass.base.dto.newApplicationListSearch.NewApplicationSearchReqDto"
 		resultMap="applicationSearchResDtoResultMap">
 		select 
-			distinct on (dai.application_no) dai.application_no,
+			dai.application_no,
 			dai.da_application_info_id, 
 			dai.da_application_type_id, 
 			dai.applied_date, 

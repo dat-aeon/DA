@@ -695,31 +695,7 @@
 								</p:row>
 								<p:row>
 									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
-										<h:outputLabel value="#{displayItemBean.getDisplayItemName('loanType')}" />
-									</p:column>
-									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
-										<h:outputText value="#{agreementModificationRequestFormBean.getLoanTypeValue(agreementModificationRequestFormBean.lineBean.loanTypeId)}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
-										<h:outputLabel value="#{displayItemBean.getDisplayItemName('productCategory')}" />
-									</p:column>
-									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
-										<h:outputText value="#{agreementModificationRequestFormBean.getProductTypeValue(agreementModificationRequestFormBean.lineBean.productId)}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
-										<h:outputLabel value="#{displayItemBean.getDisplayItemName('productDescription')}" />
-									</p:column>
-									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
-										<h:outputText value="#{agreementModificationRequestFormBean.lineBean.productDescription}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
-										<h:outputLabel value="#{displayItemBean.getDisplayItemName('financeAmount')}" />
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('currentFinanceAmount')}" />
 									</p:column>
 									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
 										<h:outputText value="#{agreementModificationRequestFormBean.lineBean.financeAmount}">
@@ -729,7 +705,7 @@
 								</p:row>
 								<p:row>
 									<p:column styleClass="tblSingleLabel tblAppBorderLeft">
-										<h:outputLabel value="#{displayItemBean.getDisplayItemName('financeTerm')}" />
+										<h:outputLabel value="#{displayItemBean.getDisplayItemName('currentFinanceTerm')}" />
 									</p:column>
 									<p:column styleClass="status-panel-grid-column tblAppBorderRight" colspan="2" style="width:70%;">
 										<h:outputText value="#{''.concat(agreementModificationRequestFormBean.lineBean.financeTerm).concat(' Months')}" />
